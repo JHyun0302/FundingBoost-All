@@ -1,0 +1,14 @@
+services:
+  fundingboost-front:
+    container_name: fundingboost-front
+    image: fundingboost-front:${FRONT_IMAGE_TAG:-latest}
+    build:
+      context: ./FundingBoost-Client
+      dockerfile: Dockerfile.nginx
+      args:
+        REACT_APP_FUNDINGBOOST: ${REACT_APP_FUNDINGBOOST:-/api/v1}
+        REACT_APP_FUNDINGBOOST_V3: ${REACT_APP_FUNDINGBOOST_V3:-/api/v3}
+        REACT_APP_IMAGE_PROXY_PATH: ${REACT_APP_IMAGE_PROXY_PATH:-/img-proxy}
+    ports:
+      - "${FRONT_HTTP_PORT:-80}:80"
+    restart: unless-stopped

@@ -1,0 +1,178 @@
+services:
+  fundingboost-server:
+    container_name: fundingboost-server
+    image: fundingboost-server:${SERVER_IMAGE_TAG:-latest}
+    build:
+      context: ./FundingBoost-Server
+      dockerfile: Dockerfile
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      FUNDINGBOOST_DB_URL: ${FUNDINGBOOST_DB_URL:-jdbc:mysql://mysql:3306/fundingboost?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8}
+      FUNDINGBOOST_DB_USERNAME: ${FUNDINGBOOST_DB_USERNAME:-mysql}
+      FUNDINGBOOST_DB_PASSWORD: ${FUNDINGBOOST_DB_PASSWORD:-1q2w3e4r!}
+      PAYMENT_DB_NAME: ${PAYMENT_DB_NAME:-payment}
+      REDIS_REFRESH_HOST: redis-refresh
+      REDIS_REFRESH_PORT: 6379
+      REDIS_LOCK_HOST: redis-lock
+      REDIS_LOCK_PORT: 6379
+      ELASTICSEARCH_HOST: elasticsearch
+      ELASTICSEARCH_PORT: 9200
+      KAKAO_CLIENT_ID: ${KAKAO_CLIENT_ID:-dummy-client-id}
+      KAKAO_CLIENT_SECRET: ${KAKAO_CLIENT_SECRET:-dummy-client-secret}
+      KAKAO_REDIRECT_URI: ${KAKAO_REDIRECT_URI:-http://138.2.43.7/login/oauth2/code/kakao}
+      APP_PAY_BARCODE_VERIFY_BASE_URL: ${APP_PAY_BARCODE_VERIFY_BASE_URL:-}
+      FUNDINGBOOST_CORS_ORIGINS: ${FUNDINGBOOST_CORS_ORIGINS:-http://138.2.43.7}
+      TESTDATA_BOOTSTRAP_ENABLED: ${TESTDATA_BOOTSTRAP_ENABLED:-true}
+      TESTDATA_BOOTSTRAP_RETRY_DELAY_MS: ${TESTDATA_BOOTSTRAP_RETRY_DELAY_MS:-10000}
+    depends_on:
+      mysql:
+        condition: service_healthy
+      mysql-bootstrap:
+        condition: service_completed_successfully
+      redis-refresh:
+        condition: service_started
+      redis-lock:
+        condition: service_started
+      elasticsearch:
+        condition: service_healthy
+    ports:
+      - "${BACK_API_PORT:-8080}:8080"
+    restart: unless-stopped
+    networks:
+      - back-net
+
+  funding-crawler:
+    container_name: funding-crawler
+    image: fundingboost-crawler:${CRAWLER_IMAGE_TAG:-latest}
+    build:
+      context: ./FundingBoost-DataCrawler
+      dockerfile: Dockerfile
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      TZ: Asia/Seoul
+      CRAWLER_DB_URL: ${CRAWLER_DB_URL:-jdbc:mysql://mysql:3306/item?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8}
+      CRAWLER_DB_USERNAME: ${CRAWLER_DB_USERNAME:-mysql}
+      CRAWLER_DB_PASSWORD: ${CRAWLER_DB_PASSWORD:-1q2w3e4r!}
+      CRAWLER_BOOTSTRAP_ENABLED: ${CRAWLER_BOOTSTRAP_ENABLED:-false}
+      CRAWLER_BOOTSTRAP_ITEM_LIMIT: ${CRAWLER_BOOTSTRAP_ITEM_LIMIT:-20}
+      CRAWLER_INIT_API_ENABLED: ${CRAWLER_INIT_API_ENABLED:-false}
+    depends_on:
+      mysql:
+        condition: service_healthy
+      mysql-bootstrap:
+        condition: service_completed_successfully
+      fundingboost-server:
+        condition: service_started
+    ports:
+      - "${BACK_CRAWLER_PORT:-8090}:8090"
+    restart: unless-stopped
+    networks:
+      - back-net
+
+  mysql:
+    container_name: fundingboost-mysql
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-1q2w3e4r!}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-fundingboost}
+      MYSQL_USER: ${MYSQL_USER:-mysql}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-1q2w3e4r!}
+      CRAWLER_DB_NAME: ${CRAWLER_DB_NAME:-item}
+      PAYMENT_DB_NAME: ${PAYMENT_DB_NAME:-payment}
+      TZ: Asia/Seoul
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./deploy/oci/mysql-init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -p$${MYSQL_ROOT_PASSWORD} --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - back-net
+
+  mysql-bootstrap:
+    container_name: fundingboost-mysql-bootstrap
+    image: mysql:8.0
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-1q2w3e4r!}
+      MYSQL_USER: ${MYSQL_USER:-mysql}
+      CRAWLER_DB_NAME: ${CRAWLER_DB_NAME:-item}
+      PAYMENT_DB_NAME: ${PAYMENT_DB_NAME:-payment}
+    command:
+      - sh
+      - -c
+      - >
+        mysql -hmysql -uroot -p"$${MYSQL_ROOT_PASSWORD}" -e "
+        CREATE DATABASE IF NOT EXISTS \`$${CRAWLER_DB_NAME}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+        GRANT ALL PRIVILEGES ON \`$${CRAWLER_DB_NAME}\`.* TO '$${MYSQL_USER}'@'%';
+        CREATE DATABASE IF NOT EXISTS \`$${PAYMENT_DB_NAME}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+        GRANT ALL PRIVILEGES ON \`$${PAYMENT_DB_NAME}\`.* TO '$${MYSQL_USER}'@'%';
+        FLUSH PRIVILEGES;"
+    restart: "no"
+    networks:
+      - back-net
+
+  redis-refresh:
+    container_name: fundingboost-redis-refresh
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-refresh-data:/data
+    restart: unless-stopped
+    networks:
+      - back-net
+
+  redis-lock:
+    container_name: fundingboost-redis-lock
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-lock-data:/data
+    restart: unless-stopped
+    networks:
+      - back-net
+
+  elasticsearch:
+    container_name: fundingboost-elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+      xpack.security.enrollment.enabled: "false"
+      xpack.license.self_generated.type: basic
+      ES_JAVA_OPTS: ${ELASTICSEARCH_JAVA_OPTS:--Xms512m -Xmx512m}
+      TZ: Asia/Seoul
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:9200 >/dev/null || exit 1"]
+      interval: 20s
+      timeout: 10s
+      retries: 10
+      start_period: 40s
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    restart: unless-stopped
+    networks:
+      - back-net
+
+networks:
+  back-net:
+    driver: bridge
+
+volumes:
+  mysql-data:
+  redis-refresh-data:
+  redis-lock-data:
+  elasticsearch-data:

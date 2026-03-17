@@ -1,0 +1,32 @@
+name: Jenkins Webhook Dispatch
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  notify-jenkins:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate required secrets
+        run: |
+          test -n "${{ secrets.JENKINS_WEBHOOK_BASE_URL }}"
+          test -n "${{ secrets.JENKINS_JOB_NAME }}"
+          test -n "${{ secrets.JENKINS_WEBHOOK_TOKEN }}"
+
+      - name: Send webhook to Jenkins
+        env:
+          JENKINS_WEBHOOK_BASE_URL: ${{ secrets.JENKINS_WEBHOOK_BASE_URL }}
+          JENKINS_JOB_NAME: ${{ secrets.JENKINS_JOB_NAME }}
+          JENKINS_WEBHOOK_TOKEN: ${{ secrets.JENKINS_WEBHOOK_TOKEN }}
+        run: |
+          curl -fsS -X POST \
+            "${JENKINS_WEBHOOK_BASE_URL}" \
+            --data-urlencode "job=${JENKINS_JOB_NAME}" \
+            --data-urlencode "token=${JENKINS_WEBHOOK_TOKEN}" \
+            --data-urlencode "ref=${GITHUB_REF}" \
+            --data-urlencode "sha=${GITHUB_SHA}" \
+            --data-urlencode "repository=${GITHUB_REPOSITORY}" \
+            --data-urlencode "actor=${GITHUB_ACTOR}"

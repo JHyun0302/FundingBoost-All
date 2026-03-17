@@ -1,0 +1,66 @@
+limit_req_zone $binary_remote_addr zone=edge_req_per_ip:10m rate=${EDGE_RATE_LIMIT_PER_IP};
+limit_conn_zone $binary_remote_addr zone=edge_conn_per_ip:10m;
+
+map $cookie_fb_gate $edge_gate_cookie_ok {
+    default 0;
+    "${EDGE_ENTRY_PATH}" 1;
+}
+
+server {
+    listen 80;
+    server_name _;
+
+    client_max_body_size 20m;
+    set $front_private_origin "http://${FRONT_PRIVATE_HOST}:${FRONT_PRIVATE_PORT}";
+    set $front_offload_origin "${FRONT_OFFLOAD_ORIGIN}";
+    set $edge_entry_path "${EDGE_ENTRY_PATH}";
+
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+
+    if ($request_method !~ ^(GET|POST|PUT|PATCH|DELETE|OPTIONS|HEAD)$) {
+        return 405;
+    }
+
+    # Host header restriction blocks direct/unknown virtual-host access.
+    if ($host !~* ^(${EDGE_ALLOWED_HOST_REGEX})$) {
+        return 444;
+    }
+
+    # Bootstrap URL grants a gate cookie for subsequent requests.
+    location ~ ^/${EDGE_ENTRY_PATH}/?$ {
+        add_header Set-Cookie "fb_gate=${EDGE_ENTRY_PATH}; Max-Age=${EDGE_ACCESS_COOKIE_MAX_AGE}; Path=/; HttpOnly; SameSite=Lax" always;
+        return 302 /;
+    }
+
+    # Optional traffic-status endpoint (kept open for monitoring).
+    location = /_edge/traffic-status {
+        default_type application/json;
+        root /etc/nginx/includes;
+        try_files /traffic-status.json =404;
+        add_header Cache-Control "no-store";
+    }
+
+    # Gate all user traffic unless valid gate cookie exists.
+    set $edge_gate_required 1;
+    if ($edge_entry_path = "") { set $edge_gate_required 0; }
+    if ($uri ~ "^/${EDGE_ENTRY_PATH}/?$") { set $edge_gate_required 0; }
+    if ($uri = "/_edge/traffic-status") { set $edge_gate_required 0; }
+    if ($edge_gate_cookie_ok = 1) { set $edge_gate_required 0; }
+    if ($edge_gate_required = 1) { return 404; }
+
+    limit_conn edge_conn_per_ip ${EDGE_CONN_LIMIT};
+    limit_req zone=edge_req_per_ip burst=${EDGE_RATE_LIMIT_BURST} nodelay;
+
+    location /api/ {
+        proxy_pass http://${BACK_PRIVATE_HOST}:${BACK_PRIVATE_PORT};
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    include /etc/nginx/includes/mode.current.conf;
+}

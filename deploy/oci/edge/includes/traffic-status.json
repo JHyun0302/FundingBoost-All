@@ -1,0 +1,13 @@
+{
+  "month": "",
+  "thresholdTb": 9,
+  "thresholdBytes": 9895604649984,
+  "monthlyBytes": 0,
+  "monthlyTb": "0.0000",
+  "thresholdRatio": "0.00",
+  "mode": "normal",
+  "modeReason": "bootstrap",
+  "offloadConfigured": false,
+  "interface": "",
+  "updatedAt": ""
+}

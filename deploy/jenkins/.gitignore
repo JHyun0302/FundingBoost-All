@@ -1,0 +1,9 @@
+# Jenkins 로컬 민감정보
+.env
+.env.*
+!.env.example
+
+# 로컬 기록/임시 파일
+secrets*.md
+credentials*.md
+*.local
