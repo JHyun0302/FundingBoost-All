@@ -1,0 +1,53 @@
+.MyPayDeliveryListBox {
+  display: flex;
+  padding-top: 18px;
+  flex-direction: column;
+  justify-content: space-between;
+  width: min(100%, 375px);
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.MyPayDeliveryListBox .MyPayDeliveryListView,
+.MyPayDeliveryListBox .MyPayDeliveryListGroup,
+.MyPayDeliveryListBox .MyPayDeliveryListView-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.MyPayDeliveryListBox .MyPayDeliveryListView {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.MyPayDeliveryListBox .MyPayDeliveryListGroup {
+  background-color: #ffffff;
+  border: 1px solid #b7b7b7;
+  height: 160px;
+  width: 100%;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .MyPayDeliveryListBox,
+  .MyPayDeliveryListBox .MyPayDeliveryListView,
+  .MyPayDeliveryListBox .MyPayDeliveryListGroup,
+  .MyPayDeliveryListBox .MyPayDeliveryListView-wrapper {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+}
+
+
+.MyPayDeliveryListGroup{
+  border: 1px solid #3e3e3e;
+}
+
+.MyPayDeliveryListBox .MyPayDeliveryListGroup {
+  background-color: #ffffff;
+  border: 1px solid #b7b7b7;
+  height: 160px;
+  width: 100%;
+  padding: 10px;
+}

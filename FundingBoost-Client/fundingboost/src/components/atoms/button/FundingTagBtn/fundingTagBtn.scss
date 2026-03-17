@@ -1,0 +1,126 @@
+.fundingOpenBtnBox {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+  
+.fundingOpenBtnView {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    gap: 8px;
+
+    .fundingOpenTagBtn {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .fundingTagChip {
+        display: inline-flex;
+        align-items: center;
+        min-height: 32px;
+        border-radius: 10px;
+        background-color: #ffc83b;
+        border: 1px solid transparent;
+        overflow: hidden;
+    }
+
+    .fundingTagChip.selected {
+        background-color: #000000;
+        border-color: #000000;
+    }
+
+    .fundingTagChipButton {
+        border: none;
+        background: transparent;
+        padding: 6px 12px;
+        font-size: 13px;
+        color: #000000;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .fundingTagChip.selected .fundingTagChipButton {
+        color: #ffffff;
+    }
+
+    .fundingTagChipRemoveButton {
+        border: none;
+        border-left: 1px solid rgba(0, 0, 0, 0.2);
+        background: transparent;
+        color: #2c2c2c;
+        width: 26px;
+        height: 32px;
+        line-height: 1;
+        font-size: 17px;
+        cursor: pointer;
+    }
+
+    .fundingTagChip.selected .fundingTagChipRemoveButton {
+        color: #ffffff;
+        border-left-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .fundingCustomTagManage {
+        display: flex;
+        gap: 8px;
+    }
+
+    .fundingCustomTagInput {
+        flex: 1;
+        min-width: 0;
+        border: 1px solid #d7d7d7;
+        border-radius: 10px;
+        height: 34px;
+        font-size: 13px;
+        padding: 0 10px;
+        outline: none;
+    }
+
+    .fundingCustomTagInput:focus {
+        border-color: #ffc83b;
+    }
+
+    .fundingCustomTagAddBtn {
+        border: none;
+        background-color: #ffc83b;
+        color: #000000;
+        min-width: 58px;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .fundingCustomTagAddBtn:hover,
+    .fundingCustomTagAddBtn:focus,
+    .fundingCustomTagAddBtn:active {
+        background-color: #e6b432 !important;
+        color: #000000 !important;
+    }
+
+    .fundingCustomTagHint {
+        margin: 0;
+        font-size: 12px;
+        color: #707070;
+    }
+}
+  
+.fundingOpenBtnTitle {
+    justify-self: flex-start;
+    color: #000000;
+    font-size: 15px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+
+@media (max-width: 768px) {
+    .fundingOpenBtnView .fundingCustomTagManage {
+        flex-direction: column;
+    }
+
+    .fundingOpenBtnView .fundingCustomTagAddBtn {
+        width: 100%;
+    }
+}

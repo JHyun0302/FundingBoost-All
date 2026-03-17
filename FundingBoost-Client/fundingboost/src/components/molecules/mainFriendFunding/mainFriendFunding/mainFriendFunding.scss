@@ -1,0 +1,145 @@
+.mainFriendFunding {
+  background-color: #F7F7F7;
+  //height: 282px ;
+  font-family: 'SUITE-Regular';
+  .mainFriendFunding-text {
+    font-size: 18px;
+    padding: 15px 0 0 25px;
+  }
+  .carousel.carousel-slider {
+    height: 246px;
+  }
+  .carousel .control-dots {
+    margin: 0 0 !important;
+  }
+  .carousel.carousel-slider .control-arrow {
+    display: none;
+  }
+  .carousel .slider-wrapper.axis-horizontal .slider .slide {
+    width: 710px;
+  }
+
+}
+
+.friendFunding-contents {
+  display: flex;
+  justify-content: center;
+  /* width: 100%; */
+  height: 248px;
+  .carousel-root {
+    width: 100%;
+    outline: none;
+  }
+
+}
+
+
+.friendFunding-group {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin-right: -5px;
+}
+
+.mainFriendFundingitem {
+  flex: 0 0 auto;
+}
+.friendFunding-items-container {
+  display: flex;
+  flex-direction: row;
+  margin: 15px 40px 0 40px;
+  justify-content: center;
+}
+
+.mainFriendFundingitem {
+  display: flex;
+  justify-content: center;;
+  margin: 0 25px 0 25px;
+}
+.mainFriendFundingContents {
+  display: inline-block;
+  flex-direction: column;
+  text-align: center;
+  margin: 4px 30px;
+
+
+  .mainFriendFundingProfile-item {
+    position: relative;
+
+    .mainFriendFunding-Itemimg {
+      box-shadow: 0px 0px 3px #b8b8b8;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+  }
+
+  .mainFriendFunding-profile-img {
+    position: absolute;
+    top: 100px;
+    left: 155px;
+    border-radius: 50%;
+    width: 65px !important;
+    height: 65px;
+    border: 1.2px solid #000000 !important;
+  }
+
+  .mainFriendFunding-textContents {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 7px;
+
+    .mainFriendFunding-NickName-Dday {
+      display: flex;
+      align-items: center;
+      color: black;
+
+      .mainFriendFunding-NickName {
+        font-size: 14px;
+        font-weight: bolder;
+      }
+
+      .mainFriendFunding-D-day {
+        font-size: 13px;
+        margin-left: 8px;
+      }
+    }
+
+    .mainFriendFunding-Tag {
+      font-size: 13px;
+      color: #353535;
+
+    }
+
+
+  }
+
+  .gauge-bar {
+    width: 100%;
+    height: 18px;
+    background-color: #FFFFFF;
+    border: 1px solid black;
+    border-radius: 30px;
+
+    .bg-success {
+      --bs-bg-opacity: 1;
+      background-color: #ffdd2a !important;
+      color: black;
+      font-size: 12px;
+    }
+  }
+
+  .item-img-container {
+    width: 230px;
+    height: 175px;
+    box-shadow: 0px 0px 3px #b8b8b8;
+    border-radius: 5px;
+
+    img.item-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+      object-fit: cover;
+    }
+  }
+}

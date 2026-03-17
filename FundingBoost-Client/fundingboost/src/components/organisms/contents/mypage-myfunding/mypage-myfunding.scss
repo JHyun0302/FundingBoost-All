@@ -1,0 +1,112 @@
+.mypage-total-container {
+  --mypage-left-width: 374px;
+  display: grid;
+  grid-template-columns: var(--mypage-left-width) minmax(0, 1fr);
+  width: min(100%, 1600px);
+  margin: 0 auto;
+  align-items: start;
+}
+
+.mypage-left-pane-container {
+  display: flex;
+  flex-direction: column;
+  width: var(--mypage-left-width);
+  min-width: var(--mypage-left-width);
+  max-width: var(--mypage-left-width);
+}
+
+.mypage-content-pane {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+}
+
+.mypage-right-pane-containter {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  border-left: 1px solid #3e3e3e;
+}
+
+.mypage-myfunding-content-wrapper {
+  background-color: #efefef;
+  border: 1px solid #d9d9d9;
+  width: min(1130px, calc(100% - 30px));
+  max-width: 1130px;
+  min-width: 0;
+  margin: 15px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.horizontalLine {
+  border-bottom: 1px solid gray;
+  margin: 10px;
+}
+
+.mypage-horizontalUnderLine {
+  border-bottom: 1px solid gray;
+  margin: 10px;
+  margin-bottom: 77px;
+}
+
+.mypage-myfunding-title {
+  font-family: SUITE-Regular;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.mypage-myfunding-title-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: SUITE-Regular;
+  margin: 30px;
+  margin-bottom: 10px;
+}
+
+.mypage-create-funding {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+  background-color: #fdc73b;
+  box-shadow: 0 0 5px #b8b8b8;
+  transition: color 0.3s ease;
+}
+
+.mypage-create-funding:hover {
+  background-color: #000000;
+  color: #fdc73b;
+}
+
+@media (max-width: 992px) {
+  .mypage-total-container {
+    grid-template-columns: 1fr;
+  }
+
+  .mypage-left-pane-container {
+    width: 100%;
+    min-width: 0;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .mypage-right-pane-containter {
+    border-left: 0;
+    border-top: 1px solid #3e3e3e;
+  }
+
+  .mypage-myfunding-content-wrapper {
+    width: calc(100% - 24px);
+    max-width: 1130px;
+    margin: 12px auto;
+  }
+}

@@ -1,0 +1,41 @@
+.friend-funding-total-price {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  padding: 10px 0 4px;
+
+
+  .friend-funding-total-price-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 12px;
+    .friend-funding-total-price-first-text, .friend-funding-total-price-second-text {
+      font-size: 25px;
+      font-weight: 500;
+    }
+    .friend-funding-total-price-first-text {
+      color: #000000;
+    }
+    .friend-funding-total-price-second-text {
+      font-weight: 500;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+  }
+
+}
+
+@media (max-width: 768px) {
+  .friend-funding-total-price .friend-funding-total-price-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .friend-funding-total-price .friend-funding-total-price-row .friend-funding-total-price-first-text,
+  .friend-funding-total-price .friend-funding-total-price-row .friend-funding-total-price-second-text {
+    font-size: 20px;
+  }
+}

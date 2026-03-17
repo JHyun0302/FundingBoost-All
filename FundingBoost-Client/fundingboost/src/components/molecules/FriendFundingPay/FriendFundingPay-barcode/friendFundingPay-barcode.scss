@@ -1,0 +1,218 @@
+.friend-funding-bar-code {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin-top: 12px;
+  gap: 24px;
+
+  .friend-funding-bar-code-image {
+    width: 100%;
+
+    img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    svg {
+      width: 100%;
+      max-width: 100%;
+      height: 132px;
+      display: block;
+      background: #fff;
+      border: 1px solid #e5dbc8;
+      border-radius: 8px;
+      padding: 6px;
+      box-sizing: border-box;
+    }
+  }
+
+  .friend-funding-bar-code-placeholder {
+    width: 100%;
+    min-height: 122px;
+    border: 1px dashed #c8bca7;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8f8677;
+    font-size: 15px;
+  }
+
+  .friend-funding-bar-code-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+
+    .friend-funding-bar-code-token-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: #3f3b33;
+      margin: 0;
+    }
+
+    .friend-funding-bar-code-token-value {
+      margin: 0;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.4;
+      color: #1d1d1d;
+      word-break: break-all;
+      background: #f3eee3;
+      border-radius: 8px;
+      padding: 8px 10px;
+    }
+
+    .friend-funding-bar-code-expire {
+      margin: 0;
+      font-size: 13px;
+      color: #6a6458;
+    }
+
+    .friend-funding-bar-code-copy-btn {
+      margin-top: 2px;
+      border: 0;
+      background: transparent;
+      color: #3e7cf4;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 0;
+      text-align: left;
+      cursor: pointer;
+      width: fit-content;
+    }
+  }
+
+  .friend-funding-bar-code-text {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    width: 100%;
+
+    .friend-funding-bar-code-price {
+      color: #000000;
+      font-size: clamp(40px, 5vw, 50px);
+      font-weight: 500;
+      text-align: left;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .friendToFundingBtn-btn {
+      display: flex;
+      justify-content: flex-end;
+      flex-shrink: 0;
+
+      .yellowBtn{
+        display: flex;
+        font-size: 20px;
+        height: 45px;
+        width: 171px;
+        align-items: center;
+        justify-content: center;
+      }
+
+    }
+  }
+
+  .friend-funding-barcode-verify {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    border-top: 1px dashed #cfc5b3;
+    padding-top: 14px;
+
+    .friend-funding-barcode-verify-title {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 700;
+      color: #2f2a22;
+    }
+
+    .friend-funding-barcode-verify-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .friend-funding-barcode-verify-help {
+      margin: 0;
+      color: #6a6458;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .friend-funding-barcode-verify-input {
+      width: 100%;
+      min-height: 40px;
+      border: 1px solid #d7ccbb;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .friend-funding-barcode-verify-btn {
+      min-height: 40px;
+      border: 0;
+      border-radius: 8px;
+      background: #1e1e1e;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 0 14px;
+      cursor: pointer;
+    }
+
+    .friend-funding-barcode-verify-error,
+    .friend-funding-barcode-verify-success {
+      margin: 0;
+      font-size: 13px;
+    }
+
+    .friend-funding-barcode-verify-error {
+      color: #d73434;
+    }
+
+    .friend-funding-barcode-verify-success {
+      color: #176f2f;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .friend-funding-bar-code .friend-funding-bar-code-image svg {
+    height: 90px;
+  }
+
+  .friend-funding-bar-code .friend-funding-bar-code-text {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .friend-funding-bar-code .friend-funding-bar-code-text .friendToFundingBtn-btn {
+    justify-content: stretch;
+  }
+
+  .friend-funding-bar-code .friend-funding-bar-code-text .friendToFundingBtn-btn .yellowBtn {
+    width: 100%;
+  }
+
+  .friend-funding-bar-code .friend-funding-bar-code-text .friend-funding-bar-code-price {
+    font-size: 36px;
+    text-align: left;
+  }
+
+  .friend-funding-bar-code .friend-funding-barcode-verify .friend-funding-barcode-verify-row {
+    grid-template-columns: 1fr;
+  }
+}

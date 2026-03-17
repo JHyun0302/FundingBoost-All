@@ -1,0 +1,52 @@
+.gifthub-page-container{
+  display:flex;
+  align-items: flex-start;
+  gap: 24px;
+  flex: 1 0 auto;
+  min-height: calc(100vh - 220px);
+  padding: 20px;
+  width: 100%;
+  max-width: 1680px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.gifthub-item-pane-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px 20px 0;
+  flex: 1 1 auto;
+  border-right: 1px solid #c5c5c5;
+  min-width: 0;
+}
+
+.gifthub-result-pane{
+  display: flex;
+  flex: 0 0 min(360px, 28vw);
+  min-width: 280px;
+  position: sticky;
+  top: 92px;
+  align-self: flex-start;
+}
+
+@media (max-width: 1024px) {
+  .gifthub-page-container {
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .gifthub-item-pane-container {
+    width: 100%;
+    border-right: none;
+    padding-right: 0;
+    border-bottom: 1px solid #c5c5c5;
+    padding-bottom: 16px;
+  }
+
+  .gifthub-result-pane {
+    width: 100%;
+    min-width: 0;
+    flex: 1 1 auto;
+    position: static;
+  }
+}

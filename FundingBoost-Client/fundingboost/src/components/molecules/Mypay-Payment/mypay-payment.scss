@@ -1,0 +1,261 @@
+.MyPayPointBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  width: min(100%, 390px);
+}
+
+.MyPayPointBox .MyPayPointView {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  width: 100%;
+  padding: 20px;
+}
+
+.MyPayPointBox .MyPayPointGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: auto;
+  width: 100%;
+  margin-top: 10px;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.MyPayPointBox .MyPayPointButton-group-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 91px;
+  height: 52px;
+}
+
+.MyPayPointBox .MyPayPointButton-group {
+  display: flex;
+  width: 100%;
+  height: 70%;
+  justify-content: center;
+  align-items: center;
+}
+
+.MyPayPointBox .MyPayPointUse-all-point {
+  display: flex;
+  color: #3e3e3e;
+  border: none;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  background-color: #ffc83b;
+  border-radius: 5px;
+  font-family: SUITE-Regular;
+  font-weight: bold;
+  font-size: 13px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.MyPayPointBox .MyPayPointUse-all-point:hover {
+  background-color: #3e3e3e;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.MyPayPointBox .MyPayPointInput-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1 1 220px;
+  width: 100%;
+  height: 52px;
+}
+
+.MyPayPointBox .MyPayPointInput {
+  height: 40px;
+  width: 100%;
+  margin-right: 5px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.MyPayPointBox .point {
+  margin-left: 10px;
+  color: #000000;
+  text-align: end;
+  font-family: SUITE-Regular;
+  font-size: 20px;
+  font-weight: 200;
+}
+
+.MyPayPointBox .MyPayPointText-P {
+  color: #1d1d1d;
+  font-family: SUITE-Regular;
+  font-size: 20px;
+  font-weight: 200;
+  margin-right: 10px;
+  line-height: 52px;
+}
+
+.MyPayPointBox .MyPayPointTitle {
+  color: #1d1d1d;
+  font-family: SUITE-Regular;
+  font-size: 20px;
+  font-weight: 200;
+  text-align: start;
+}
+
+.MyPayPointBox .MyPayPoint-remain-point {
+  color: #7e7e7e;
+  font-family: SUITE-Regular;
+  font-size: 15px;
+  font-weight: 200;
+  align-self: flex-end;
+  margin-top: 5px;
+}
+
+.MyPayFundingPaymentInformationBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  width: min(100%, 390px);
+}
+
+.MyPayFundingPaymentInformationBox .MyPayFundingPaymentInformationView {
+  display: flex;
+  margin-top: 30px;
+  padding: 20px;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  width: 100%;
+}
+
+.MyPayFundingPaymentInformationBox .MyPayFundingPaymentInformationText {
+  color: #1d1d1d;
+  font-family: SUITE-Regular;
+  font-size: 20px;
+  font-weight: 200;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.MyPayFundingPaymentInformationBox .MyPayFundingPaymentInformationText {
+  color: #1d1d1d;
+  font-family: SUITE-Regular;
+  font-size: 20px;
+  font-weight: 200;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+  text-align: start;
+}
+
+.MyPayFundingPaymentInformationBox .line {
+  background-color: #1d1d1d;
+  height: 1px;
+  object-fit: cover;
+}
+
+.MyPayFundingPaymentInformationBox .MyPayFundingPaymentInformationTotal-group{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.MyPayFundingPaymentInformationBox .MyPayFundingPaymentInformationGroup  {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  vertical-align: middle;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.MyPayFundingPaymentInformationBox .MyPayFundingPaymentInformationOverlap-group{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 132px;
+  align-items: flex-end;
+}
+
+
+
+.MyPayFundingPaymentInformationBox .text-price {
+  color: #000000;
+  font-family: SUITE-Regular;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: normal;
+  text-align: end;
+  width: 126px;
+  text-wrap: nowrap;
+}
+
+.MyPayFundingPaymentInformationBox .text-dash {
+  color: #000000;
+  font-family: SUITE-Regular;
+  font-size: 35px;
+  font-weight: 100;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+  text-align: end;
+}
+
+.MyPayFundingPaymentInformationBox .total-price {
+  color: #1d1d1d;
+  font-family: SUITE-Regular;
+  font-size: 20px;
+  font-weight: 200;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+  text-align: end;
+}
+
+.pay-request-button{
+  margin: 20px;
+  transition: background-color 0.3s ease;
+  padding: 5px;
+  background-color: #efbb37;
+  font-size: 20px;
+  font-family: SUITE-Regular;
+  border-radius: 10px;
+  border: 1px solid #3e3e3e;
+  color: #3e3e3e;
+
+  &:hover{
+    background-color: #f98e00;
+  }
+}
+
+@media (max-width: 768px) {
+  .MyPayPointBox,
+  .MyPayFundingPaymentInformationBox {
+    width: 100%;
+  }
+
+  .MyPayFundingPaymentInformationBox .MyPayFundingPaymentInformationView,
+  .MyPayFundingPaymentInformationBox .MyPayFundingPaymentInformationGroup {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .MyPayPointBox .MyPayPointInput {
+    margin-right: 0;
+  }
+
+  .MyPayPointBox .MyPayPoint-remain-point {
+    align-self: flex-start;
+  }
+}

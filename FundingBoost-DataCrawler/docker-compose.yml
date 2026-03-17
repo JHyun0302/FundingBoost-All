@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  funding-crawler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: funding-crawler
+    restart: always
+    environment:
+      TZ: Asia/Seoul
+      CRAWLER_DB_URL: ${CRAWLER_DB_URL}
+      CRAWLER_DB_USERNAME: ${CRAWLER_DB_USERNAME}
+      CRAWLER_DB_PASSWORD: ${CRAWLER_DB_PASSWORD}
+      CRAWLER_BOOTSTRAP_ENABLED: ${CRAWLER_BOOTSTRAP_ENABLED:-false}
+      CRAWLER_BOOTSTRAP_ITEM_LIMIT: ${CRAWLER_BOOTSTRAP_ITEM_LIMIT:-20}
+      CRAWLER_INIT_API_ENABLED: ${CRAWLER_INIT_API_ENABLED:-false}
+    ports:
+      - "8090:8090"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"   # 로그 파일 하나 최대 10MB
+        max-file: "3"     # 3개까지만 보관 (최대 30MB 근처)
+
+# 별도 volume, 로그 클리너 컨테이너 없음

@@ -1,0 +1,121 @@
+.MyPageFundingRecord {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.mypage-myfunding-history-title{
+  padding: 10px;
+  font-family: SUITE-Regular;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mypage-fundingRecordTitle{
+  font-size: 30px;
+  margin: 15px;
+  font-weight: bold;
+}
+
+.historyGuideText {
+  margin-right: 15px;
+  font-size: 14px;
+  color: #707070;
+}
+
+.mypage-FH-horizontalLine {
+  border-bottom: 1px solid gray;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.fundingRecordItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+.fundingHistoryEmptyState,
+.fundingHistoryDetailLoading,
+.fundingHistoryDetailError {
+  margin: 10px 18px 18px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-family: SUITE-Regular;
+}
+
+.fundingHistoryEmptyState,
+.fundingHistoryDetailLoading {
+  background: #faf7ef;
+  color: #5f5f5f;
+}
+
+.fundingHistoryDetailError {
+  background: #fff0f0;
+  color: #b42318;
+}
+
+.fundingHistoryPagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 18px 18px;
+  flex-wrap: wrap;
+}
+
+.fundingHistoryPageNumbers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.fundingHistoryPageButton {
+  border: 1px solid #d5d5d5;
+  border-radius: 999px;
+  background: #ffffff;
+  padding: 8px 14px;
+  font-family: SUITE-Regular;
+  font-size: 14px;
+  color: #333333;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.fundingHistoryPageButton:hover:not(:disabled) {
+  border-color: #8bb9ff;
+  color: #2f74ff;
+}
+
+.fundingHistoryPageButton.active {
+  background: #2f74ff;
+  border-color: #2f74ff;
+  color: #ffffff;
+}
+
+.fundingHistoryPageButton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .mypage-myfunding-history-title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .historyGuideText {
+    margin: 0 15px 10px;
+  }
+
+  .fundingHistoryPagination {
+    justify-content: flex-start;
+  }
+}

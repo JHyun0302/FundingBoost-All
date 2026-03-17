@@ -1,0 +1,213 @@
+.myPageFundingHistoryDetailModal {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+}
+
+.myPageFundingHistoryDetailBackdrop {
+  position: absolute;
+  inset: 0;
+  border: none;
+  background: rgba(17, 17, 17, 0.42);
+}
+
+.myPageFundingHistoryDetailPanel {
+  position: relative;
+  width: min(920px, calc(100vw - 32px));
+  max-height: calc(100vh - 48px);
+  margin: 24px auto;
+  background: #fffdf8;
+  border-radius: 20px;
+  padding: 24px;
+  overflow-y: auto;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
+  font-family: 'SUITE-Regular';
+}
+
+.myPageFundingHistoryDetailHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.myPageFundingHistoryDetailEyebrow {
+  font-size: 14px;
+  color: #8c7a5f;
+  margin-bottom: 6px;
+}
+
+.myPageFundingHistoryDetailTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f1f1f;
+}
+
+.myPageFundingHistoryDetailHeaderRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.myPageFundingHistoryDetailPercent {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #fff0c2;
+  color: #8a6200;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.myPageFundingHistoryDetailClose {
+  border: none;
+  background: #1f1f1f;
+  color: #fff;
+  border-radius: 999px;
+  padding: 10px 16px;
+}
+
+.myPageFundingHistoryDetailBody {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.9fr);
+  gap: 20px;
+}
+
+.myPageFundingHistoryDetailSection {
+  background: #ffffff;
+  border: 1px solid #ece2cf;
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.myPageFundingHistoryDetailSectionTitle {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #1f1f1f;
+}
+
+.myPageFundingHistoryDetailItemGrid {
+  display: grid;
+  gap: 14px;
+}
+
+.myPageFundingHistoryDetailItemCard {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 14px;
+  padding: 12px;
+  border-radius: 16px;
+  background: #faf7ef;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.myPageFundingHistoryDetailItemImage {
+  width: 112px;
+  height: 112px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.myPageFundingHistoryDetailItemText {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.myPageFundingHistoryDetailItemName {
+  font-size: 18px;
+  font-weight: 700;
+  color: #171717;
+}
+
+.myPageFundingHistoryDetailItemOption,
+.myPageFundingHistoryDetailItemMeta {
+  font-size: 14px;
+  color: #6b6b6b;
+}
+
+.myPageFundingHistoryDetailItemPrice {
+  font-size: 22px;
+  font-weight: 800;
+  color: #111;
+}
+
+.myPageFundingHistoryDetailItemLink {
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #2f68ff;
+}
+
+.myPageFundingHistoryDetailContributorList {
+  display: grid;
+  gap: 12px;
+}
+
+.myPageFundingHistoryDetailContributorCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 14px;
+  background: #faf7ef;
+}
+
+.myPageFundingHistoryDetailContributorImage {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #1f1f1f;
+}
+
+.myPageFundingHistoryDetailContributorText {
+  min-width: 0;
+}
+
+.myPageFundingHistoryDetailContributorName {
+  font-size: 18px;
+  font-weight: 700;
+  color: #171717;
+}
+
+.myPageFundingHistoryDetailContributorPrice {
+  font-size: 14px;
+  color: #646464;
+}
+
+@media (max-width: 900px) {
+  .myPageFundingHistoryDetailBody {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .myPageFundingHistoryDetailPanel {
+    padding: 18px;
+  }
+
+  .myPageFundingHistoryDetailHeader {
+    flex-direction: column;
+  }
+
+  .myPageFundingHistoryDetailHeaderRight {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .myPageFundingHistoryDetailItemCard {
+    grid-template-columns: 1fr;
+  }
+
+  .myPageFundingHistoryDetailItemImage {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+}

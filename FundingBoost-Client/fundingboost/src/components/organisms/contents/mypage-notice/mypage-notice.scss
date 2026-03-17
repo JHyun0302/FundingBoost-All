@@ -1,0 +1,306 @@
+.mypageNoticePane {
+  display: flex;
+  width: 100%;
+}
+
+.mypageNoticePane-left {
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 374px);
+}
+
+.mypageNoticePane-right {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-left: 1px solid #3e3e3e;
+}
+
+.mypageNoticePane-card {
+  width: min(1130px, calc(100vw - 40px));
+  max-width: calc(100vw - 40px);
+  margin: 15px;
+  padding: 28px 32px;
+  background: #efefef;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.mypageNoticePane-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid #bfbfbf;
+}
+
+.mypageNoticePane-header h2 {
+  margin: 0;
+  font-size: 34px;
+  font-family: SUITE-Regular;
+  font-weight: 800;
+}
+
+.mypageNoticePane-header p {
+  margin: 0;
+  max-width: 420px;
+  color: #5f5f5f;
+  line-height: 1.6;
+  font-family: SUITE-Regular;
+}
+
+.mypageNoticePane-eyebrow {
+  margin-bottom: 8px;
+  color: #8a6b38;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: SUITE-Regular;
+}
+
+.mypageNoticePane-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mypageNoticeAdminEditor {
+  margin-bottom: 18px;
+  padding: 18px;
+  border-radius: 14px;
+  border: 1px solid #e4dcc8;
+  background: #fffdf6;
+
+  h3 {
+    margin: 0 0 12px;
+    color: #1f1f1f;
+    font-size: 18px;
+    font-family: SUITE-Regular;
+    font-weight: 800;
+  }
+
+  textarea,
+  input,
+  select {
+    width: 100%;
+    border: 1px solid #d8d4c7;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-family: SUITE-Regular;
+    font-size: 14px;
+    box-sizing: border-box;
+    background: #ffffff;
+  }
+
+  textarea {
+    margin-top: 10px;
+    resize: vertical;
+    min-height: 96px;
+  }
+}
+
+.mypageNoticeAdminGrid {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 10px;
+}
+
+.mypageNoticeAdminActions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+
+  button {
+    border: 0;
+    border-radius: 10px;
+    padding: 9px 14px;
+    font-family: SUITE-Regular;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    background: #191919;
+    color: #ffffff;
+  }
+
+  button.secondary {
+    background: #ececec;
+    color: #2f2f2f;
+  }
+}
+
+.mypageNoticeItem {
+  padding: 20px 22px;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid #e4dcc8;
+}
+
+.mypageNoticeItem-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.mypageNoticeBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: #f6efe0;
+  color: #5f4d2f;
+  font-size: 13px;
+  font-family: SUITE-Regular;
+  font-weight: 700;
+}
+
+.mypageNoticeBadge.accent {
+  background: #191919;
+  color: #ffffff;
+}
+
+.mypageNoticeDate {
+  color: #8b8b8b;
+  font-size: 13px;
+  font-family: SUITE-Regular;
+}
+
+.mypageNoticeItem h3 {
+  margin: 0 0 10px;
+  color: #1f1f1f;
+  font-size: 22px;
+  line-height: 1.4;
+  font-family: SUITE-Regular;
+  font-weight: 800;
+}
+
+.mypageNoticeItem p {
+  margin: 0;
+  color: #5f5f5f;
+  line-height: 1.7;
+  font-family: SUITE-Regular;
+}
+
+.mypageNoticeItemActions {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+
+  button {
+    border: 1px solid #d8d4c7;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #222;
+    font-size: 13px;
+    font-family: SUITE-Regular;
+    font-weight: 700;
+    padding: 7px 12px;
+    cursor: pointer;
+  }
+
+  button.danger {
+    border-color: #e5bbbb;
+    color: #9e2f2f;
+  }
+}
+
+.mypageNoticeEmpty {
+  margin: 0;
+  padding: 18px 16px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #ece7d8;
+  color: #616161;
+  font-family: SUITE-Regular;
+}
+
+.mypageNoticePagination {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  button {
+    border: 1px solid #d8d4c7;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #2f2f2f;
+    font-family: SUITE-Regular;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 7px 12px;
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+  }
+
+  span {
+    color: #5a5a5a;
+    font-family: SUITE-Regular;
+    font-size: 13px;
+    font-weight: 700;
+  }
+}
+
+@media (max-width: 1200px) {
+  .mypageNoticePane {
+    flex-direction: column;
+  }
+
+  .mypageNoticePane-left {
+    width: 100%;
+    align-items: center;
+  }
+
+  .mypageNoticePane-right {
+    border-left: none;
+    border-top: 1px solid #3e3e3e;
+    align-items: center;
+  }
+
+  .mypageNoticePane-card {
+    width: min(100%, calc(100vw - 24px));
+    max-width: calc(100vw - 24px);
+    margin: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mypageNoticePane-card {
+    padding: 20px 18px;
+  }
+
+  .mypageNoticeAdminGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .mypageNoticePane-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .mypageNoticePane-header h2 {
+    font-size: 28px;
+  }
+
+  .mypageNoticeItem {
+    padding: 18px 16px;
+  }
+
+  .mypageNoticeItem h3 {
+    font-size: 18px;
+  }
+}

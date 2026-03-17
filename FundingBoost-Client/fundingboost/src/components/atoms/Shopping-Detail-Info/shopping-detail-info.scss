@@ -1,0 +1,125 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 100%;
+  font-family: 'SUITE-Regular';
+
+  .shopping-detail-img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 45px;
+    .shopping-detail-testImg{
+      display: flex;
+      width: min(1200px, calc(100vw - 32px));
+      height: auto;
+      justify-content: center;
+    }
+  }
+  .shopping-detail-default-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+
+    button.DetailsBtn.btn.btn-primary {
+      background-color: white;
+      width: min(320px, calc(100vw - 32px));
+      height: 43px;
+      color: #4e4e4e;
+      border-color: #ababab;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+      display: flex;
+      justify-content: center;
+      align-items: center
+    }
+  }
+
+}
+
+.blank{
+  height: 50px;
+}
+
+.box .text-wrapper {
+  color: #000000;
+  font-size: 20px;
+  font-weight: 400;
+  width: calc(100% / 3);
+  background-color: white;
+  border: 1px solid white;
+  border-right:1px solid #000000;
+  letter-spacing: 0;
+  line-height: normal;
+  text-align: center;
+}
+
+.box .text-wrapper-2 {
+  color: #000000;
+  font-size: 20px;
+  font-weight: 400;
+  width: calc(100% / 3);
+  background-color: white;
+  border: 1px solid white;
+  border-right:1px solid #000000;
+  letter-spacing: 0;
+  line-height: normal;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.box .text-wrapper-3 {
+  color: #000000;
+  font-size: 20px;
+  font-weight: 400;
+  width: calc(100% / 3);
+  background-color: white;
+  border: 1px solid white;
+  letter-spacing: 0;
+  line-height: normal;
+  text-align: center;
+  white-space: nowrap;
+}
+.shopping-detail-title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.shop-item-index-container{
+  display: flex;
+  flex-direction: row;
+  width: min(1220px, calc(100vw - 32px));
+  height: 60px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  align-items: center; /* 수직 중앙 정렬 */
+  margin: 0 auto; /* 좌우 중앙 정렬 */
+ }
+
+@media (max-width: 900px) {
+  .box .shopping-detail-img {
+    margin-top: 24px;
+  }
+
+  .shop-item-index-container {
+    flex-direction: column;
+    height: auto;
+    align-items: stretch;
+  }
+
+  .box .text-wrapper,
+  .box .text-wrapper-2,
+  .box .text-wrapper-3 {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #000000;
+    padding: 10px 0;
+    white-space: normal;
+  }
+
+  .box .text-wrapper-3 {
+    border-bottom: none;
+  }
+}

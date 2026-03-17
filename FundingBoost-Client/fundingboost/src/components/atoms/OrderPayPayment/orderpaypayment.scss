@@ -1,0 +1,217 @@
+.MyPayPointBox {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: min(100%, 420px);
+  font-family: SUITE-Regular;
+}
+
+.MyPayPointView,
+.MyPayMethodBox,
+.MyPayFundingPaymentInformationBox .MyPayFundingPaymentInformationView {
+  background: #ffffff;
+  border: 1px solid #e2dbc9;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 8px 22px rgba(44, 44, 44, 0.06);
+}
+
+.MyPayPointBox .MyPayPointTitle,
+.MyPayMethodBox .MyPayMethodTitle,
+.MyPayFundingPaymentInformationBox .MyPayFundingPaymentInformationText {
+  color: #1d1d1d;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.MyPayPointBox .MyPayPointGroup {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 8px;
+  margin-top: 12px;
+  align-items: center;
+}
+
+.MyPayPointBox .MyPayPointInput-wrapper {
+  width: 100%;
+}
+
+.MyPayPointBox .MyPayPointInput {
+  width: 100%;
+  border: 1px solid #d5d5d5;
+  border-radius: 12px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 12px;
+}
+
+.MyPayPointBox .point {
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: right;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.MyPayPointBox .MyPayPointText-P {
+  font-size: 18px;
+  color: #2d2d2d;
+  font-weight: 600;
+}
+
+.MyPayPointBox .MyPayPointUse-all-point {
+  border: none;
+  background-color: #ffc83b;
+  color: #1f1f1f;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.MyPayPointBox .MyPayPointUse-all-point:hover {
+  background-color: #e7b539;
+}
+
+.MyPayPointBox .MyPayPoint-remain-point {
+  color: #6c6c6c;
+  font-size: 13px;
+  margin-top: 10px;
+  text-align: right;
+}
+
+.MyPayMethodBox .MyPayMethodOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.MyPayMethodBox .MyPayMethodOption {
+  border: 1px solid #d7d7d7;
+  border-radius: 12px;
+  background: #f7f7f7;
+  color: #1f1f1f;
+  min-height: 46px;
+  padding: 10px 12px;
+  text-align: left;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.MyPayMethodBox .MyPayMethodOption.active {
+  border-color: #ffc83b;
+  background: #fff7df;
+}
+
+.MyPayMethodBox .methodBadge {
+  background: #ffc83b;
+  color: #191919;
+  font-size: 11px;
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-weight: 700;
+}
+
+.MyPayMethodBox .MyPayMethodWarning {
+  color: #c0582e;
+  font-size: 13px;
+  margin: 8px 0 0;
+}
+
+.MyPayFundingPaymentInformationBox .MyPayFundingPaymentInformationView {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.MyPayFundingPaymentInformationBox .line {
+  height: 1px;
+  background-color: #e0e0e0;
+}
+
+.MyPayFundingPaymentInformationBox .MyPayFundingPaymentInformationTotal-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.MyPayFundingPaymentInformationBox .MyPayFundingPaymentInformationGroup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.MyPayFundingPaymentInformationBox .MyPayFundingPaymentInformationGroup .MyPayFundingPaymentInformationText {
+  font-size: 15px;
+  font-weight: 500;
+  color: #454545;
+}
+
+.MyPayFundingPaymentInformationBox .MyPayFundingPaymentInformationOverlap-group {
+  display: flex;
+  align-items: center;
+}
+
+.MyPayFundingPaymentInformationBox .text-price {
+  font-size: 16px;
+  font-weight: 700;
+  color: #101010;
+  white-space: nowrap;
+}
+
+.MyPayFundingPaymentInformationBox .total-price {
+  font-size: 24px;
+  font-weight: 800;
+  text-align: right;
+  color: #1d1d1d;
+}
+
+.pay-request-button {
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  background-color: #ffc83b;
+  color: #1f1f1f;
+  font-size: 17px;
+  font-weight: 800;
+  padding: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.pay-request-button:hover {
+  background-color: #eab739;
+}
+
+.pay-request-button:disabled {
+  background-color: #d7d7d7;
+  color: #737373;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .MyPayPointBox {
+    width: 100%;
+  }
+
+  .MyPayPointBox .MyPayPointGroup {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .MyPayPointBox .MyPayPointText-P {
+    display: none;
+  }
+
+  .MyPayPointBox .MyPayPoint-remain-point {
+    text-align: left;
+  }
+}

@@ -1,0 +1,72 @@
+.button-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+  padding-bottom: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.circle-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  opacity: 90%;
+  //background-color: #ffc83b;
+  background-color: white;
+  border: 3px solid #bebebe;
+  margin: 10px; /* 버튼 간격 조정 */
+  cursor: pointer;
+}
+
+.circle-button.selected {
+  background-color: #3e3e3e;
+  border-color: #3e3e3e;
+  .button-label{
+  color: white;
+  }
+}
+
+.circle-button:hover{
+  opacity: 100%;
+  border: 3px solid #3e3e3e;
+}
+
+.circle-button:focus {
+  outline: none; /* 포커스시 테두리 제거 */
+}
+
+.button-icon {
+  width: 30px; /* 아이콘 크기 조정 */
+  height: 30px; /* 아이콘 크기 조정 */
+}
+
+.button-label {
+  color: #3e3e3e; /* 텍스트 색상 */
+  font-size: 16px; /* 텍스트 크기 조정 */
+  font-weight: bold;
+  margin-bottom:0px;
+  margin-top: 5px; /* 텍스트 상단 여백 조정 */
+  font-family: 'SUITE-Regular';
+}
+
+@media (max-width: 479px) {
+  .button-container{
+    padding: 0;
+    padding-bottom:0;
+    margin-right:15px;
+    margin-left:15px;
+
+  }
+  .button-label {
+    font-size: 11px;
+  }
+  .circle-button {
+  width: 60px;
+  height: 60px;
+  }
+}

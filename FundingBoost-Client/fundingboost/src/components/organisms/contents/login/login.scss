@@ -1,0 +1,165 @@
+.social-login-pane{
+  padding: 20px;
+  background: linear-gradient(45deg, #ffbe00 0%, rgb(255, 190, 0) 70%) repeat scroll 0% 0%, linear-gradient(135deg, #ecc137 10%, rgb(255, 190, 0) 80%) repeat scroll 0% 0%, linear-gradient(225deg, #efcee3 10%, rgba(10, 219, 216, 0) 80%) repeat scroll 0% 0%, rgba(0, 0, 0, 0) linear-gradient(315deg, #ea9ab1 100%, rgba(9, 245, 5, 0) 70%) repeat scroll 0% 0%;;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-login-box {
+  width: 40%; /* 사각형 박스의 가로 크기를 설정합니다. 필요에 따라 조정하세요. */
+  height: auto;
+  padding: 10px;
+  border: 1px solid #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.centerAlign{
+  font-family: 'Hanna', fantasy;
+  font-size: 35px;
+  margin: 0px;
+}
+
+.login-box {
+  display: flex;
+  width: 65%;
+  margin-bottom: 20px;
+}
+
+.input-box{
+  display: flex;
+  flex-direction: column;
+  flex : 12;
+  width: 100%;
+  margin-right: 10px;
+  position:relative;
+}
+
+.input-field{
+  height: 35px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: 'SUITE-Regular';
+}
+
+.error-message{
+  color: red;
+  font-size: 13px;
+  position: absolute; /* 부모 요소를 기준으로 절대 위치 지정 */
+  bottom: -25px; /* 비밀번호 입력창 아래에 위치하도록 설정 */
+  left: 0;
+}
+
+.login-btn-grey {
+  flex: 3;
+  background-color: #9b9b9b;
+  font-size: inherit;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width : 100%;
+  font-family: 'SUITE-Regular';
+}
+
+.login-btn-grey:hover {
+  background-color: #666666;
+}
+
+.login-btn-grey:active {
+  background-color: #3e3e3e;
+}
+
+.social-login-link{
+  display: block;
+  width: min(100%, 60%);
+  margin: 0 auto 10px;
+  text-align: center;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.social-login-link-button{
+  cursor: pointer;
+}
+
+.social-login-btn {
+  width: 100%;
+  display: block;
+  height: auto;
+  margin-bottom: 0;
+  cursor: pointer;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s;
+  border-radius: 10px;
+}
+
+.social-login-btn:hover{
+  opacity: 0.9;
+  border-radius: 10px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.signup-text {
+  font-size: 14px; /* 글자 크기를 설정합니다. 필요에 따라 조정하세요. */
+  font-weight: normal; /* 기본 굵기로 설정합니다. */
+  font-family: 'SUITE-Regular';
+}
+
+.signup-btn{
+  font-weight: bold;
+  text-decoration: underline;
+  background: none; /* 배경색 제거 */
+  border: none; /* 테두리 제거 */
+  padding: 0; /* 패딩 제거 */
+  cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+  color: inherit; /* 글자색 상속 */
+}
+
+.signup-btn:hover{
+  color: red;
+}
+
+.loginmoji{
+  padding:5px;
+}
+
+@media (max-width: 479px) {
+  .social-login-box {
+    width: 100%;
+
+  }
+  .social-login-link {
+    width: min(100%, 75%);
+  }
+  .login-box {
+    width: 70%;
+    margin-bottom: 15px;
+    margin-top: 15px;
+
+  }
+  .login-btn-grey {
+    height: 80px;
+  }
+  .input-field {
+    width: 189px;
+
+  }
+  .loginmoji {
+    >img {
+      width: 100px;
+    }
+  }
+  .centerAlign {
+    font-size: 25px;
+  }
+}

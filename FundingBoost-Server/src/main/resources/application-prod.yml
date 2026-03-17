@@ -1,0 +1,39 @@
+server:
+  servlet:
+    encoding:
+      charset: utf-8
+      force: true
+
+  port: 8080
+  forward-headers-strategy: framework
+
+spring:
+  datasource:
+    url: ${FUNDINGBOOST_DB_URL:jdbc:mysql://mysql:3306/fundingboost?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8}
+    username: ${FUNDINGBOOST_DB_USERNAME:mysql}
+    password: ${FUNDINGBOOST_DB_PASSWORD:1q2w3e4r!}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      database-platform: org.hibernate.dialect.MySQLDialect
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+      default_batch_fetch_size: 100
+    open-in-view: false
+
+app:
+  payment:
+    schema-name: ${PAYMENT_DB_NAME:payment}
+    schema-bootstrap-enabled: ${PAYMENT_SCHEMA_BOOTSTRAP_ENABLED:true}
+    mock-pg:
+      provider: ${PAYMENT_MOCK_PROVIDER:MOCK-PG}
+      force-fail: ${PAYMENT_MOCK_FORCE_FAIL:false}
+
+logging:
+  level:
+    #    '[kcs.funding.fundingboost]': INFO
+    '[org.hibernate.type]': TRACE

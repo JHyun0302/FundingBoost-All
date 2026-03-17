@@ -1,0 +1,42 @@
+.modal-content {
+  font-family: SUITE-Regular, sans-serif;
+}
+
+.modal-anim {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.modal.show .modal-anim {
+  opacity: 1;
+}
+
+.gifthub-quantity-modal-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.gifthub-quantity-modal-row input {
+  flex: 1;
+  min-height: 44px;
+  border-radius: 10px;
+  border: 1px solid #d0cbc1;
+  padding: 0 14px;
+  font-size: 18px;
+}
+
+.gifthub-quantity-adjust-button {
+  width: 42px;
+  height: 42px;
+  border: 1px solid #d0cbc1;
+  border-radius: 10px;
+  background: #ffffff;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.gifthub-quantity-adjust-button:hover {
+  background: #f6f2e8;
+}

@@ -1,0 +1,148 @@
+.orderHistorySingleOrder {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  width: 93%;
+  margin-top: 20px;
+
+  .MyPageOrderHistoryOneView {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 0;
+    width: 100%;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    text-align: left;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.9;
+    }
+
+    .MyPageOrderHistoryOneGroup {
+      display: flex;
+      flex-direction: row;
+      width: auto;
+      align-items: center;
+
+      .MyPageOrderHistoryOneEllipse {
+        height: 85px;
+        object-fit: cover;
+        width: 85px;
+        border-radius: 100%;
+        border: 1px solid #000000;
+      }
+
+      .MyPageOrderHistoryOneOverlap {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-left: 10px;
+        height: 80px;
+      }
+
+
+
+      .MyPageOrderHistoryOneText-wrapper-6 {
+        color: #9d9d9d;
+        font-size: 13px;
+        font-weight: 400;
+        letter-spacing: 0;
+        line-height: normal;
+        width: 147px;
+      }
+
+      .MyPageOrderHistoryOne-p {
+        color: #000000;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0;
+        line-height: normal;
+        margin: 0px;
+        text-align: start;
+        width: auto;
+        max-width: min(660px, 100%);
+        white-space: normal;
+      }
+
+
+      .MyPageOrderHistoryOneOptionQuantity {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+
+        .MyPageOrderHistoryOneOption-group {
+          display: flex;
+          flex-direction: row;
+
+          .MyPageOrderHistoryOneOptionMark, .MyPageOrderHistoryOneOverlap-wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 33px;
+          }
+
+
+
+        }
+
+      }
+      .MyPageOrderHistoryOneOverlap-group {
+        background-color: #d9d9d9;
+        border-radius: 8px;
+        height: 17px;
+        width: 31px;
+        display: flex;
+        text-align: center;
+        flex-direction: row;
+      }
+
+      .MyPageOrderHistoryOneText-wrapper-3,
+      .MyPageOrderHistoryOneText-wrapper-5 {
+        color: #8c8c8c;
+        font-size: 13px;
+        letter-spacing: 0;
+        line-height: normal;
+        white-space: nowrap;
+        margin: auto 12px auto 5px;
+      }
+
+      .MyPageOrderHistoryOneText-wrapper-2,
+      .MyPageOrderHistoryOneText-wrapper-4 {
+        color: #ffffff;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0;
+        line-height: normal;
+        white-space: nowrap;
+        margin: auto;
+      }
+    }
+
+    .MyPageOrderHistoryOneText-wrapper {
+      color: #000000;
+      font-size: 23px;
+      font-weight: bold;
+      letter-spacing: 0;
+      line-height: normal;
+      text-align: center;
+      margin: auto 0;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .orderHistorySingleOrder,
+  .orderHistorySingleOrder .MyPageOrderHistoryOneView,
+  .orderHistorySingleOrder .MyPageOrderHistoryOneGroup,
+  .orderHistorySingleOrder .MyPageOrderHistoryOneOptionQuantity {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .orderHistorySingleOrder .MyPageOrderHistoryOneText-wrapper {
+    margin-top: 12px;
+  }
+}

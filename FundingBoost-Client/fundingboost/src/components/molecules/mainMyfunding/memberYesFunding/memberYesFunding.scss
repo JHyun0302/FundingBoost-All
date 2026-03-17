@@ -1,0 +1,179 @@
+@font-face {
+  font-family: 'SUITE-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+.memberYesFundingstatus{
+  display: flex;
+  width: 100%;
+}
+
+.memberYesFunding {
+  display: flex;
+  align-items: flex-start;
+  background-color: #EBEBEB;
+  height: 280px;
+
+
+  font-family:'SUITE-Regular';
+  .memberYesFunding-Profile {
+    margin-right: 10px;
+  }
+
+  .profile-img{
+    width: 70px !important;
+    height: 70px !important;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+
+  .profile-img-wrapper{
+    width: 80px !important;
+    height: 70px !important;
+  }
+
+  .memberYesFunding-item {
+    display: flex;
+    align-items: center;
+    margin: 15px 15px 0 25px;
+    justify-content: space-around;
+    width: 100%;
+
+    .memberYesFunding-text{
+      display: flex;
+      align-items: center;
+      margin-left: 5px;
+      .myfundingNickName{
+        font-size: 23px;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+      .memberFundingTag {
+        margin-left: 6px;
+        font-size: 13px;
+        color: #b1b1b1;
+      }
+    }
+
+    .memberFundingD-day{
+      font-size: 23px;
+      font-weight: bold;
+      margin-left: 20px;
+      color: #FFACAC;
+    }
+    .memberFundingD-dayEnd{
+      font-size: 23px;
+      font-weight: bold;
+      margin-left: 20px;
+      color: #55ADFF;
+    }
+
+    .memberFunding-RightItem{
+      display: contents;
+
+      .memberFundingProgress{
+        font-size: 23px;
+        font-weight: bold;
+        margin-left: auto;
+        margin-right: 10px;
+      }
+    }
+  }
+  .myFundingItemsContainer{
+    position: absolute;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+
+    .myFundingItems{
+      display: flex;
+      justify-content: center;
+      height: 250px;
+
+      .myFundingItem-a {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        float: left;
+        margin: 0px 20px 2px 20px ;
+        height: 250px;
+
+        .myFundingItem {
+          display: inline-block;
+          flex-direction: column;
+          text-align: center;
+          margin: 0 20px;
+        .myFundingItemImg{
+          width: 170px;
+          height: 145px;
+          border-radius: 5px;
+          box-shadow: 0px 0px 3px #b8b8b8;
+          margin-bottom: 10px;
+        }
+        .gaugeFull{
+          width: 170px;
+          height: 145px;
+          border-radius: 5px;
+          box-shadow: 0px 0px 3px #b8b8b8;
+          margin-bottom: 10px;
+          filter: brightness(0.68);
+        }
+
+
+          .gauge-bar {
+            width:auto;
+            height: 17px;
+
+          }
+        }
+      }
+    }
+
+
+    .item-img-container{
+      display: flex;
+      justify-content: center;
+
+    }
+  }
+}
+
+
+.carousel .slide {
+  display: flex;
+  justify-content: flex-end;
+
+  min-width: 100%;
+  margin: 0;
+  position: relative;
+  text-align: center;
+}
+
+.carousel.carousel-slider .control-arrow {
+  display: flex;
+  background-color: #cbcbcb;
+  height: 30px;
+  width:30px;
+  border-radius: 50%;
+  margin: 130px 30px 0 30px;
+}
+
+.carousel .control-next.control-arrow:before {
+  border-left: 10px solid #fff;
+  margin-top: 2px;
+  margin-left: 6px;
+
+}
+.carousel .control-prev.control-arrow:before {
+  border-right: 10px solid #fff;
+  margin-top: 2px;
+  margin-right: 6px;
+
+}
+
+.bg-success {
+  --bs-bg-opacity: 1;
+  background-color: #40d600 !important;
+}

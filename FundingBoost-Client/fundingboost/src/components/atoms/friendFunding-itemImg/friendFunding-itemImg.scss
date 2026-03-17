@@ -1,0 +1,44 @@
+.friendFunding-item-itemimg {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  width: calc(100% - 40px);
+  margin: 0 20px;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.friendFunding-item-itemimg .fundingItem1 {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.friendFunding-item-itemimg .fundingItemSub {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.friendFunding-item-itemimg .fundingItemSub .fundingItem2,
+.friendFunding-item-itemimg .fundingItemSub .fundingItem3 {
+  width: 100%;
+  height: 105px;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .friendFunding-item-itemimg {
+    width: calc(100% - 24px);
+    margin: 0 12px;
+    gap: 8px;
+  }
+
+  .friendFunding-item-itemimg .fundingItem1 {
+    height: 190px;
+  }
+
+  .friendFunding-item-itemimg .fundingItemSub .fundingItem2,
+  .friendFunding-item-itemimg .fundingItemSub .fundingItem3 {
+    height: 91px;
+  }
+}

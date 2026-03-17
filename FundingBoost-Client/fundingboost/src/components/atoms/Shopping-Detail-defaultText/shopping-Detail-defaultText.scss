@@ -1,0 +1,41 @@
+.shoppingDetailDefaultText {
+  font-family: 'SUITE-Regular';
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  .shopping-DetailDefaultText {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .shopping-DetailText{
+    display: flex;
+    flex-direction: column;
+    .shoppingDetailDefaultText {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  .shopping-Detail-Text-delivery {
+    margin-right: 45px;
+    font-size: 16px;
+    width: 34px;
+  }
+  .shopping-Detail-Text-deliveryDetail{
+    width: 90%;
+    .shopping-Detail-delivery-Text1 .shopping-Detail-delivery-Text2{
+    font-size: 14px;
+    }
+    .shopping-Detail-delivery-Text3{
+      font-size: 11px;
+      color: #666666;
+
+    }
+  }
+
+}

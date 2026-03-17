@@ -1,0 +1,67 @@
+.MyPayDeliveryBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 170px;
+  width: 100%;
+  border-radius: 14px;
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+  padding: 18px;
+  border: 1px solid #ddd7c9;
+}
+
+.MyPayDeliveryBox.selected {
+  background: #fff8df;
+  border-color: #e5bc3a;
+}
+
+.MyPayDeliveryBox .MyPayDeliveryView {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 130px;
+  width: 100%;
+  gap: 10px;
+}
+
+.MyPayDeliveryBox .MyPayDeliveryName,
+.MyPayDeliveryBox .MyPayDeliveryAddress,
+.MyPayDeliveryBox .MyPayDeliveryPhoneNumber,
+.MyPayDeliveryBox .MyPayDeliveryPostalCode,
+.MyPayDeliveryBox .MyPayDeliveryMemo,
+.MyPayDeliveryBox{
+  color: #000000;
+  font-family: SUITE-Regular;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+  width: 100%;
+  text-align: start;
+}
+
+.MyPayDeliveryBox .MyPayDeliveryName{
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.MyPayDeliveryBox .MyPayDeliveryPostalCode,
+.MyPayDeliveryBox .MyPayDeliveryAddress,
+.MyPayDeliveryBox .MyPayDeliveryPhoneNumber,
+.MyPayDeliveryBox .MyPayDeliveryMemo {
+  font-weight: 200;
+  font-family: SUITE-Regular;
+  color: #575148;
+}
+
+.MyPayDeliveryBox:hover {
+  transform: translateY(-1px);
+  border-color: #d5aa21;
+  background: #fffbef;
+}
+
+@media (max-width: 768px) {
+  .MyPayDeliveryBox, .MyPayDeliveryBox .MyPayDeliveryView {
+    flex-wrap: wrap;
+  }
+}

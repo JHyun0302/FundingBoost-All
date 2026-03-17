@@ -1,0 +1,70 @@
+.MyPageFundingItemPane{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.myPageFundingItemdGroupBox {
+  width: 100%;
+  min-width: 0;
+}
+
+.MyPageFundingItemGroupView{
+  display: flex;
+  margin-top: 20px;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  padding: 0 14px;
+  box-sizing: border-box;
+}
+
+.mypage-myfunding-item-view{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 2vw, 22px);
+  width: 100%;
+  min-width: 0;
+}
+
+.MyPageFundingItemGroupView .mypage-funding-carousel {
+  width: 100%;
+  max-width: 1120px;
+  min-width: 0;
+}
+
+.MyPageFundingItemGroupView .carousel-control-prev,
+.MyPageFundingItemGroupView .carousel-control-next {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.MyPageFundingItemGroupView .carousel-control-prev-icon,
+.MyPageFundingItemGroupView .carousel-control-next-icon {
+  filter: invert(1);
+}
+
+.MyPageFundingItemGroupView .carousel-indicators {
+  display: none;
+}
+
+.MyPageFundingItemGroupView .carousel-control-next-icon::after {
+  visibility: hidden;
+}
+
+.MyPageFundingItemGroupView .carousel-control-prev-icon::after {
+  visibility: hidden;
+}
+
+@media (max-width: 768px) {
+  .MyPageFundingItemGroupView {
+    padding: 0 8px;
+  }
+
+  .mypage-myfunding-item-view {
+    gap: 8px;
+  }
+}

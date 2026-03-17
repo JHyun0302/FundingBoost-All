@@ -1,0 +1,105 @@
+.myPageProfileView {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: min(360px, 100%);
+  min-height: 260px;
+}
+
+.myPageProfileView.is-loading .myPageProfileName,
+.myPageProfileView.is-loading .myPageProfileEmail,
+.myPageProfileView.is-loading .myPoint {
+  opacity: 0.72;
+}
+
+.myPageProfile{
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.myPageProfileImg {
+  height: 80px;
+  width: 80px;
+  object-fit: cover;
+  border-radius: 90px;
+  border: 2px solid #3e3e3e;
+}
+
+.myPageProfileText{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 15px;
+  font-family: SUITE-Regular;
+  align-items: flex-start;
+}
+
+.myPageProfileName {
+  color: #000000;
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 1.2;
+  word-break: keep-all;
+}
+
+.myPageProfileEmail {
+  color: #000000;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+  word-break: break-all;
+  margin: 0;
+}
+
+.myPointExplain {
+  margin-top: 20px;
+  color: #1d1d1d;
+  font-family: SUITE-Regular;
+  font-size: 18px;
+  font-weight: 500;
+  width: 140px;
+  margin-left: 15px;
+  display: flex;
+}
+
+.myPoint {
+  margin-left: auto;
+  margin-right: 10px;
+  color: #000000;
+  font-family: SUITE-Regular;
+  font-size: 18px;
+  font-weight: 200;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.horizontalLine {
+  border-bottom: 1px solid gray;
+  margin: 10px; /* 수평선 위아래 여백 설정 */
+}
+
+.s2{
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .myPageProfileView {
+    width: 100%;
+    padding: 16px;
+  }
+
+  .myPageProfile {
+    justify-content: flex-start;
+  }
+
+  .myPageProfileName {
+    font-size: 24px;
+    letter-spacing: 4px;
+  }
+}

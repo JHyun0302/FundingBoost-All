@@ -1,0 +1,32 @@
+.memberNoFunding {
+  background-color: #EBEBEB;
+  height: 210px;
+  display: flex;
+  font-family: 'SUITE-Regular';
+
+  .main-memberNoFunding{
+    display: flex;
+    align-items: center;
+    margin-left: 60px;
+
+    .memberNoFunding-item {
+      margin-left: 25px;
+
+      .memberNoFunding-text {
+        color: black;
+        text-align:left;
+        margin-bottom: 10px;
+        font-size:23px;
+
+        .memberNoFunding-Nickname{
+          letter-spacing: 5px;
+        }
+      }
+    }
+  }
+}
+
+.profile-img-wrapper{
+  width: 120px;
+  height: 120px;
+}

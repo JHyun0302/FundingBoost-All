@@ -1,0 +1,52 @@
+.MyPayItemBox01{
+  display: flex;
+  padding: 10px;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.MyPayItemBox02{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  text-align: left;
+  padding: 10px;
+  margin: 10px;
+  min-width: 0;
+}
+
+.Mypay-delivery-wrapper{
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: flex-start;
+  margin: 10px 20px 20px;
+  padding: 20px;
+  border: 1px solid #e3dfd3;
+  border-radius: 24px;
+  background: #faf8f0;
+}
+
+.mypay-product-details-text01,
+.mypay-product-details-text02 {
+  font-size: 24px;
+  font-family: SUITE-Regular;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 1024px) {
+  .Mypay-delivery-wrapper{
+    flex-direction: column;
+    margin: 10px 16px 20px;
+    padding: 16px;
+  }
+
+  .MyPayItemBox01,
+  .MyPayItemBox02 {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}

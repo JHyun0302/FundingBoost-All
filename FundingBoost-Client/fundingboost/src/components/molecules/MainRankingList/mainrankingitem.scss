@@ -1,0 +1,99 @@
+.main-ranking-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  height: 100%;
+  min-height: 360px;
+  padding: 16px;
+  border-radius: 24px;
+  background: #ffffff;
+  border: 1px solid #efe9db;
+  box-shadow: 0 12px 30px rgba(45, 33, 0, 0.08);
+  text-decoration: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.main-ranking-card:hover {
+  transform: translateY(-3px);
+  border-color: #dcc267;
+  box-shadow: 0 18px 36px rgba(45, 33, 0, 0.14);
+}
+
+.main-ranking-rank {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 10px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #201b14;
+  color: #ffdd3c;
+  font-size: 14px;
+  font-weight: 900;
+  z-index: 1;
+}
+
+.main-ranking-image-wrap {
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #fbf7ea, #f3eee0);
+  aspect-ratio: 1 / 1;
+}
+
+.main-ranking-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.main-ranking-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #231d15;
+}
+
+.main-ranking-brand {
+  font-size: 12px;
+  font-weight: 700;
+  color: #8d7f63;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.main-ranking-title {
+  min-height: 44px;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: #2d261c;
+}
+
+.main-ranking-price {
+  font-size: 18px;
+  font-weight: 900;
+  color: #121212;
+}
+
+.main-ranking-score {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid #f0eadb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #6d624e;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.main-ranking-score strong {
+  font-size: 18px;
+  color: #121212;
+}

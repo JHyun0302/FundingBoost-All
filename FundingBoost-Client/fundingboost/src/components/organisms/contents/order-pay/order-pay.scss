@@ -1,0 +1,77 @@
+.order-pay-page-container{
+  display: flex;
+  flex: 1 0 auto;
+  min-height: calc(100vh - 220px);
+  width: 100%;
+  max-width: 1680px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  gap: 24px;
+  padding: 20px;
+}
+
+.mypay-product-details-text{
+  font-size: 25px;
+  padding: 20px 20px 5px 20px;
+  font-family: SUITE-Regular;
+  font-weight: 400;
+}
+
+.MyOrderItemBox{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  //align-items: center;
+  border: 1px solid #d7d7d7;
+  margin-bottom: 10px;
+  width: auto;
+  padding: 10px;
+  margin: 5px 0 10px 0;
+  border-radius: 20px;
+  background: #ffffff;
+}
+
+.orderpay-left-container{
+  display: flex;
+  flex: 3;
+  flex-direction: column;
+}
+
+.orderpay-right-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border-left: 1px solid #d4d0c5;
+  align-items: stretch;
+  position: sticky;
+  top: 88px;
+  align-self: flex-start;
+
+  .orderpayment-container {
+    position: static;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1100px) {
+  .order-pay-page-container {
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .orderpay-right-container {
+    border-left: none;
+    border-top: 1px solid #d4d0c5;
+    align-items: stretch;
+    position: static;
+  }
+
+  .orderpay-right-container .orderpayment-container {
+    position: static;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+  }
+}

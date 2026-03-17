@@ -1,0 +1,45 @@
+.fundingRegist-Page {
+  display: flex;
+  flex-direction: column;
+  .fundingRegistContent{
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+
+    .fundingRegist-Details {
+      height: 100%;
+      border-left: 1px solid #6a6a6a;
+    }
+  }
+  .funding {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+.fundingRegist-Details{
+height: auto;
+  border-left: 1px solid #6a6a6a;
+
+  .FundingRegist-registBtn{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+
+    .FundingRegist-btn {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 5%;
+
+      .yellowBtn{
+        width: 300px;
+        height: 45px;
+        text-align: center;
+      }
+    }
+  }
+
+}
+
+
+}

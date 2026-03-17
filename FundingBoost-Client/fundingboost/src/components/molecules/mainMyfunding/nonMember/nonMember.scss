@@ -1,0 +1,46 @@
+.nonMember {
+  display: flex;
+  align-items: center;
+  background-color: #EBEBEB;
+  height: 210px;
+  font-family: 'SUITE-Regular';
+
+  .main-nonMember {
+    display: flex;
+    align-items: center;
+    margin-left: 60px;
+
+    .nonMember-item {
+      margin-left: 25px;
+
+      .nonMember-text {
+        color: black;
+        text-align: left;
+        margin-bottom: 10px;
+        font-size: 23px;
+      }
+    }
+  }
+}
+
+@media (max-width: 479px) {
+  .nonMember {
+    justify-content: center;
+    .profile-img-wrapper {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .main-nonMember {
+    margin-left: 0 !important;
+  }
+
+  .nonMember-item {
+    margin-left: 8px !important;
+  }
+
+  .nonMember-text {
+    font-size: 18px  !important;
+  }
+}

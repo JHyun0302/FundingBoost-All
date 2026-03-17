@@ -1,0 +1,83 @@
+.mypage-nonfunding-pane{
+  display: flex;
+  flex-direction: column;
+  min-height: 787px;
+  width: 100%;
+}
+
+.mypage-nonfunding-pane .mypage-myfunding-content-wrapper{
+  background-color: #efefef;
+  border: 1px solid #d9d9d9;
+  width: min(1130px, calc(100% - 30px));
+  min-width: 0;
+  max-width: 1130px;
+  height: auto;
+  margin: 15px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.horizontalLine {
+  border-bottom: 1px solid gray;
+  margin: 10px;
+}
+
+.mypage-horizontalUnderLine{
+  border-bottom: 1px solid gray;
+  margin: 10px;
+  margin-bottom: 77px;
+}
+
+.mypage-myfunding-title{
+  font-family: SUITE-Regular;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.empty-image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-image {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  position: absolute;
+  width: 200px;
+  height: auto;
+  top: 160px;
+  justify-content: center;
+  z-index: 1;
+}
+
+.nonItem-image{
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 250px;
+  height: auto;
+  justify-content: center;
+  z-index: 0;
+}
+
+.mypage-nonfunding-noti-text{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-family: SUITE-Regular;
+  color: #9a9a9a;
+}
+
+@media (max-width: 992px) {
+  .mypage-nonfunding-pane {
+    min-height: 0;
+  }
+
+  .mypage-nonfunding-pane .mypage-myfunding-content-wrapper {
+    width: calc(100% - 24px);
+    max-width: 1130px;
+    margin: 12px;
+  }
+}

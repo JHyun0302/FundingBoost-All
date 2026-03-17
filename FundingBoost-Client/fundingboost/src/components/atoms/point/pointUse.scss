@@ -1,0 +1,78 @@
+.my-point {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-top: 4px;
+  gap: 12px;
+}
+
+.my-point-first-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.my-point-input {
+  background-color: #ffffff;
+  border: 1px solid #d8cfbe;
+  width: 100%;
+  font-size: 18px;
+  text-align: right;
+  min-height: 48px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.my-point-unit {
+  font-size: 25px;
+  margin: 0;
+}
+
+.my-point-fixed-text {
+  color: #1d1d1d;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  margin-right: 0;
+  white-space: nowrap;
+}
+
+.my-point-use-all-point {
+  background-color: #ffc83b;
+  border-radius: 10px;
+  height: 44px;
+  width: 96px;
+  border: none;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  line-height: normal;
+  margin-left: 0;
+}
+
+.my-point-use-usable-point {
+  color: #7e7e7e;
+  font-size: 15px;
+  font-weight: 200;
+  width: 100%;
+  text-align: end;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .my-point-first-row {
+    grid-template-columns: 1fr;
+  }
+
+  .my-point-input {
+    width: 100%;
+  }
+
+  .my-point-use-usable-point {
+    text-align: start;
+  }
+}

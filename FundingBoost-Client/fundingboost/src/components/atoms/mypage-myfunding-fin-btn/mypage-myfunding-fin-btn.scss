@@ -1,0 +1,20 @@
+.exchange-remain-btn-wrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: auto 0;
+
+  button.exchange-button {
+    margin: 15px 0;
+    width: 115px;
+  }
+  button.mypage-remainpay-btn {
+    margin: 15px 0;
+    width: 115px;
+  }
+}
+
+.fin-btn-wrapper{
+  display: flex;
+  flex-direction: column;
+}

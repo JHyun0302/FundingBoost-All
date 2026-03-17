@@ -1,0 +1,34 @@
+.mainFriendNoFunding{
+  height: 282px;
+  background-color: #f7f7f7;
+  .mainFriendNoFunding-text{
+    font-size: 13px;
+    padding: 15px 0 0 25px;
+  }
+  .friendFunding-items-container{
+
+
+  }
+  .friendNoFunding-contents {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .friendNoFunding-hweng {
+      margin: 25px 0 50px 0;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      .hwengImg {
+        width: 130px;
+      }
+
+      .hwengText {
+        margin-top: 10px;
+        font-size: 15px;
+        font-color: #909090;
+      }
+    }
+  }
+}
+

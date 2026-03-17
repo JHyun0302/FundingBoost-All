@@ -1,0 +1,178 @@
+.navbar-logo {
+  img {
+    height: 50px;
+    margin: 0 10px;
+  }
+}
+
+.headerBar{
+  background-color: white;
+  font-family: 'SUITE-Regular';
+  border-bottom: 1px solid #ececec;
+}
+
+.headerBar .container-fluid {
+  max-width: 1680px;
+  width: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.headerBar .navbar-collapse {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+}
+
+.navbarMenu{
+  max-height: 100px;
+  flex: 0 0 auto;
+  min-width: 0;
+  margin-right: 8px;
+  gap: 2px;
+
+  .nav-link{
+    margin-right: 0;
+    padding: 8px 12px;
+    white-space: nowrap;
+  }
+}
+
+.navbarMenu.navbar-nav.navbar-nav-scroll {
+  width: auto;
+}
+
+.header-search-login
+{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1 1 0;
+  min-width: 0;
+  gap: 12px;
+}
+
+.searchBar{
+  display: flex;
+  align-items: center;
+  flex: 1 1 380px;
+  max-width: 520px;
+  min-width: 220px;
+  margin-left: 0;
+  flex-wrap: nowrap;
+
+  .form-control {
+    border-radius: 15px;
+    min-width: 0;
+  }
+
+  .me-2{
+    margin-left: 0;
+    margin-right: 8px !important;
+  }
+
+  .gifthub-btn{
+    margin-left: 5px;
+    border: none;
+    box-shadow: none;
+    background: none;
+
+    &:hover, &:active, &:focus{
+      background:none !important;
+      box-shadow:none !important;
+    }
+    img{
+      height: 25px;
+    }
+  }
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+.loginLogout {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  white-space: nowrap;
+
+  .login-btn{
+    border: none;
+    background:none;
+  }
+
+  button.login-btn {
+    width: 55px;
+  }
+
+  .nav-item.dropdown {
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media (max-width: 1200px) {
+  .searchBar {
+    flex-basis: 320px;
+    max-width: 420px;
+    min-width: 180px;
+  }
+
+  .navbarMenu .nav-link {
+    padding: 8px 8px;
+  }
+}
+
+@media (max-width: 992px) {
+  .headerBar .container-fluid {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .headerBar .navbar-collapse {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .navbarMenu {
+    width: 100%;
+    margin-right: 0;
+    padding-top: 6px;
+  }
+
+  .navbarMenu.navbar-nav.navbar-nav-scroll {
+    width: 100%;
+  }
+
+  .navbarMenu .nav-link {
+    padding-left: 0;
+    margin-right: 0;
+  }
+
+  .header-search-login {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  form.searchBar {
+    width: 100%;
+    min-width: 0;
+    flex: 1 1 100%;
+  }
+
+  .loginLogout {
+    margin-left: auto;
+  }
+
+  .navbar-light .navbar-toggler-icon {
+     background-image: url('/assets/hamburgerIcon.png');
+  }
+}

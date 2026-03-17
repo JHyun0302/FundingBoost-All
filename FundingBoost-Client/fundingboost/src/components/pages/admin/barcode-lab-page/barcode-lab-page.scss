@@ -1,0 +1,203 @@
+.barcode-lab-page {
+  min-height: 100vh;
+  background: #f5f5f2;
+}
+
+.barcode-lab-main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 48px 20px 72px;
+}
+
+.barcode-lab-card {
+  background: #ffffff;
+  border: 1px solid #e2e2df;
+  border-radius: 18px;
+  padding: 28px 24px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+}
+
+.barcode-lab-title {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 800;
+  color: #212529;
+}
+
+.barcode-lab-desc {
+  margin: 12px 0 0;
+  color: #5f6368;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.barcode-lab-back-button {
+  margin-top: 14px;
+  border: 1px solid #d3d4d7;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #24292f;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.barcode-lab-alert {
+  margin-top: 24px;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #d0d0cd;
+  background: #f8f8f5;
+
+  p {
+    margin: 0 0 12px;
+    color: #2a2f36;
+    font-size: 14px;
+  }
+
+  button {
+    border: 0;
+    border-radius: 10px;
+    background: #212529;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 10px 14px;
+    cursor: pointer;
+  }
+}
+
+.barcode-lab-alert-forbidden {
+  border-color: #f2b8b8;
+  background: #fff4f4;
+}
+
+.barcode-lab-alert-error {
+  border-color: #ffdd9a;
+  background: #fff8ea;
+}
+
+.barcode-lab-input-wrap {
+  margin-top: 24px;
+  display: grid;
+  gap: 10px;
+
+  label {
+    color: #202124;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  textarea {
+    resize: vertical;
+    border: 1px solid #d4d7dc;
+    border-radius: 12px;
+    padding: 12px 14px;
+    min-height: 88px;
+    font-size: 14px;
+    outline: none;
+  }
+
+  textarea:focus {
+    border-color: #ffd95d;
+    box-shadow: 0 0 0 3px rgba(255, 217, 93, 0.2);
+  }
+
+  button {
+    justify-self: start;
+    border: 0;
+    border-radius: 10px;
+    background: #f9ca2e;
+    color: #1f2329;
+    font-weight: 800;
+    padding: 11px 16px;
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.barcode-lab-token-preview {
+  margin: 0;
+  color: #5f6368;
+  font-size: 13px;
+
+  strong {
+    color: #202124;
+    word-break: break-all;
+  }
+}
+
+.barcode-lab-error {
+  margin-top: 12px;
+  color: #d93025;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.barcode-lab-result {
+  margin-top: 24px;
+  border: 1px solid #ece9d9;
+  border-radius: 14px;
+  background: #fffdf6;
+  padding: 18px;
+
+  h2 {
+    margin: 0 0 14px;
+    font-size: 18px;
+    color: #1f2329;
+  }
+
+  dl {
+    margin: 0;
+    display: grid;
+    gap: 8px;
+  }
+
+  dl > div {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 8px;
+    align-items: start;
+    border-bottom: 1px dashed #e8e8e4;
+    padding-bottom: 7px;
+  }
+
+  dt {
+    margin: 0;
+    color: #5f6368;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  dd {
+    margin: 0;
+    color: #202124;
+    font-size: 14px;
+    font-weight: 600;
+    word-break: break-all;
+  }
+}
+
+@media (max-width: 768px) {
+  .barcode-lab-main {
+    padding: 24px 12px 48px;
+  }
+
+  .barcode-lab-card {
+    border-radius: 14px;
+    padding: 20px 16px;
+  }
+
+  .barcode-lab-title {
+    font-size: 24px;
+  }
+
+  .barcode-lab-result dl > div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}

@@ -1,0 +1,31 @@
+server:
+  servlet:
+    encoding:
+      charset: utf-8
+      force: true
+  
+  port: 8080
+  forward-headers-strategy: framework
+
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  
+  jpa:
+    hibernate:
+      database-platform: org.hibernate.dialect.MySQLDialect
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+      default_batch_fetch_size: 100
+    open-in-view: false
+
+
+logging:
+  level:
+    #    '[kcs.funding.fundingboost]': INFO
+    '[org.hibernate.type]': TRACE

@@ -1,0 +1,21 @@
+management:
+  info:
+    java:
+      enabled: true
+    os:
+      enabled: true
+    env:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: "/api/v1/fundingboost"
+  server:
+    port: 8080
+  tomcat:
+    mbeanregistry:
+      enabled: true

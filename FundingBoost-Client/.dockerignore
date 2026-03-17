@@ -1,0 +1,9 @@
+.git
+.github
+.idea
+node_modules
+fundingboost/node_modules
+fundingboost/build
+build
+out
+*.iml

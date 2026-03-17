@@ -1,0 +1,349 @@
+.main-pane-container {
+  --main-accent: #3f7df0;
+  --main-accent-soft: #dbe9ff;
+  --main-accent-deep: #1f1f1f;
+  --main-bg: #f7f5ef;
+  --main-card: #ffffff;
+  --main-border: #ebe5d7;
+  --main-muted: #6b6456;
+  width: 100%;
+  padding: 32px 24px 56px;
+  background:
+          radial-gradient(circle at top right, rgba(63, 125, 240, 0.14), transparent 32%),
+          linear-gradient(180deg, #fbf8ee 0%, #ffffff 72%);
+}
+
+.ranking-stage {
+  max-width: 1180px;
+  margin: 0 auto 24px;
+  padding: 36px 28px 24px;
+  border-radius: 34px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--main-border);
+  box-shadow: 0 18px 36px rgba(45, 33, 0, 0.08);
+  text-align: center;
+}
+
+.ranking-header {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ranking-title-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ranking-title-row h2 {
+  margin: 0;
+  font-size: 56px;
+  font-family: 'Hanna', fantasy;
+  letter-spacing: -0.04em;
+  color: #181512;
+}
+
+.ranking-info-button {
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #9b978d;
+  font-size: 34px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ranking-info-button:hover {
+  color: #6f6655;
+}
+
+.ranking-guide-popover {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: -180px;
+  width: min(520px, calc(100vw - 48px));
+  padding: 24px 28px;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid #d7d2c5;
+  box-shadow: 0 22px 40px rgba(31, 24, 9, 0.16);
+  text-align: left;
+  z-index: 5;
+}
+
+.ranking-guide-title {
+  margin-bottom: 14px;
+  font-size: 18px;
+  font-weight: 800;
+  color: #211b14;
+}
+
+.ranking-guide-item + .ranking-guide-item {
+  margin-top: 16px;
+}
+
+.ranking-guide-item strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 16px;
+  color: #1f1b14;
+}
+
+.ranking-guide-item p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #5f584c;
+}
+
+.audience-selector {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 44px;
+  flex-wrap: wrap;
+}
+
+.audience-option {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #6f6655;
+  cursor: pointer;
+}
+
+.audience-icon {
+  width: 92px;
+  height: 92px;
+  border-radius: 30px;
+  background: #eef3fb;
+  color: #9ab2e7;
+  font-size: 34px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 0 1px rgba(152, 174, 214, 0.18);
+}
+
+.audience-label {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.audience-option.active {
+  color: var(--main-accent);
+}
+
+.audience-option.active .audience-icon {
+  background: linear-gradient(180deg, #5f96f7, #3f7df0);
+  color: #ffffff;
+  box-shadow: 0 14px 26px rgba(63, 125, 240, 0.28);
+}
+
+.ranking-type-strip {
+  margin-top: 24px;
+  padding: 0 12px;
+  min-height: 92px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #dce9ff, #d2e3ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 54px;
+  flex-wrap: wrap;
+}
+
+.ranking-type-tab {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font-size: 28px;
+  font-weight: 800;
+  color: #8daee7;
+  cursor: pointer;
+}
+
+.ranking-type-tab.active {
+  color: var(--main-accent);
+}
+
+.price-range-strip {
+  margin-top: 22px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.price-range-chip {
+  min-width: 138px;
+  padding: 14px 20px;
+  border-radius: 999px;
+  border: 1px solid #ddd5c4;
+  background: #ffffff;
+  color: #40382a;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.16s ease, color 0.16s ease, background-color 0.16s ease;
+}
+
+.price-range-chip.active {
+  border-color: #1f1f1f;
+  background: #1f1f1f;
+  color: #ffffff;
+}
+
+.ranking-item-grid {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.ranking-grid-item {
+  min-width: 0;
+}
+
+.ranking-empty-state {
+  grid-column: 1 / -1;
+  padding: 36px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px dashed #d8cfbd;
+  text-align: center;
+  color: #6f6655;
+  font-weight: 700;
+}
+
+@media (max-width: 1024px) {
+  .ranking-title-row h2 {
+    font-size: 46px;
+  }
+
+  .ranking-guide-popover {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .ranking-item-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .main-pane-container {
+    padding: 24px 16px 40px;
+  }
+
+  .ranking-stage {
+    padding: 28px 16px 20px;
+    border-radius: 28px;
+  }
+
+  .ranking-title-row h2 {
+    font-size: 34px;
+  }
+
+  .ranking-guide-popover {
+    width: min(100%, calc(100vw - 32px));
+    top: calc(100% + 10px);
+    padding: 18px 20px;
+  }
+
+  .audience-selector {
+    gap: 18px;
+  }
+
+  .audience-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 24px;
+    font-size: 26px;
+  }
+
+  .audience-label {
+    font-size: 18px;
+  }
+
+  .ranking-type-strip {
+    min-height: auto;
+    padding: 18px 12px;
+    gap: 20px;
+  }
+
+  .ranking-type-tab {
+    font-size: 21px;
+  }
+
+  .price-range-chip {
+    min-width: 116px;
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+
+  .ranking-item-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 479px) {
+  .ranking-title-row {
+    gap: 6px;
+  }
+
+  .ranking-title-row h2 {
+    font-size: 28px;
+  }
+
+  .ranking-info-button {
+    width: 32px;
+    height: 32px;
+    font-size: 24px;
+  }
+
+  .audience-selector {
+    gap: 12px;
+  }
+
+  .audience-icon {
+    width: 62px;
+    height: 62px;
+    border-radius: 20px;
+    font-size: 20px;
+  }
+
+  .audience-label {
+    font-size: 15px;
+  }
+
+  .ranking-type-strip {
+    gap: 12px;
+  }
+
+  .ranking-type-tab {
+    font-size: 17px;
+  }
+
+  .price-range-chip {
+    min-width: calc(50% - 8px);
+  }
+
+  .ranking-item-grid {
+    grid-template-columns: 1fr;
+  }
+}

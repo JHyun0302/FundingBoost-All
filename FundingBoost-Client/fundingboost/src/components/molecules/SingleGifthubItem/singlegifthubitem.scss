@@ -1,0 +1,187 @@
+.giftbox-total-container {
+  display: flex;
+  width: 100%;
+  cursor: pointer;
+}
+
+.checkbox-item-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  margin: 0 0 18px;
+  width: 100%;
+  border-radius: 20px;
+  padding: 18px;
+  border: 1px solid #e6e2d8;
+  background: #ffffff;
+}
+
+.checkbox-container {
+  margin-top: 8px;
+  position: static;
+}
+
+.gifthub-fundingRegistItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  width: 100%;
+}
+
+.sequenceGroup {
+  border: 1px solid #c8c8c8;
+  width: 146px;
+  height: 156px;
+  object-fit: cover;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.gifthub-itemDetail {
+  font-family: SUITE-Regular;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+}
+
+.gifthub-title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.35;
+  padding-right: 110px;
+}
+
+.delete-button {
+  border-radius: 999px;
+  border: 1px solid #8c8c8c;
+  color: #000000;
+  font-family: SUITE-Regular;
+  font-size: 14px;
+  font-weight: 500;
+  align-self: flex-end;
+  margin-top: -36px;
+  background: #ffffff;
+  padding: 6px 14px;
+}
+
+.delete-button:hover {
+  color: red;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.gifthub-optionDetail {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+
+  .gifthub-optionGroup {
+    background-color: #d9d9d9;
+    border-radius: 8px;
+    height: 22px;
+    width: 43px;
+
+    .gifthub-option {
+      color: #ffffff;
+      font-size: 15px;
+      text-align: center;
+    }
+  }
+
+  .gifthub-optionName {
+    color: #909090;
+    font-size: 12px;
+  }
+}
+
+.quantity-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.quantity-text,
+.quantity-number {
+  font-family: SUITE-Regular;
+}
+
+.quantity-number {
+  min-width: 20px;
+}
+
+.quantity-stepper {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.quantity-step-button {
+  width: 28px;
+  height: 18px;
+  border: 1px solid #d0cbc1;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #55504a;
+  font-size: 11px;
+  line-height: 1;
+  padding: 0;
+}
+
+.quantity-step-button:hover {
+  background: #f6f2e8;
+}
+
+.change-button {
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 10px;
+  background-color: #d9d9d9;
+  font-family: SUITE-Regular;
+  border: none;
+  padding: 6px 12px;
+}
+
+.change-button:hover {
+  background-color: #c8c8c8;
+  font-weight: bold;
+}
+
+.giftbox-item-price {
+  color: #000000;
+  font-family: SUITE-Regular;
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: auto;
+  align-self: flex-end;
+}
+
+@media (max-width: 768px) {
+  .checkbox-item-container,
+  .gifthub-fundingRegistItem {
+    flex-direction: column;
+  }
+
+  .gifthub-title {
+    padding-right: 0;
+  }
+
+  .delete-button {
+    align-self: flex-start;
+    margin-top: 12px;
+  }
+
+  .giftbox-item-price {
+    align-self: flex-start;
+    margin-top: 16px;
+    font-size: 24px;
+  }
+
+  .quantity-container {
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,142 @@
+@import '~bootstrap/scss/bootstrap'; // Bootstrap 스타일 불러오기
+
+/* Bootstrap 스타일 덮어쓰기 */
+.btn-group-lg > .btn,
+.btn-lg {
+  --bs-btn-padding-y: 0.375rem;
+  --bs-btn-padding-x: 0.75rem;
+  --bs-btn-font-size: 1rem;
+  --bs-btn-border-radius: var(--bs-border-radius-lg);
+}
+
+.footer {
+  display: flex;
+  background-color: #f4f4f5;
+  color: #b5b4b5;
+  text-align: center;
+  width: 100%;
+  margin-top: auto;
+  padding: 12px 16px;
+}
+
+.footer .container {
+  width: 100%;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.footer-logo img {
+  width: 150px;
+  margin: 20px;
+}
+
+.footer-text {
+  text-align: left;
+}
+
+.footer-text h5 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #9a9a9f;
+}
+
+.footer-repo-list {
+  margin: 14px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-repo-item {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.footer-repo-label {
+  background-color: #e9e9ec;
+  color: #7f7f85;
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.footer-repo-link {
+  color: #6f6f75;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.footer-repo-link:hover {
+  text-decoration: underline;
+}
+
+.footer-repo-url {
+  flex-basis: 100%;
+  color: #b5b4b5;
+  font-size: 11px;
+  word-break: break-all;
+}
+
+.footer .text-center {
+  text-align: center;
+  font-size: 10px;
+
+  @media screen and (max-width: 320px) {
+    font-size: 50%;
+  }
+}
+
+.icons-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  transform: translateX(-20px);
+}
+
+@media screen and (max-width: 320px) {
+  .footer-logo img {
+    width: 80%;
+    margin-right: 10px;
+  }
+
+  .footer-text h5 {
+    font-size: 80%;
+  }
+
+  .footer-repo-item {
+    font-size: 80%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .footer-text {
+    text-align: center;
+  }
+
+  .footer-repo-item {
+    justify-content: center;
+  }
+
+  .icons-row {
+    transform: none;
+  }
+}

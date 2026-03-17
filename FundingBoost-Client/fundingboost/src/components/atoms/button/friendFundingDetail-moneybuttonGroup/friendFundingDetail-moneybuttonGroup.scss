@@ -1,0 +1,61 @@
+.fundingToFriend-buttonGroup{
+  width: 100%;
+
+  flex-wrap: nowrap;
+  justify-content: space-between;
+
+  .fundingToFriend-textBox{
+    display: flex;
+    flex-direction: row;
+    height: 45px;
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: end;
+  }
+
+  .friendFundingDetail-moneybuttonGroup {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    .money {
+      background-color: #ffc83b;
+      border-radius: 10px;
+      height: 32px;
+      width: 75px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .moneyButton{
+        color: #FFFFFF;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        background-color: #ffc83b;
+        border: none;
+      }
+    }
+
+    .NonMoney {
+      background-color: rgb(214, 214, 214);
+      border-radius: 10px;
+      height: 32px;
+      width: 75px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: default;
+      .NonMoneyButton{
+        color: #FFFFFF;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        background-color: rgb(214, 214, 214);
+        border: none;
+        cursor: default;
+      }
+
+    }
+  }
+}
+

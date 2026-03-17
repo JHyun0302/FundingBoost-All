@@ -1,0 +1,9 @@
+spring:
+  data:
+    redis:
+      refresh-token:
+        host: ${REDIS_REFRESH_HOST:localhost}
+        port: ${REDIS_REFRESH_PORT:6379}
+      lock:
+        host: ${REDIS_LOCK_HOST:localhost}
+        port: ${REDIS_LOCK_PORT:6380}

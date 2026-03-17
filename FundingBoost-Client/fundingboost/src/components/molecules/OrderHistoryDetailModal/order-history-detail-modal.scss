@@ -1,0 +1,250 @@
+.orderHistoryDetailModal {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+}
+
+.orderHistoryDetailBackdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(17, 24, 39, 0.45);
+  cursor: pointer;
+}
+
+.orderHistoryDetailPanel {
+  position: relative;
+  z-index: 1;
+  width: min(920px, calc(100vw - 32px));
+  max-height: calc(100vh - 40px);
+  margin: 20px auto;
+  padding: 28px;
+  border-radius: 28px;
+  background: #ffffff;
+  box-shadow: 0 24px 72px rgba(15, 23, 42, 0.18);
+  overflow-y: auto;
+}
+
+.orderHistoryDetailHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.orderHistoryDetailEyebrow {
+  font-family: SUITE-Regular;
+  font-size: 13px;
+  color: #767676;
+  margin-bottom: 8px;
+}
+
+.orderHistoryDetailTitle {
+  font-family: SUITE-Regular;
+  font-size: 30px;
+  font-weight: 800;
+  color: #111111;
+}
+
+.orderHistoryDetailSubTitle {
+  margin-top: 8px;
+  font-family: SUITE-Regular;
+  font-size: 15px;
+  color: #666666;
+}
+
+.orderHistoryDetailClose {
+  border: 0;
+  border-radius: 999px;
+  background: #111111;
+  color: #ffffff;
+  padding: 10px 16px;
+  font-family: SUITE-Regular;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.orderHistoryDetailContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.orderHistoryDetailItemCard,
+.orderHistoryDetailPaymentCard,
+.orderHistoryDetailDeliveryCard,
+.orderHistoryDetailContributorCard,
+.orderHistoryDetailEmptyFunding {
+  border: 1px solid #ececec;
+  border-radius: 20px;
+  background: #ffffff;
+}
+
+.orderHistoryDetailItemCard {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+}
+
+.orderHistoryDetailItemImage {
+  width: 132px;
+  height: 132px;
+  min-width: 132px;
+  border-radius: 16px;
+  object-fit: cover;
+  background: #f7f7f7;
+}
+
+.orderHistoryDetailItemText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+
+.orderHistoryDetailOption,
+.orderHistoryDetailQuantity {
+  font-family: SUITE-Regular;
+  font-size: 14px;
+  color: #666666;
+}
+
+.orderHistoryDetailPrice {
+  font-family: SUITE-Regular;
+  font-size: 22px;
+  font-weight: 800;
+  color: #111111;
+}
+
+.orderHistoryDetailMoveButton {
+  margin-top: 4px;
+  border: 0;
+  border-radius: 999px;
+  background: #111111;
+  color: #ffffff;
+  padding: 10px 14px;
+  font-family: SUITE-Regular;
+  font-size: 14px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.orderHistoryDetailGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.orderHistoryDetailSectionTitle {
+  margin-bottom: 10px;
+  font-family: SUITE-Regular;
+  font-size: 18px;
+  font-weight: 800;
+  color: #111111;
+}
+
+.orderHistoryDetailPaymentCard,
+.orderHistoryDetailDeliveryCard {
+  padding: 18px;
+}
+
+.orderHistoryDetailPaymentRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: SUITE-Regular;
+  font-size: 15px;
+  color: #333333;
+}
+
+.orderHistoryDetailPaymentRow + .orderHistoryDetailPaymentRow {
+  margin-top: 10px;
+}
+
+.orderHistoryDetailDeliveryName {
+  font-family: SUITE-Regular;
+  font-size: 18px;
+  font-weight: 800;
+  color: #111111;
+  margin-bottom: 8px;
+}
+
+.orderHistoryDetailDeliveryText {
+  font-family: SUITE-Regular;
+  font-size: 14px;
+  color: #666666;
+}
+
+.orderHistoryDetailDeliveryText + .orderHistoryDetailDeliveryText {
+  margin-top: 4px;
+}
+
+.orderHistoryDetailContributorList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.orderHistoryDetailContributorCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+}
+
+.orderHistoryDetailContributorImage {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #d5d5d5;
+}
+
+.orderHistoryDetailContributorName {
+  font-family: SUITE-Regular;
+  font-size: 16px;
+  font-weight: 800;
+  color: #111111;
+}
+
+.orderHistoryDetailContributorPrice {
+  margin-top: 4px;
+  font-family: SUITE-Regular;
+  font-size: 14px;
+  color: #666666;
+}
+
+.orderHistoryDetailEmptyFunding {
+  padding: 16px;
+  font-family: SUITE-Regular;
+  font-size: 14px;
+  color: #666666;
+  background: #faf7ef;
+}
+
+@media (max-width: 768px) {
+  .orderHistoryDetailPanel {
+    width: calc(100vw - 20px);
+    margin: 10px auto;
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .orderHistoryDetailHeader,
+  .orderHistoryDetailItemCard {
+    flex-direction: column;
+  }
+
+  .orderHistoryDetailItemImage {
+    width: 100%;
+    min-width: 100%;
+    height: 220px;
+  }
+
+  .orderHistoryDetailGrid,
+  .orderHistoryDetailContributorList {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,54 @@
+.MyPageIndexBox {
+  display: flex;
+  flex-direction: column;
+  width: min(360px, 100%);
+}
+
+.MyPageIndexBox .line {
+  object-fit: cover;
+  background-color: #b1b1b1;
+  height: 2px;
+  width: min(374px, 100%);
+}
+
+.MyPageIndexBox .MyPageIndexBoxText {
+  color: #000000;
+  font-family: SUITE-Regular;
+  font-size: 18px;
+  padding:10px;
+  //font-weight: 200;
+  letter-spacing: 0;
+  text-align: center;
+  width: min(370px, 100%);
+  border: none;
+  background-color: white;
+}
+
+//.MyPageIndexBox .MyPageIndexBoxText.selected {
+//  color: #6a6a6a;
+//  font-weight: bold;
+//}
+
+
+.MyPageIndexBoxText.selected {
+  font-weight: bold !important;
+}
+
+
+
+@media (max-width: 320px) {
+  .MyPageIndexBox{
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .MyPageIndexBox {
+    width: 100%;
+  }
+
+  .MyPageIndexBox .MyPageIndexBoxText {
+    text-align: left;
+    padding-left: 16px;
+  }
+}

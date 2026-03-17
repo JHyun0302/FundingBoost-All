@@ -1,0 +1,7 @@
+spring:
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
+      host: ${ELASTICSEARCH_HOST:localhost}
+      port: ${ELASTICSEARCH_PORT:9200}

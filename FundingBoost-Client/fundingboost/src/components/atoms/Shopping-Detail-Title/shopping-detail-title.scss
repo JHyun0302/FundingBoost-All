@@ -1,0 +1,82 @@
+.ShoppingDetailItemBox {
+  min-height: 450px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  padding: 0 20px;
+}
+
+.ShoppingDetailItemBox .ShoppingDetailItemBoxView {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.shopping-detail-column{
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
+.ShoppingDetailItemBox .image {
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  object-fit: cover;
+  left: 0;
+  width: min(100%, 300px);
+  aspect-ratio: 1 / 1;
+}
+
+.ShoppingDetailItemBox .itemName {
+  color: #000000;
+  font-family: SUITE-Regular;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: normal;
+  top: 20px;
+  overflow-wrap: break-word;
+  margin-left: 20px;
+}
+
+.ShoppingDetailItemBox .div {
+  right: 0px;
+  position: absolute;
+  top: 0px;
+}
+
+.shopping-detail-title-wrapper{
+  display: flex;
+  flex-direction: row;
+  width: min(100%, 1100px);
+  min-width: 0;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .ShoppingDetailItemBox {
+    min-height: 0;
+    margin-top: 24px;
+    padding: 0 16px;
+  }
+
+  .shopping-detail-title-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .shopping-detail-column {
+    width: min(100%, 420px);
+  }
+
+  .ShoppingDetailItemBox .itemName {
+    margin-left: 0;
+    font-size: clamp(24px, 5vw, 30px);
+  }
+}

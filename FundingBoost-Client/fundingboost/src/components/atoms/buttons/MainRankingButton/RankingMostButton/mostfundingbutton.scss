@@ -1,0 +1,31 @@
+.most-funding-button {
+  background-color: transparent;
+  border: none;
+  color: #000;
+  font-size: 16px;
+  padding: 10px;
+  cursor: pointer;
+  transition: color 0.3s ease; /* hover 시에 색상이 변하는 transition 효과 */
+  font-family: 'SUITE-Regular';
+  padding-right: 80px;
+  padding-left: 80px;
+
+  &:hover {
+    color: #004182; /* hover 시에 색상 변경 */
+  }
+
+  &.selected {
+    color: #004182FF; /* 선택된 버튼의 색상 */
+    font-weight: bold;
+  }
+}
+@media (max-width: 479px) {
+  .most-funding-button{
+    padding-right: 20px;
+    padding-left: 20px;
+    font-size: 12px;
+  }
+
+}
+
+

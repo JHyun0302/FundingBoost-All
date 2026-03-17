@@ -1,0 +1,29 @@
+.success-pane-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.success-horizontalLine-up{
+  padding-top: 50px;
+  width: 90%;
+  border-bottom: 1px solid #b0b0b0;
+}
+
+.success-horizontalLine-down{
+  margin-bottom: 50px;
+  width: 90%;
+  border-bottom: 1px solid #b0b0b0;
+}
+
+.success-icon {
+  width: 200px;
+  height: auto;
+  //margin: 20px 0;
+  padding: 20px;
+}
+
+.pay-success-text{
+  font-family: SUITE-Regular;
+  font-size: 20px;
+}

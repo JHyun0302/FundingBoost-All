@@ -1,0 +1,52 @@
+.friend-funding-price-current-pay {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  padding: 10px 0 4px;
+
+  .friend-funding-price-current-pay-fixed-text {
+    color: #1d1d1d;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .friend-funding-price-current-pay-div {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+
+    .friend-funding-price-current-pay-text {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 12px;
+      color: #000000;
+      font-size: 25px;
+      font-weight: 500;
+      letter-spacing: 0;
+
+      div:last-child {
+        font-weight: 500;
+        text-align: right;
+        white-space: nowrap;
+      }
+    }
+  }
+
+}
+
+@media (max-width: 768px) {
+  .friend-funding-price-current-pay .friend-funding-price-current-pay-div {
+    align-self: stretch;
+  }
+
+  .friend-funding-price-current-pay .friend-funding-price-current-pay-fixed-text {
+    font-size: 18px;
+  }
+
+  .friend-funding-price-current-pay .friend-funding-price-current-pay-div .friend-funding-price-current-pay-text {
+    font-size: 20px;
+  }
+}

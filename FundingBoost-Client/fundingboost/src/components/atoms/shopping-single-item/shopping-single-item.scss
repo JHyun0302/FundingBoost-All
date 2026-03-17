@@ -1,0 +1,90 @@
+.main-pane-container {
+  display: flex;
+  flex-direction: column; /* 세로 방향으로 아이템을 배치 */
+  align-items: center;
+}
+
+.ranking-button-area {
+  background: #f5f5f5;
+  padding: 20px;
+  width: 100%;
+}
+
+.ranking-item-area {
+  background: white;
+  padding: 20px;
+  width: 100%;
+  margin-top: 5spx; /* ranking-button-area와의 간격 조정 */
+}
+
+.rankging-text {
+  font-family: 'Hanna', fantasy;
+  font-size: 30px;
+  margin: 0;
+  text-align: center;
+}
+
+.shopping-item-list-single {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  align-items: flex-start;
+  padding:10px;
+}
+
+.shopping-single-item {
+  display: flex;
+  width: min(100%, 260px);
+  min-width: 220px;
+  height: auto;
+  flex: 1 1 240px;
+  padding:10px;
+  font-family: SUITE-Regular;
+  font-size: 90%;
+  max-width: 260px;
+  >a{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.title-wrapper{
+  color: #3e3e3e;
+}
+
+.price-wrapper{
+  color: #818181;
+}
+
+.title-style{
+  font-family: SUITE-Regular;
+  font-size: 18px;
+  font-weight: 400;
+  min-height: 55px;
+  margin-top: -10px;
+}
+
+@media (max-width: 1024px) {
+  .shopping-single-item {
+    flex-basis: calc(33.333% - 25px);
+  }
+}
+
+@media (max-width: 768px) {
+  .shopping-single-item {
+    flex-basis: calc(50% - 25px);
+    max-width: min(100%, 280px);
+  }
+}
+
+@media (max-width: 479px) {
+  .shopping-single-item {
+    flex-basis: 100%;
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+  }
+}

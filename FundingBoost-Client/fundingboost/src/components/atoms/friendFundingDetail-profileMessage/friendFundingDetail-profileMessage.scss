@@ -1,0 +1,144 @@
+.friendFundingDetail-FriendProfile {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .friendFundingDetail-Profile {
+    display: flex;
+    flex-direction: column;
+    padding: 22px;
+    border-radius: 24px;
+    border: 1px solid #e7e2d7;
+    background: #ffffff;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+
+    .friendProfileInfo {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 10px;
+
+      .friendFundingDetail-friendProfileImage {
+        width: 64px;
+        height: 64px;
+        object-fit: cover;
+        border-radius: 90px;
+        border: 1px solid #000000;
+      }
+
+      .friendFundingDetail-friendName {
+        color: #000000;
+        font-size: 24px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .friendFundingDetail-fundingTag {
+        color: #9c9c9c;
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+
+    .fundingMessage-triangle {
+      width: 0;
+      height: 0;
+      margin: 14px 0 0 21px;
+      border-bottom: 14px solid #e5eeff;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+    }
+
+    .fundingMessageBackSpace {
+      background-color: #e5eeff;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      min-height: 76px;
+      width: 100%;
+      padding: 18px;
+
+      .fundingMessage {
+        color: #000000;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 1.5;
+      }
+    }
+
+    .fundingFriendsTitle {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin: 23px 0 10px 0;
+
+      .paperAirplane {
+        width: 18px;
+        height: 18px;
+      }
+
+      .fundingFriendsIntro {
+        color: #000000;
+        font-size: 15px;
+        text-align: center;
+        margin-left: 5px;
+      }
+    }
+  }
+}
+
+.friendFundingDetail-fundingFriends {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #efeeee;
+  padding: 12px;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 8px;
+  border-radius: 18px;
+
+  .fundingFriends-img {
+    height: 50px;
+    width: 50px;
+    border-radius: 90px;
+    object-fit: cover;
+  }
+
+  .nextFriends {
+    color: #000000;
+    font-size: 25px;
+    font-weight: 700;
+    text-align: center;
+    width: 29px;
+    height: 29px;
+    border-radius: 90px;
+  }
+
+  .friendFundingDetail-fundingFriends-img {
+    position: relative;
+  }
+
+  .friendFundingDetail-friendName {
+    position: absolute;
+    top: 57px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    background-color: #e5eeff;
+    border-radius: 10px;
+    width: max-content;
+    min-width: 55px;
+    padding: 4px 8px;
+    border: 1px solid #c0c0c0;
+    z-index: 1;
+    display: none;
+    font-size: 12px;
+  }
+
+  .fundingFriends-img:hover + .friendFundingDetail-friendName {
+    display: block !important;
+  }
+}

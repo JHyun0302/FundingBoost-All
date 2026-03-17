@@ -1,0 +1,121 @@
+.memberFundingDday {
+  font-family: SUITE-Regular;
+  font-size: 23px;
+  font-weight: bold;
+  margin-left: 20px;
+  color: #FFACAC;
+}
+
+.mypage-day-wrpper{
+  font-family: SUITE-Regular;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 0;
+}
+
+.mypage-button-noti-wrpper{
+  font-family: SUITE-Regular;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  min-width: 0;
+}
+
+.mypage-action-button-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.mypage-enddate-pane{
+  font-family: SUITE-Regular;
+  margin-left: 20px;
+}
+
+.mypage-tag-pane{
+  font-family: SUITE-Regular;
+  color: #989898;
+  margin-left: 20px;
+}
+
+.mypage-message-btn{
+  margin-left: 10px;
+  border: none;
+}
+
+.mypage-message-icon{
+  width: 50px;
+  height: 50px;
+}
+
+
+.mypage-button-style-03{
+  color: black;
+  margin-right: 10px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #f9c43c;
+  font-family: SUITE-Regular;
+  width: 150px;
+  font-size: 17px;
+  border-radius: 5px;
+  border: 1px solid #b7b7b7;
+  align-items: center;
+  margin: 10px;
+}
+
+.mypage-end-button-container {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 10px;
+  margin: 20px;
+}
+
+.mypage-button-style-03:hover{
+  background-color: #ffa42e;
+  transition: background-color 0.3s;
+}
+
+.mypage-remain-date-noti{
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+  line-height: 1.4;
+  text-align: right;
+}
+
+@media (max-width: 1024px) {
+  .mypage-button-noti-wrpper {
+    align-items: flex-start;
+  }
+
+  .mypage-action-button-row {
+    justify-content: flex-start;
+  }
+
+  .mypage-remain-date-noti {
+    text-align: left;
+  }
+}
+
+@media (max-width: 768px) {
+  .mypage-myfunding-title-wrapper {
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .mypage-enddate-pane,
+  .mypage-tag-pane {
+    margin-left: 12px;
+  }
+
+  .mypage-button-noti-wrpper {
+    width: 100%;
+  }
+}

@@ -1,0 +1,142 @@
+.friendFunding {
+  display: flex;
+  width: 100%;
+  font-family: SUITE-Regular;
+}
+
+.friendFunding .friendFunding-row {
+  display: flex;
+  width: min(1680px, calc(100% - 32px));
+  margin: 15px auto 30px;
+}
+
+.friendFunding .friendFunding-row .friendFunding-itemlist {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.friendFunding .friendFunding-row .friendFunding-itemlist .friendFundingCard {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-width: 460px;
+  min-width: 0;
+  justify-self: center;
+}
+
+.friendFunding .friendFunding-row .friendFunding-itemlist .friendFundingCard .friendFundingBadge {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  z-index: 2;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.friendFunding .friendFunding-row .friendFunding-itemlist .friendFundingCard .friendFundingBadge.hot {
+  background: #fff1bf;
+  color: #8e5c00;
+}
+
+.friendFunding .friendFunding-row .friendFunding-itemlist .friendFundingCard .friendFundingBadge.soon {
+  background: #ffe2de;
+  color: #a6322e;
+}
+
+.friendFunding .friendFunding-row .friendFunding-itemlist .friendFundingCard .friendFundingBadge.almost {
+  background: #e4f0ff;
+  color: #1f4f8d;
+}
+
+.friendFunding .friendFunding-row .friendFunding-itemlist .friendFundingCard .friendFundingBadge.success {
+  background: #dff5e7;
+  color: #1f7a49;
+}
+
+.friendFunding .friendFunding-row .friendFunding-itemlist .friendFundingCard .friendFunding-Background {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #ebebeb;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  text-decoration-line: none;
+  box-sizing: border-box;
+}
+
+.friendFunding .friendFunding-row .friendFunding-itemlist .friendFundingCard .friendFunding-Background .friendFunding-Background-left {
+  width: calc(100% - 29px);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding-top: 12px;
+}
+
+.friendFunding .friendFunding-row .friendFunding-itemlist .friendFundingCard .friendFunding-Background .friendFunding-Background-left .friendFunding-gaugeBar .gauge-bar.progress {
+  width: calc(100% - 40px);
+  margin: 15px 20px;
+  height: 25px;
+}
+
+.friendFunding .friendFunding-row .friendFunding-itemlist .friendFundingCard .friendFunding-Background .friendFunding-Background-left .friendFunding-gaugeBar .gauge-bar.progress .progress-bar.bg-success {
+  background-color: #ffdd2a !important;
+  color: black;
+}
+
+.friendFunding .friendFunding-row .friendFunding-itemlist .friendFundingCard .friendFundingCollectPrice {
+  margin: -4px 20px 12px;
+  font-size: 13px;
+  color: #666666;
+}
+
+.friendFunding .friendFunding-row .friendFunding-itemlist .friendFundingCard .friendFunding-Background .friendFunding-Background-right {
+  background-color: #dfdfdf;
+  width: 29px;
+  border-radius: 0 10px 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.friendFunding .friendFunding-row .friendFunding-itemlist .friendFundingCard .friendFunding-Background .friendFunding-Background-right .friendFundingbtn {
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-left: 16px solid #ffffff;
+  border-bottom: 12px solid transparent;
+}
+
+@media (max-width: 1200px) {
+  .friendFunding .friendFunding-row .friendFunding-itemlist {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .friendFunding .friendFunding-row {
+    width: calc(100% - 20px);
+    margin: 12px auto;
+  }
+
+  .friendFunding .friendFunding-row .friendFunding-itemlist {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .friendFunding .friendFunding-row .friendFunding-itemlist .friendFundingCard .friendFundingBadge {
+    top: 8px;
+    left: 10px;
+    font-size: 11px;
+    padding: 3px 9px;
+  }
+}

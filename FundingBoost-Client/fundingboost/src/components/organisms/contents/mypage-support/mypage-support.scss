@@ -1,0 +1,349 @@
+.mypageSupportPane {
+  display: flex;
+  width: 100%;
+}
+
+.mypageSupportPane-left {
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 374px);
+}
+
+.mypageSupportPane-right {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-left: 1px solid #3e3e3e;
+}
+
+.mypageSupportPane-card {
+  width: min(1130px, calc(100vw - 40px));
+  max-width: calc(100vw - 40px);
+  margin: 15px;
+  padding: 28px 32px;
+  background: #efefef;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.mypageSupportPane-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid #bfbfbf;
+}
+
+.mypageSupportPane-header h2 {
+  margin: 0;
+  font-size: 34px;
+  font-family: SUITE-Regular;
+  font-weight: 800;
+}
+
+.mypageSupportPane-header p {
+  margin: 0;
+  max-width: 420px;
+  color: #5f5f5f;
+  line-height: 1.6;
+  font-family: SUITE-Regular;
+}
+
+.mypageSupportPane-eyebrow {
+  margin-bottom: 8px;
+  color: #8a6b38;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: SUITE-Regular;
+}
+
+.mypageSupportContact {
+  padding: 20px 22px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #fff7d9 0%, #fff1b5 100%);
+  border: 1px solid #f0d27c;
+  margin-bottom: 18px;
+}
+
+.mypageSupportContactTitle {
+  color: #5f4d2f;
+  font-size: 14px;
+  font-family: SUITE-Regular;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.mypageSupportContactValue {
+  color: #191919;
+  font-size: 26px;
+  font-family: SUITE-Regular;
+  font-weight: 800;
+  margin-bottom: 8px;
+  word-break: break-all;
+}
+
+.mypageSupportContactHint {
+  color: #5f5f5f;
+  line-height: 1.7;
+  font-family: SUITE-Regular;
+}
+
+.mypageSupportFaqList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mypageSupportAdminEditor {
+  margin-bottom: 18px;
+  padding: 18px;
+  border-radius: 14px;
+  border: 1px solid #e4dcc8;
+  background: #fffdf6;
+
+  h3 {
+    margin: 0 0 12px;
+    color: #1f1f1f;
+    font-size: 18px;
+    font-family: SUITE-Regular;
+    font-weight: 800;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    border: 1px solid #d8d4c7;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-family: SUITE-Regular;
+    font-size: 14px;
+    box-sizing: border-box;
+    background: #ffffff;
+    margin-bottom: 10px;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+}
+
+.mypageSupportAdminActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+
+  label {
+    color: #565656;
+    font-size: 13px;
+    font-family: SUITE-Regular;
+    font-weight: 700;
+  }
+
+  input {
+    width: 88px;
+    margin: 0;
+  }
+
+  .mypageSupportSortHint {
+    color: #8a8a8a;
+    font-size: 12px;
+    font-family: SUITE-Regular;
+    font-weight: 700;
+  }
+
+  button {
+    border: 0;
+    border-radius: 10px;
+    padding: 9px 14px;
+    font-family: SUITE-Regular;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    background: #191919;
+    color: #ffffff;
+  }
+
+  button.secondary {
+    background: #ececec;
+    color: #2f2f2f;
+  }
+}
+
+.mypageSupportFaqItem {
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid #e4dcc8;
+  overflow: hidden;
+}
+
+.mypageSupportFaqItem.open {
+  border-color: #d1b67a;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+}
+
+.mypageSupportFaqQuestion {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: none;
+  background: transparent;
+  padding: 20px 22px;
+  text-align: left;
+  cursor: pointer;
+  color: #1f1f1f;
+  font-size: 18px;
+  line-height: 1.5;
+  font-family: SUITE-Regular;
+  font-weight: 800;
+}
+
+.mypageSupportFaqToggle {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #f6efe0;
+  color: #5f4d2f;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.mypageSupportFaqAnswer {
+  padding: 0 22px 20px;
+  color: #5f5f5f;
+  line-height: 1.8;
+  font-family: SUITE-Regular;
+}
+
+.mypageSupportFaqActions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+
+  button {
+    border: 1px solid #d8d4c7;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #222;
+    font-size: 13px;
+    font-family: SUITE-Regular;
+    font-weight: 700;
+    padding: 7px 12px;
+    cursor: pointer;
+  }
+
+  button.danger {
+    border-color: #e5bbbb;
+    color: #9e2f2f;
+  }
+}
+
+.mypageSupportEmpty {
+  margin: 0;
+  padding: 18px 16px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #ece7d8;
+  color: #616161;
+  font-family: SUITE-Regular;
+}
+
+.mypageSupportPagination {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  button {
+    border: 1px solid #d8d4c7;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #2f2f2f;
+    font-family: SUITE-Regular;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 7px 12px;
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+  }
+
+  span {
+    color: #5a5a5a;
+    font-family: SUITE-Regular;
+    font-size: 13px;
+    font-weight: 700;
+  }
+}
+
+@media (max-width: 1200px) {
+  .mypageSupportPane {
+    flex-direction: column;
+  }
+
+  .mypageSupportPane-left {
+    width: 100%;
+    align-items: center;
+  }
+
+  .mypageSupportPane-right {
+    border-left: none;
+    border-top: 1px solid #3e3e3e;
+    align-items: center;
+  }
+
+  .mypageSupportPane-card {
+    width: min(100%, calc(100vw - 24px));
+    max-width: calc(100vw - 24px);
+    margin: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mypageSupportPane-card {
+    padding: 20px 18px;
+  }
+
+  .mypageSupportPane-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .mypageSupportPane-header h2 {
+    font-size: 28px;
+  }
+
+  .mypageSupportContactValue {
+    font-size: 22px;
+  }
+
+  .mypageSupportFaqQuestion {
+    padding: 16px 16px;
+    font-size: 16px;
+  }
+
+  .mypageSupportFaqAnswer {
+    padding: 0 16px 16px;
+  }
+
+  .mypageSupportAdminActions {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+}

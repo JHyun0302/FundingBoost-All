@@ -1,0 +1,139 @@
+.resultcontainer {
+  position: relative;
+  flex-direction: column;
+  margin: 0;
+  padding: 24px;
+  display: flex;
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  border-radius: 20px;
+  background: #f8f8f8;
+
+  .giftbox-total-price,
+  .gifthub-btn-container,
+  .gifthub-purchase-btn,
+  .gifthub-funding-container,
+  .gifthub-funding-btn {
+    font-family: SUITE-Regular;
+    margin-left: auto;
+    font-size: 30px;
+  }
+
+  .price-noti-gifthub{
+    margin-left: auto;
+    display: flex;
+    padding-right: 5px;
+    justify-content: flex-end;
+    flex-direction: column;
+  }
+
+  .total-price-noti{
+    margin-left: auto;
+  }
+
+  .giftbox-total-price{
+    margin-bottom: 24px;
+  }
+
+  .gifthub-funding-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .gifthub-noti-font{
+    font-size: 11px;
+    color: #8c8c8c;
+  }
+
+  .gifthub-purchase-btn{
+    height: auto;
+    border-radius: 3px;
+    font-size: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: #efbb37;
+    color: black;
+    border: 1px solid #c8c8c8;
+
+    &:disabled {
+      background-color: #cbcbcb;
+      cursor: not-allowed;
+      &:hover{
+        color: #212121;
+        box-shadow:none;
+      }
+    }
+  }
+
+  .gifthub-purchase-btn:hover{
+    color: white;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .gifthub-funding-btn{
+    height: auto;
+    border-radius: 3px;
+    font-size: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: #efbb37;
+    color: black;
+    border: 1px solid #c8c8c8;
+    &:disabled {
+      background-color: #cbcbcb;
+      cursor: not-allowed;
+      &:hover{
+        color: #212121;
+        box-shadow:none;
+      }
+    }
+  }
+
+  .gifthub-funding-btn:hover{
+    color: white;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .gifthub-btn-container {
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .gifthub-purchase-btn-container {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 1024px) {
+  .resultcontainer {
+    padding: 20px;
+
+    .giftbox-total-price,
+    .gifthub-btn-container,
+    .gifthub-purchase-btn,
+    .gifthub-funding-container,
+    .gifthub-funding-btn,
+    .price-noti-gifthub,
+    .total-price-noti,
+    .gifthub-purchase-btn-container {
+      margin-left: 0;
+    }
+
+    .price-noti-gifthub,
+    .gifthub-btn-container {
+      align-items: stretch;
+    }
+
+    .gifthub-funding-container {
+      align-items: stretch;
+    }
+  }
+}

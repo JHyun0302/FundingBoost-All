@@ -1,0 +1,28 @@
+.exchange-remain-btn-wrapper{
+  display: flex;
+  flex-direction: row;
+}
+
+.fin-btn-wrapper{
+  display: flex;
+  flex-direction: column;
+}
+
+.pay-success-button{
+  margin: 30px;
+  padding: 10px 30px 10px 30px;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  font-family: SUITE-Regular;
+  border-radius: 5px;
+  border:none;
+  color: #1d1d1d;
+  background-color: #efbb37;
+  text-decoration: none;
+  color: initial;
+}
+
+.pay-success-button:hover{
+  background-color: #f4dc7e;
+  color: #3e3e3e;
+}

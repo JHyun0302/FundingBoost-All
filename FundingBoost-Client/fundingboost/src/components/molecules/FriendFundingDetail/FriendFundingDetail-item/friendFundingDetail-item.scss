@@ -1,0 +1,129 @@
+.friendFundingDetailItem {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .friendFundingDetailItem-headerCard {
+    padding: 20px 24px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #fff9ea 0%, #fff2c7 100%);
+    border: 1px solid #f0dfa8;
+  }
+
+  .friendFundingDetailItem-heading {
+    font-size: 28px;
+    font-weight: 800;
+    color: #181818;
+  }
+
+  .friendFundingDetailItem-subcopy {
+    margin-top: 8px;
+    font-size: 15px;
+    color: #6f6658;
+    line-height: 1.5;
+  }
+
+  .friendFundingDetailItem-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .friendFundingDetailItem-itemContainer {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 18px;
+    border-radius: 24px;
+    border: 1px solid #e9e4d8;
+    background: #ffffff;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+  }
+
+  .item-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 20px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1px solid #d8d4ca;
+    background: #f5f5f5;
+  }
+
+  .friendFundingDetailItem-itemDetail {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .friendFundingDetailItem-itemtitle {
+    color: #000000;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.35;
+    word-break: keep-all;
+  }
+
+  .friendFundingDetailItem-optionDetail {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+
+    .friendFundingDetailItem-optionGroup {
+      background-color: #d9d9d9;
+      border-radius: 8px;
+      height: 22px;
+      width: 43px;
+
+      .friendFundingDetailItem-option {
+        color: #ffffff;
+        font-size: 15px;
+        text-align: center;
+      }
+    }
+
+    .friendFundingDetailItem-optionName {
+      color: #909090;
+      font-size: 14px;
+    }
+  }
+
+  .friendFundingDetailItem-price {
+    color: #000000;
+    font-size: 34px;
+    font-weight: 800;
+    margin-top: auto;
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 768px) {
+  .friendFundingDetailItem {
+    .friendFundingDetailItem-itemContainer {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .item-img {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      aspect-ratio: 1 / 1;
+    }
+
+    .friendFundingDetailItem-itemtitle {
+      font-size: 24px;
+    }
+
+    .friendFundingDetailItem-price {
+      align-self: flex-start;
+      font-size: 28px;
+      margin-top: 20px;
+    }
+  }
+}

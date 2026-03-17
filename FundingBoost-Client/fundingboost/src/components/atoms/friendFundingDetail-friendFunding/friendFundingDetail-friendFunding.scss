@@ -1,0 +1,149 @@
+.friendFundingDetailFriendToFunding {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  .friendFundingDetail-FriendToFunding {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-height: auto;
+    width: 100%;
+    align-items: flex-start;
+    padding: 22px;
+    border-radius: 24px;
+    border: 1px solid #e7e2d7;
+    background: #ffffff;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+
+    .friendFundingDetail-FriendToFunding-style1,
+    .friendFundingDetail-FriendToFunding-style2,
+    .friendFundingDetail-FriendToFunding-style3 {
+      width: 100%;
+    }
+
+    .friendFundingDetail-FriendToFunding-style1 {
+      .fundingToFriend-Text,
+      .deadLine {
+        color: #000000;
+        font-size: 18px;
+        font-weight: 700;
+        display: flex;
+      }
+
+      .MoneyButtonGroup {
+        width: 100%;
+        margin-top: 12px;
+        display: flex;
+        justify-content: space-around;
+      }
+    }
+
+    .friendFundingDetail-FriendToFunding-style2 {
+      .friendFundingDetail-fundingInfo {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: baseline;
+        gap: 12px;
+
+        .friendFundingDetail-dDayGroup {
+          display: flex;
+          margin-top: 0;
+          justify-content: space-between;
+          align-items: baseline;
+          flex-wrap: wrap;
+
+          .friendFundingDetail-dDay {
+            color: #FFACAC;
+            font-size: 24px;
+            font-weight: 900;
+            text-align: end;
+          }
+
+          .friendFundingDetail-deadLine {
+            color: gray;
+            font-size: 15px;
+            margin-left: 10px;
+            text-align: center;
+          }
+        }
+
+        .friendFundingDetail-totalPercent {
+          color: #000000;
+          font-size: 40px;
+          font-weight: bold;
+          text-align: end;
+        }
+      }
+
+      .friendFundingDetail-gaugeBar {
+        width: 100%;
+        margin-top: 10px;
+
+        .gauge-bar.progress {
+          width: 100%;
+          height: 30px;
+
+          .bg-success {
+            --bs-bg-opacity: 1;
+            background-color: #FFDD2A !important;
+            color: black;
+          }
+        }
+      }
+    }
+
+    .friendFundingDetail-FriendToFunding-style3 {
+      .friendFundingDetail-payButton {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: stretch;
+        width: 100%;
+        gap: 0;
+        flex-wrap: nowrap;
+
+        .friendToFundingBtn-btn {
+          flex: 1 1 auto;
+          width: auto;
+
+          button.yellowBtn.btn.btn-primary {
+            width: 100%;
+            height: 56px;
+          }
+        }
+
+        .fundingButton {
+          color: #000000;
+          font-size: 17px;
+          font-weight: 700;
+          text-align: center;
+          width: 100%;
+          background-color: #ffc83b;
+          border-radius: 10px;
+          border: none;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .friendFundingDetailFriendToFunding .friendFundingDetail-FriendToFunding {
+    width: 100%;
+
+    .friendFundingDetail-FriendToFunding-style2 .friendFundingDetail-fundingInfo {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .friendFundingDetail-FriendToFunding-style3 .friendFundingDetail-payButton {
+      flex-wrap: wrap;
+
+      .friendToFundingBtn-btn {
+        width: 100%;
+      }
+    }
+  }
+}

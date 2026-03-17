@@ -1,0 +1,26 @@
+.shopping-container {
+    display: flex;
+    min-height: 335px;
+}
+
+.shopping-pagination-active {
+    background-color: white;
+    color: #3e3e3e;
+    border-radius: 100%;
+    width: 25px;
+    height: 100%;
+    border: 1px solid #3e3e3e;
+    font-family: SUITE-Regular;
+    font-size: 15px;
+    &.selected{
+        background-color: #3e3e3e;
+        color: white;
+        border: 1px solid white;
+    }
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

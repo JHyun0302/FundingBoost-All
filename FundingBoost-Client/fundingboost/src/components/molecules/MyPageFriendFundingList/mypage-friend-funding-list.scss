@@ -1,0 +1,170 @@
+.MyPageFriendFundingListBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+}
+
+.MyPageFriendFundingListBox .MyPageFriendFundingListView {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.MyPageFriendFundingListBox .MyPageFriendFundingListTitle {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 10px 16px;
+  margin: 10px;
+}
+
+
+.MyPageFriendFundingListBox .MyPageFriendFundingListText-wrapper {
+  color: #000000;
+  font-family: SUITE-Regular;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 15px;
+}
+
+.MyPageFriendFundingListBox .MyPageFriendFundingListText-wrapper-2 {
+  color: #000000;
+  font-size: 16px;
+  font-family: SUITE-Regular;
+  margin: 5px 15px 15px auto;
+  text-align: right;
+  line-height: 1.4;
+  align-self: flex-end;
+}
+
+.MyPageFriendFundingListBox .MyPageFriendFundingListView-2 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.MyPageFriendFundingListBox .MyPageFriendFundingListOverlap-group {
+  background-color: #ebebeb;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 24px;
+  padding: 8px 20px;
+  margin: 3px;
+  width: calc(100% - 6px);
+  box-sizing: border-box;
+}
+
+.MyPageFriendFundingListBox .MyPageFriendFundingListText-wrapper-7 {
+  color: #737373;
+  font-family: SUITE-Regular;
+  font-size: 20px;
+  font-weight: 100;
+  line-height: 1.2;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  white-space: nowrap;
+  min-height: 33px;
+}
+
+.MyPageFriendFundingListBox .MyPageFriendFundingListText-wrapper-6 {
+  color: #737373;
+  font-family: SUITE-Regular;
+  font-size: 20px;
+  font-weight: 100;
+  line-height: 1.2;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 170px;
+  min-height: 33px;
+}
+
+.friendFundingEmptyState {
+  width: calc(100% - 24px);
+  margin: 12px;
+  padding: 18px;
+  border-radius: 16px;
+  background: #faf7ef;
+  color: #666666;
+  font-family: SUITE-Regular;
+}
+
+.friendFundingPagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 12px 8px;
+  flex-wrap: wrap;
+}
+
+.friendFundingPageNumbers {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.friendFundingPageButton {
+  border: 1px solid #d9d0ba;
+  background: #ffffff;
+  color: #2f2419;
+  border-radius: 999px;
+  min-width: 42px;
+  height: 42px;
+  padding: 0 16px;
+  font-family: SUITE-Regular;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.friendFundingPageButton:hover:not(:disabled) {
+  background: #f6efe0;
+  border-color: #d1b67a;
+}
+
+.friendFundingPageButton.active {
+  background: #191919;
+  border-color: #191919;
+  color: #ffffff;
+}
+
+.friendFundingPageButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+
+@media (max-width: 768px) {
+  .MyPageFriendFundingListBox .MyPageFriendFundingListText-wrapper-2 {
+    margin: 0 15px 10px;
+    text-align: left;
+    align-self: flex-start;
+  }
+
+  .MyPageFriendFundingListBox .MyPageFriendFundingListOverlap-group {
+    grid-template-columns: 1fr;
+    padding: 10px 16px;
+    row-gap: 8px;
+  }
+
+  .MyPageFriendFundingListBox .MyPageFriendFundingListText-wrapper-6 {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .friendFundingPagination {
+    gap: 8px;
+  }
+}

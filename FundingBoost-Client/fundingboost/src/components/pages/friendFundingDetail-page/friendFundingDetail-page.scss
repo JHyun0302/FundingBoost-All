@@ -1,0 +1,60 @@
+.friendFundingDetail-Page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'SUITE-Regular';
+  overflow-x: hidden;
+
+  .friendFundingDetail-status {
+    width: min(960px, calc(100% - 32px));
+    margin: 24px auto;
+    padding: 18px 20px;
+    border-radius: 12px;
+    border: 1px solid #e3e3e3;
+    background-color: #ffffff;
+    text-align: center;
+    color: #3f3f3f;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .friendFundingDetail-status.is-error {
+    border-color: #ffd5d5;
+    background-color: #fff4f4;
+    color: #b13030;
+  }
+
+  .friendFundingDetail {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 24px;
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .friendFundingDetail-optionDetail {
+    flex: 0 0 360px;
+    min-width: 320px;
+    display: flex;
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 1100px) {
+  .friendFundingDetail-Page {
+    .friendFundingDetail {
+      flex-direction: column;
+      padding: 16px;
+    }
+
+    .friendFundingDetail-optionDetail {
+      width: 100%;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+  }
+}

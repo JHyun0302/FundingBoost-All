@@ -1,0 +1,27 @@
+.item-category-button-wrapper {
+  display: flex;
+  flex-direction: row;
+  //background-color: #e5e5e5;
+  padding: 5px;
+}
+
+.item-category-button-style {
+  padding: 5px;
+  font-family: SUITE-Regular;
+  border: none;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.item-category-button-style:hover {
+  font-weight: bold;
+}
+
+.item-category-button-style.selected {
+  font-weight: bold;
+}
+
+.shopping-dropdown-wrapper {
+  font-family: SUITE-Regular;
+  padding-left: 8px;
+}

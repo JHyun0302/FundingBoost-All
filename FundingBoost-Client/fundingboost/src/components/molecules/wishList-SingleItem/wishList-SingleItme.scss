@@ -1,0 +1,108 @@
+.wishListSingleItem{
+  width: 230px;
+  margin: 11px;
+  display: flex;
+  flex-direction: column;
+  min-height: 430px;
+  box-sizing: border-box;
+
+  .wishList-itme-title{
+    .wish-img-wrapper{
+      >img{
+        height: 230px;
+        width: 230px;
+        object-fit: cover;
+        display: block;
+      }
+    }
+  }
+
+  .wish-brand-wrapper{
+    font-size: 15px;
+    color: #666666;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+
+    >p{
+      margin:0;
+    }
+
+    .wish-category-chip {
+      border: 1px solid #e4dcc9;
+      border-radius: 999px;
+      padding: 3px 10px;
+      font-size: 12px;
+      color: #7a6435;
+      background: #faf7ef;
+      white-space: nowrap;
+    }
+  }
+
+  .wish-title-wrapper {
+    width: 100%;
+    min-height: 84px;
+    margin-top: 6px;
+
+    .wish-title{
+      width: 100%;
+      font-size: 18px;
+      line-height: 1.45;
+      word-break: keep-all;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  .wish-price-likebtn{
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    align-items: flex-end;
+    gap: 12px;
+    margin-top: auto;
+    padding-top: 12px;
+
+    .wish-Price{
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.2;
+      word-break: keep-all;
+    }
+
+    .likeBtn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      font-size: 25px;
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+
+    .likeBtn:disabled{
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .wishListSingleItem {
+    width: min(100%, 320px);
+    min-height: 0;
+    margin: 10px 0;
+  }
+
+  .wishListSingleItem .wishList-itme-title .wish-img-wrapper > img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+}

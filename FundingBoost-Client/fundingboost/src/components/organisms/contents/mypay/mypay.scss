@@ -1,0 +1,52 @@
+.mypay-page-container {
+  display: flex;
+  min-height: 335px;
+  width: 100%;
+}
+
+.mypay-left-container {
+  display: flex;
+  flex: 3;
+  flex-direction: column;
+}
+
+.mypay-right-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border-left: 1px solid #818181;
+  align-items: flex-end;
+  position: relative;
+
+  .payment-container {
+    position: absolute;
+    bottom: 330px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .mypay-page-container {
+    flex-direction: column;
+  }
+
+  .mypay-right-container {
+    border-left: none;
+    border-top: 1px solid #818181;
+    align-items: stretch;
+  }
+
+  .mypay-right-container .payment-container {
+    position: static;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 16px;
+  }
+}
+
+
+
+//> * {
+  //  margin-top: auto; // 자식 요소들을 아래로 보냅니다.
+  //}
+//}

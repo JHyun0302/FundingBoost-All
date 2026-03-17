@@ -1,0 +1,22 @@
+.MyPayItemBox01{
+  display: flex;
+  padding: 10px;
+  flex: 1;
+  flex-direction: column;
+  //margin: 10px;
+  //border: 1px solid #d0d0d0;
+}
+
+.MyPayItemBox02{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  text-align: left;
+  padding: 10px;
+  margin: 10px;
+}
+
+.Mypay-delivery-wrapper{
+  display: flex;
+  flex-direction: row;
+}

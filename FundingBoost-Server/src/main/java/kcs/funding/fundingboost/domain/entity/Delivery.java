@@ -1,0 +1,71 @@
+package kcs.funding.fundingboost.domain.entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import kcs.funding.fundingboost.domain.entity.common.BaseTimeEntity;
+import kcs.funding.fundingboost.domain.entity.member.Member;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+@Entity
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "delivery")
+public class Delivery extends BaseTimeEntity {
+    @Id
+    @Column(name = "delivery_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long deliveryId;
+    @Column(name = "address", length = 200)
+    private String address;
+    @Column(name = "phone_number", length = 13)
+    private String phoneNumber;
+    @Column(name = "customer_name", length = 50)
+    private String customerName;
+    @Column(name = "postal_code", length = 10)
+    private String postalCode;
+    @Column(name = "delivery_memo", length = 200)
+    private String deliveryMemo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Member member;
+
+    public static Delivery createDelivery(String address, String phoneNumber, String customerName, Member member) {
+        return createDelivery(address, phoneNumber, customerName, null, null, member);
+    }
+
+    public static Delivery createDelivery(
+            String address,
+            String phoneNumber,
+            String customerName,
+            String postalCode,
+            String deliveryMemo,
+            Member member
+    ) {
+        Delivery delivery = new Delivery();
+        delivery.address = address;
+        delivery.phoneNumber = phoneNumber;
+        delivery.customerName = customerName;
+        delivery.postalCode = postalCode;
+        delivery.deliveryMemo = deliveryMemo;
+        delivery.member = member;
+        return delivery;
+    }
+
+    public void updateExtraInfo(String postalCode, String deliveryMemo) {
+        this.postalCode = postalCode;
+        this.deliveryMemo = deliveryMemo;
+    }
+}
