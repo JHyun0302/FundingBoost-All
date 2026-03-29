@@ -1,0 +1,38 @@
+spring:
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      acks: all
+      retries: 10
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: ${KAFKA_CONSUMER_GROUP:fundingboost-server}
+      auto-offset-reset: latest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    listener:
+      ack-mode: record
+    admin:
+      auto-create: false
+      fail-fast: false
+
+app:
+  kafka:
+    enabled: ${APP_KAFKA_ENABLED:false}
+  payment:
+    follow-up:
+      mode: ${APP_PAYMENT_FOLLOW_UP_MODE:direct}
+      consumers:
+        enabled: ${APP_PAYMENT_FOLLOW_UP_CONSUMERS_ENABLED:false}
+        group-id: ${APP_PAYMENT_FOLLOW_UP_GROUP_ID:fundingboost-payment-follow-up}
+    topics:
+      completed: ${APP_PAYMENT_TOPICS_COMPLETED:fundingboost.payment.completed.v1}
+      failed: ${APP_PAYMENT_TOPICS_FAILED:fundingboost.payment.failed.v1}
+  outbox:
+    enabled: ${APP_OUTBOX_ENABLED:true}
+    relay-delay-ms: ${APP_OUTBOX_RELAY_DELAY_MS:3000}
+    batch-size: ${APP_OUTBOX_BATCH_SIZE:100}
+    max-retry: ${APP_OUTBOX_MAX_RETRY:10}
+    base-retry-seconds: ${APP_OUTBOX_BASE_RETRY_SECONDS:5}
+    topic-prefix: ${APP_OUTBOX_TOPIC_PREFIX:fundingboost}
