@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.Objects;
 import java.util.UUID;
 import kcs.funding.fundingboost.domain.exception.CommonException;
+import kcs.funding.fundingboost.event.application.OutboxEventService;
 import kcs.funding.fundingboost.payment.domain.PaymentAttemptStage;
 import kcs.funding.fundingboost.payment.domain.PaymentIntent;
 import kcs.funding.fundingboost.payment.domain.PaymentIntentStatus;
@@ -20,6 +21,7 @@ public class PaymentIntentOrchestrator {
 
     private final PaymentIntentStore paymentIntentStore;
     private final GeneralPaymentGateway generalPaymentGateway;
+    private final OutboxEventService outboxEventService;
 
     @Transactional
     public PaymentExecutionResult execute(PaymentExecutionCommand command) {
@@ -112,6 +114,19 @@ public class PaymentIntentOrchestrator {
                         Optional.ofNullable(authorizeResult.errorMessage()).orElse("mock pg authorization failed"),
                         command.pgAmount()
                 ));
+                outboxEventService.enqueuePaymentFailed(
+                        command.memberId(),
+                        command.intentType(),
+                        command.referenceId(),
+                        paymentIntent.getIntentKey(),
+                        command.totalAmount(),
+                        command.pointAmount(),
+                        command.pgAmount(),
+                        command.fundingSupportedAmount(),
+                        command.currency(),
+                        authorizeResult.errorCode(),
+                        authorizeResult.errorMessage()
+                );
                 throw new CommonException(INTERNAL_SERVER_ERROR);
             }
 

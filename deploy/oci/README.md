@@ -43,6 +43,18 @@ cp deploy/oci/env/back.env.example deploy/oci/env/back.env
 필수 수정:
 - `deploy/oci/env/edge.env`
   - 기본값이 현재 IP로 반영됨 (`FRONT_PRIVATE_HOST=10.0.1.198`, `BACK_PRIVATE_HOST=10.0.1.62`, `BACK_PRIVATE_PORT=8080`)
+  - Catalog 라우팅(Edge -> Catalog)
+    - `CATALOG_PRIVATE_HOST=10.0.1.62`
+    - `CATALOG_PRIVATE_PORT=8090`
+    - `CATALOG_ROUTE_MODE=off|canary|full` (`off` 권장 시작)
+    - `CATALOG_CANARY_PERCENT=5` (canary 모드 비율)
+    - 강제 라우팅(운영 점검용): 헤더 `X-Catalog-Route: catalog|back` 또는 쿠키 `fb_catalog_route=catalog|back`
+  - Payment 라우팅(Edge -> Payment)
+    - `PAYMENT_PRIVATE_HOST=10.0.1.62`
+    - `PAYMENT_PRIVATE_PORT=8081`
+    - `PAYMENT_ROUTE_MODE=off|canary|full` (`off` 권장 시작)
+    - `PAYMENT_CANARY_PERCENT=5` (canary 모드 비율)
+    - 강제 라우팅(운영 점검용): 헤더 `X-Payment-Route: payment|back` 또는 쿠키 `fb_payment_route=payment|back`
   - 접근 제어/보안
     - `EDGE_ALLOWED_HOST_REGEX`: 허용 Host 헤더 정규식 (예: `138[.]2[.]43[.]7|fundingboost[.]example[.]com|localhost|127[.]0[.]0[.]1`)
     - `EDGE_ENTRY_PATH`: 최초 1회 접근용 게이트 URL 경로(랜덤 문자열 권장)
@@ -62,12 +74,92 @@ cp deploy/oci/env/back.env.example deploy/oci/env/back.env
   - `KAKAO_CLIENT_ID`, `KAKAO_CLIENT_SECRET`
   - `KAKAO_REDIRECT_URI=http://<EDGE_PUBLIC_HOST>/login/oauth2/code/kakao`
   - `APP_PAY_BARCODE_VERIFY_BASE_URL=http://<EDGE_PUBLIC_HOST>` (QRbot 스캔 시 열리는 바코드 검증 URL 호스트)
+  - Catalog 점진 전환 플래그
+    - `APP_CATALOG_READER=local|remote`
+    - `APP_CATALOG_REMOTE_BASE_URL=http://funding-crawler:8090`
+    - `APP_CATALOG_REMOTE_FALLBACK_TO_LOCAL=true|false`
+  - Payment 1차 이관/후속 처리 플래그
+    - `APP_PAYMENT_PROXY_BASE_URL=http://fundingboost-server:8080`
+    - `APP_PAYMENT_FOLLOW_UP_MODE=direct|consumer`
+    - `APP_PAYMENT_FOLLOW_UP_CONSUMERS_ENABLED=true|false`
+    - `APP_PAYMENT_TOPICS_COMPLETED=fundingboost.payment.completed.v1`
+    - `APP_PAYMENT_TOPICS_FAILED=fundingboost.payment.failed.v1`
+    - 현재 운영 기준: `APP_PAYMENT_FOLLOW_UP_MODE=consumer`, `APP_PAYMENT_FOLLOW_UP_CONSUMERS_ENABLED=true`
   - 관리자 페이지 접근 계정은 서버 `member_role=ROLE_ADMIN` 사용자로 제어됨 (기본 QA 계정은 `qa1@fundingboost.test`)
   - `FUNDINGBOOST_CORS_ORIGINS=http://<EDGE_PUBLIC_HOST>`
 
 참고:
 - MySQL은 `schema == database` 개념입니다.
 - 이 구성에서는 `fundingboost`(서버 도메인), `item`(상품 카탈로그), `payment`(결제 모듈) DB로 분리합니다.
+
+## 2-1) MSA 마이그레이션 순서 (이유 포함)
+1. 모놀리스 내부 경계 고정 (현재 단계)
+   - 적용: Outbox + Kafka 이벤트 발행, Catalog ACL 포트 도입
+   - 이유: 서비스 분리 전에 의존성 방향을 고정해야 분리 비용이 급격히 줄어듭니다.
+2. Catalog 서비스 분리 (`/api/v1/items`, `/api/v3/*`)
+   - 이유: 조회 트래픽 비중이 높아 가장 먼저 분리했을 때 성능/캐시 효과가 큽니다.
+3. Payment 서비스 분리 (`payment` 스키마 소유권 이전)
+   - 이유: 이미 결제 전용 스키마와 오케스트레이션이 있어 추출 난이도가 낮습니다.
+4. Funding/Commerce 서비스 분리 (Saga + 이벤트 기반 상태 전파)
+   - 이유: 교차 트랜잭션을 제거해 장애 전파와 배포 결합도를 낮춥니다.
+5. Admin/Home 읽기 모델 분리 (Projection)
+   - 이유: 조인성 조회를 이벤트 집계 테이블로 전환해 조회 성능과 독립 배포성을 높입니다.
+
+### Catalog 점진 전환 순서
+1. 초기값 고정
+   - Back: `APP_CATALOG_READER=local`
+   - Edge: `CATALOG_ROUTE_MODE=off`
+2. 원격 조회 준비
+   - Back: `APP_CATALOG_READER=remote`, `APP_CATALOG_REMOTE_FALLBACK_TO_LOCAL=true`
+   - Catalog(crawler) API 헬스/응답 스펙 점검
+3. 카나리 시작
+   - Edge: `CATALOG_ROUTE_MODE=canary`, `CATALOG_CANARY_PERCENT=5`
+4. 점진 확대
+   - `CATALOG_CANARY_PERCENT=25 -> 50 -> 100`
+5. 전체 전환
+   - Edge: `CATALOG_ROUTE_MODE=full`
+   - 안정화 확인 후 Back: `APP_CATALOG_REMOTE_FALLBACK_TO_LOCAL=false`
+6. 장애 시 롤백
+   - Edge: `CATALOG_ROUTE_MODE=off` 또는 헤더/쿠키로 `back` 강제
+   - Back: 필요 시 `APP_CATALOG_READER=local` 복귀
+
+### Payment 점진 전환 순서
+1. 초기값 고정
+   - Edge: `PAYMENT_ROUTE_MODE=off`
+   - Back: `APP_PAYMENT_FOLLOW_UP_MODE=direct`
+2. Payment 1차 이관 배포
+   - Payment: `/api/v1/pay/**` proxy 어댑터 배포
+   - Back: `payment.completed.v1`, `payment.failed.v1` 발행 코드 배포
+3. 카나리 시작
+   - Edge: `PAYMENT_ROUTE_MODE=canary`, `PAYMENT_CANARY_PERCENT=5`
+   - 검증: QA 계정으로 `X-Payment-Route: payment` 강제 호출 후 응답 동일성 확인
+4. 후속 처리 consumer-mode 전환 준비
+   - Back: `APP_PAYMENT_FOLLOW_UP_CONSUMERS_ENABLED=true`
+   - Back: `APP_PAYMENT_FOLLOW_UP_MODE=consumer`
+   - 이유: `payment.completed.v1`를 Commerce/Funding이 구독하는 구조로 전환
+5. 카나리 확대
+   - `PAYMENT_CANARY_PERCENT=25 -> 50 -> 100`
+   - 2026-03-24 검증 완료: `PAYMENT_CANARY_PERCENT=100`
+   - native 실행 범위: `POST /api/v1/pay/order`, `POST /api/v1/pay/order/now`, `POST /api/v1/pay/funding/{fundingItemId}`
+   - `POST /api/v1/pay/friends/*`는 Payment 서비스 내부에서 contributor/barcode를 직접 저장하도록 이전 완료
+6. 전체 전환
+   - Edge: `PAYMENT_ROUTE_MODE=full`
+   - 현재 운영 기준(2026-03-25): `PAYMENT_ROUTE_MODE=full`, `PAYMENT_CANARY_PERCENT=100`
+   - 추가 반영(2026-03-25):
+     - `PaymentOrderFinalizeService`로 `order`, `order/now`, `funding/*` finalize를 Payment 서비스 내부 실행으로 이동
+     - native 오류 응답에도 `X-Payment-Service-Mode` 헤더 보장
+     - `payment.completed.v1` 후속 변환을 도메인별 dispatcher/service로 분리
+     - `funding.contribution.created.v1` key를 `fundingId:contributorId`로 보정
+   - 최종 완료 반영(2026-03-25):
+     - Back: `APP_PAYMENT_FOLLOW_UP_MODE=direct`
+     - Back: `APP_PAYMENT_FOLLOW_UP_CONSUMERS_ENABLED=false`
+     - Payment가 `commerce.order.paid.v1`, `funding.contribution.created.v1`를 직접 outbox에 적재
+     - 신규 QA 이벤트가 Payment outbox에만 생성되고 Back outbox에는 생성되지 않음을 확인
+   - QA 검증: `qa1~qa5` invalid friend parity + 오류 응답 header 확인, `order/now` 성공, `order` idempotency 재호출 성공, `funding 1` remain pay 성공, `qa1 -> funding 2` direct friend 결제, `qa3 -> funding 4` barcode issue/consume, `payment.completed.v1` -> `commerce.order.paid.v1`/`funding.contribution.created.v1` Payment 직접 발행 확인
+   - 참고: 오래된 QA funding `1/2/4`의 stale `item_id`를 현재 Catalog item(`1974/1973/1972`)로 보정해 성공 경로를 재검증함
+7. 장애 시 롤백
+   - Edge: `PAYMENT_ROUTE_MODE=off`
+   - Back: `APP_PAYMENT_FOLLOW_UP_MODE=direct`
 
 ## 3) 로컬에서 ARM 이미지 빌드 + tar 생성
 M 시리즈 맥 기준:
@@ -80,12 +172,13 @@ M 시리즈 맥 기준:
 - `deploy/oci/artifacts/fundingboost-front_arm64.tar.gz`
 - `deploy/oci/artifacts/fundingboost-server_arm64.tar.gz`
 - `deploy/oci/artifacts/fundingboost-crawler_arm64.tar.gz`
+- `deploy/oci/artifacts/fundingboost-payment_arm64.tar.gz` (`FundingBoost-Payment` 개별 빌드 시)
 
 ## 4) VM으로 파일 전송
 각 VM에 최소 아래 파일을 전송:
 - 공통: `docker-compose.edge.yml`, `docker-compose.front.yml`, `docker-compose.back.yml`, `deploy/oci/**`
 - Front VM: `fundingboost-front_arm64.tar.gz`
-- Back VM: `fundingboost-server_arm64.tar.gz`, `fundingboost-crawler_arm64.tar.gz`
+- Back VM: `fundingboost-server_arm64.tar.gz`, `fundingboost-crawler_arm64.tar.gz`, `fundingboost-payment_arm64.tar.gz`
 
 ## 5) Front VM 실행
 ```bash
@@ -107,10 +200,15 @@ sudo sysctl --system
 ```bash
 docker load -i fundingboost-server_arm64.tar.gz
 docker load -i fundingboost-crawler_arm64.tar.gz
+docker load -i fundingboost-payment_arm64.tar.gz
 docker compose \
   --env-file deploy/oci/env/back.env \
   -f docker-compose.back.yml up -d
 ```
+
+참고:
+- Kafka 이미지는 현재 `apache/kafka:3.7.2` 기준입니다.
+- `OutboxRelayService`는 개별 이벤트를 별도 트랜잭션으로 relay하도록 보정되어 있어야 합니다.
 
 ## 7) Edge VM 실행
 ```bash
@@ -173,6 +271,7 @@ docker compose -f docker-compose.edge.yml logs -f fundingboost-edge
 - `Back VM`
   - `8080`: `fundingboost-server` 공개 포트 (Private IP로만 접근)
   - `8090`: `funding-crawler` 공개 포트 (Private IP로만 접근, 필요 시만 사용)
+  - `9092`: Kafka 브로커 (내부 네트워크)
   - `6379`: Redis(내부)
   - `9200`: Elasticsearch(내부)
 

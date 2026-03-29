@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import kcs.funding.fundingboost.catalog.application.CatalogItemReader;
 import kcs.funding.fundingboost.domain.dto.common.CommonSuccessDto;
 import kcs.funding.fundingboost.domain.dto.request.pay.myPay.ItemPayDto;
 import kcs.funding.fundingboost.domain.dto.request.pay.myPay.ItemPayNowDto;
@@ -38,11 +39,12 @@ import kcs.funding.fundingboost.domain.repository.MemberRepository;
 import kcs.funding.fundingboost.domain.repository.OrderRepository;
 import kcs.funding.fundingboost.domain.repository.fundingItem.FundingItemRepository;
 import kcs.funding.fundingboost.domain.repository.giftHubItem.GiftHubItemRepository;
-import kcs.funding.fundingboost.domain.repository.item.ItemRepository;
 import kcs.funding.fundingboost.domain.repository.orderItem.OrderItemRepository;
 import kcs.funding.fundingboost.domain.service.utils.PayUtils;
+import kcs.funding.fundingboost.event.application.OutboxEventService;
 import kcs.funding.fundingboost.payment.application.PaymentExecutionCommand;
 import kcs.funding.fundingboost.payment.application.PaymentExecutionResult;
+import kcs.funding.fundingboost.payment.application.PaymentFollowUpPolicy;
 import kcs.funding.fundingboost.payment.application.PaymentIntentKeyResolver;
 import kcs.funding.fundingboost.payment.application.PaymentIntentOrchestrator;
 import kcs.funding.fundingboost.payment.domain.PaymentIntentType;
@@ -61,11 +63,13 @@ public class MyPayService {
     private final DeliveryRepository deliveryRepository;
     private final MemberRepository memberRepository;
     private final FundingItemRepository fundingItemRepository;
-    private final ItemRepository itemRepository;
+    private final CatalogItemReader catalogItemReader;
     private final OrderRepository orderRepository;
     private final OrderItemRepository orderItemRepository;
     private final GiftHubItemRepository giftHubItemRepository;
     private final PaymentIntentOrchestrator paymentIntentOrchestrator;
+    private final PaymentFollowUpPolicy paymentFollowUpPolicy;
+    private final OutboxEventService outboxEventService;
 
     @Counted("MyPayService.myFundingPayView")
     public MyFundingPayViewDto myFundingPayView(Long fundingItemId, Long memberId) {
@@ -132,7 +136,7 @@ public class MyPayService {
                 .map(ItemPayDto::itemId)
                 .toList();
 
-        Map<Long, Item> itemMap = itemRepository.findItemsByItemIds(itemIds).stream()
+        Map<Long, Item> itemMap = catalogItemReader.findItemsByItemIds(itemIds).stream()
                 .collect(Collectors.toMap(Item::getItemId, item -> item));
         Map<Long, GiftHubItem> giftHubItemMap = extractValidatedGiftHubItems(myPayDto.itemPayDtoList(), memberId);
 
@@ -197,6 +201,18 @@ public class MyPayService {
         orderRepository.save(order);
         paymentIntentOrchestrator.attachOrderId(paymentExecutionResult.intentKey(), order.getOrderId());
         orderItemRepository.saveAll(orderItems);
+        outboxEventService.enqueuePaymentCompletedForOrder(
+                order,
+                memberId,
+                PaymentIntentType.ORDER_CART,
+                null,
+                "KRW",
+                paymentExecutionResult.pgProvider(),
+                paymentExecutionResult.pgTransactionId()
+        );
+        if (!paymentFollowUpPolicy.isConsumerMode()) {
+            outboxEventService.enqueueOrderPaid(order, memberId, PaymentIntentType.ORDER_CART);
+        }
 
         return CommonSuccessDto.fromEntity(true);
     }
@@ -224,7 +240,7 @@ public class MyPayService {
             throw new CommonException(INVALID_ITEM_QUANTITY);
         }
         int requestedUsingPoint = sanitizeUsingPoint(itemPayNowDto.usingPoint());
-        Item item = itemRepository.findById(itemPayNowDto.itemId()).orElseThrow(
+        Item item = catalogItemReader.findById(itemPayNowDto.itemId()).orElseThrow(
                 () -> new CommonException(NOT_FOUND_ITEM));
         Order order = Order.createOrder(member, delivery);
         OrderItem orderItem = OrderItem.createOrderItem(
@@ -254,6 +270,18 @@ public class MyPayService {
         orderRepository.save(order);
         paymentIntentOrchestrator.attachOrderId(paymentExecutionResult.intentKey(), order.getOrderId());
         orderItemRepository.save(orderItem);
+        outboxEventService.enqueuePaymentCompletedForOrder(
+                order,
+                memberId,
+                PaymentIntentType.ORDER_NOW,
+                itemPayNowDto.itemId(),
+                "KRW",
+                paymentExecutionResult.pgProvider(),
+                paymentExecutionResult.pgTransactionId()
+        );
+        if (!paymentFollowUpPolicy.isConsumerMode()) {
+            outboxEventService.enqueueOrderPaid(order, memberId, PaymentIntentType.ORDER_NOW);
+        }
         return CommonSuccessDto.fromEntity(true);
     }
 
@@ -266,7 +294,7 @@ public class MyPayService {
     @Counted("MyPayService.payMyFunding")
     @Transactional
     public CommonSuccessDto payMyFunding(Long fundingItemId, PayRemainDto payRemainDto, Long memberId, String idempotencyKey) {
-        FundingItem fundingItem = Optional.ofNullable(fundingItemRepository.findFundingItemAndItemByFundingItemId(fundingItemId))
+        FundingItem fundingItem = fundingItemRepository.findFundingItemByFundingItemId(fundingItemId)
                 .orElseThrow(() -> new CommonException(NOT_FOUND_FUNDING_ITEM));
         Member member = memberRepository.findByIdForUpdate(memberId)
                 .orElseThrow(() -> new CommonException(NOT_FOUND_MEMBER));
@@ -286,9 +314,10 @@ public class MyPayService {
             fundingItem.finishFundingItem();
         }
         int requestedUsingPoint = sanitizeUsingPoint(payRemainDto.usingPoint());
+        Item item = resolveFundingCatalogItem(fundingItem);
 
         Order order = Order.createOrder(member, delivery);
-        OrderItem orderItem = OrderItem.createOrderItem(order, fundingItem.getItem(), 1);
+        OrderItem orderItem = OrderItem.createOrderItem(order, item, 1);
         int fundingSupportedAmount = Math.min(fundingItem.getFunding().getCollectPrice(), order.getTotalPrice());
         int payableAfterFundingAmount = Math.max(order.getTotalPrice() - fundingSupportedAmount, 0);
         int pointUsedAmount = resolveApplicablePoint(member, requestedUsingPoint, payableAfterFundingAmount);
@@ -317,6 +346,18 @@ public class MyPayService {
         orderRepository.save(order);
         paymentIntentOrchestrator.attachOrderId(paymentExecutionResult.intentKey(), order.getOrderId());
         orderItemRepository.save(orderItem);
+        outboxEventService.enqueuePaymentCompletedForOrder(
+                order,
+                memberId,
+                PaymentIntentType.FUNDING_REMAIN,
+                fundingItemId,
+                "KRW",
+                paymentExecutionResult.pgProvider(),
+                paymentExecutionResult.pgTransactionId()
+        );
+        if (!paymentFollowUpPolicy.isConsumerMode()) {
+            outboxEventService.enqueueOrderPaid(order, memberId, PaymentIntentType.FUNDING_REMAIN);
+        }
 
         return CommonSuccessDto.fromEntity(true);
     }
@@ -372,6 +413,15 @@ public class MyPayService {
 
     private Optional<String> paymentIntentKeyFromIdempotencyKey(String idempotencyKey) {
         return PaymentIntentKeyResolver.resolveFromIdempotencyKey(idempotencyKey);
+    }
+
+    private Item resolveFundingCatalogItem(FundingItem fundingItem) {
+        Long itemReferenceId = fundingItem.getItemReferenceId();
+        if (itemReferenceId == null) {
+            throw new CommonException(NOT_FOUND_ITEM);
+        }
+        return catalogItemReader.findById(itemReferenceId)
+                .orElseThrow(() -> new CommonException(NOT_FOUND_ITEM));
     }
 
     private Map<Long, GiftHubItem> extractValidatedGiftHubItems(List<ItemPayDto> itemPayDtoList, Long memberId) {

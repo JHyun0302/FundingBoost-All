@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: fundingboost-payment
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+
+server:
+  port: 8081
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+
+app:
+  kafka:
+    enabled: ${APP_KAFKA_ENABLED:true}
+  outbox:
+    enabled: ${APP_OUTBOX_ENABLED:true}
+    relay-delay-ms: ${APP_OUTBOX_RELAY_DELAY_MS:3000}
+    batch-size: ${APP_OUTBOX_BATCH_SIZE:100}
+    max-retry: ${APP_OUTBOX_MAX_RETRY:10}
+    base-retry-seconds: ${APP_OUTBOX_BASE_RETRY_SECONDS:5}
+    topic-prefix: ${APP_OUTBOX_TOPIC_PREFIX:fundingboost}
+  payment:
+    schema-name: ${APP_PAYMENT_SCHEMA_NAME:payment}
+    schema-bootstrap-enabled: ${APP_PAYMENT_SCHEMA_BOOTSTRAP_ENABLED:true}
+    proxy:
+      base-url: ${APP_PAYMENT_PROXY_BASE_URL:http://fundingboost-server:8080}
+      connect-timeout-ms: ${APP_PAYMENT_PROXY_CONNECT_TIMEOUT_MS:3000}
+      read-timeout-ms: ${APP_PAYMENT_PROXY_READ_TIMEOUT_MS:10000}
+    native:
+      order-flows-enabled: ${APP_PAYMENT_NATIVE_ORDER_FLOWS_ENABLED:true}
+      funding-flows-enabled: ${APP_PAYMENT_NATIVE_FUNDING_FLOWS_ENABLED:true}
+      friend-flows-enabled: ${APP_PAYMENT_NATIVE_FRIEND_FLOWS_ENABLED:true}
+    consumers:
+      enabled: false
+      group-id: fundingboost-payment-skeleton
+    topics:
+      completed: fundingboost.payment.completed.v1
+      failed: fundingboost.payment.failed.v1

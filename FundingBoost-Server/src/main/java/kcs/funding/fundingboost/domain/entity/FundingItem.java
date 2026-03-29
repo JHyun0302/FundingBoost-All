@@ -40,6 +40,9 @@ public class FundingItem extends BaseTimeEntity {
     @JoinColumn(name = "item_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Item item;
 
+    @Column(name = "item_id", insertable = false, updatable = false)
+    private Long itemReferenceId;
+
     @NotNull
     @Column(name = "item_sequence")
     private int itemSequence;

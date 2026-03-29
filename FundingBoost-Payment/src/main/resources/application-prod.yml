@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    url: ${PAYMENT_DB_URL:jdbc:mysql://mysql:3306/payment?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8}
+    username: ${PAYMENT_DB_USERNAME:mysql}
+    password: ${PAYMENT_DB_PASSWORD:1q2w3e4r!}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:9092}
+    producer:
+      acks: all
+      retries: 10
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: ${KAFKA_CONSUMER_GROUP:fundingboost-payment}
+      auto-offset-reset: latest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    listener:
+      ack-mode: record
+    admin:
+      auto-create: false
+      fail-fast: false
+
+app:
+  payment:
+    proxy:
+      base-url: ${APP_PAYMENT_PROXY_BASE_URL:http://fundingboost-server:8080}
+      connect-timeout-ms: ${APP_PAYMENT_PROXY_CONNECT_TIMEOUT_MS:3000}
+      read-timeout-ms: ${APP_PAYMENT_PROXY_READ_TIMEOUT_MS:10000}
+    consumers:
+      enabled: ${APP_PAYMENT_CONSUMERS_ENABLED:false}
+      group-id: ${APP_PAYMENT_CONSUMERS_GROUP_ID:fundingboost-payment-skeleton}
+    topics:
+      completed: ${APP_PAYMENT_TOPICS_COMPLETED:fundingboost.payment.completed.v1}
+      failed: ${APP_PAYMENT_TOPICS_FAILED:fundingboost.payment.failed.v1}

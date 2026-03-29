@@ -32,6 +32,8 @@ import kcs.funding.fundingboost.domain.repository.MemberRepository;
 import kcs.funding.fundingboost.domain.repository.contributor.ContributorRepository;
 import kcs.funding.fundingboost.domain.repository.funding.FundingRepository;
 import kcs.funding.fundingboost.domain.service.utils.PayUtils;
+import kcs.funding.fundingboost.event.application.OutboxEventService;
+import kcs.funding.fundingboost.payment.application.PaymentFollowUpPolicy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,6 +52,8 @@ public class FriendPayService {
     private final FundingRepository fundingRepository;
     private final ContributorRepository contributorRepository;
     private final FriendPayBarcodeTokenRepository friendPayBarcodeTokenRepository;
+    private final PaymentFollowUpPolicy paymentFollowUpPolicy;
+    private final OutboxEventService outboxEventService;
 
     public FriendFundingPayingDto getFriendFundingPay(Long fundingId, Long memberId) {
         Member member = memberRepository.findById(memberId)
@@ -203,6 +207,31 @@ public class FriendPayService {
                 break;
             }
         }
+
+        outboxEventService.enqueuePaymentCompletedForFundingContribution(
+                funding.getFundingId(),
+                contributor.getContributorId(),
+                member.getMemberId(),
+                funding.getMember().getMemberId(),
+                fundingPrice,
+                usingPoint,
+                funding.getCollectPrice(),
+                funding.getTotalPrice()
+        );
+
+        if (!paymentFollowUpPolicy.isConsumerMode()) {
+            outboxEventService.enqueueFundingContributionCreated(
+                    funding.getFundingId(),
+                    contributor.getContributorId(),
+                    member.getMemberId(),
+                    funding.getMember().getMemberId(),
+                    fundingPrice,
+                    usingPoint,
+                    funding.getCollectPrice(),
+                    funding.getTotalPrice()
+            );
+        }
+
         return CommonSuccessDto.fromEntity(true);
     }
 

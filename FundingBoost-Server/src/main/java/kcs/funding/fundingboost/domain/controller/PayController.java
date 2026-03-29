@@ -13,11 +13,9 @@ import kcs.funding.fundingboost.domain.dto.response.pay.friendFundingPay.FriendP
 import kcs.funding.fundingboost.domain.dto.response.pay.myPay.MyFundingPayViewDto;
 import kcs.funding.fundingboost.domain.dto.response.pay.myPay.MyOrderPayViewDto;
 import kcs.funding.fundingboost.domain.security.resolver.Login;
-import kcs.funding.fundingboost.domain.service.pay.FriendPayService;
-import kcs.funding.fundingboost.domain.service.pay.MyPayService;
+import kcs.funding.fundingboost.payment.application.PaymentFacade;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,10 +30,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RequestMapping("/api/v1/pay")
 public class PayController {
 
-    private final MyPayService myPayService;
-    private final FriendPayService friendPayService;
-    @Value("${app.pay.barcode-verify-base-url:}")
-    private String barcodeVerifyBaseUrl;
+    private final PaymentFacade paymentFacade;
 
     /**
      * 마이 페이 주문 페이지 조회 & 즉시 결제시 페이지 조회
@@ -44,7 +39,7 @@ public class PayController {
     public ResponseDto<MyOrderPayViewDto> myOrderPayView(
             @Login Long memberId
     ) {
-        return ResponseDto.ok(myPayService.myOrderPayView(memberId));
+        return ResponseDto.ok(paymentFacade.getOrderPayView(memberId));
     }
 
     /**
@@ -53,7 +48,7 @@ public class PayController {
     @GetMapping("/view/funding/{fundingItemId}")
     public ResponseDto<MyFundingPayViewDto> myFundingPayView(@Login Long memberId,
                                                              @PathVariable(name = "fundingItemId") Long fundingItemId) {
-        return ResponseDto.ok(myPayService.myFundingPayView(fundingItemId, memberId));
+        return ResponseDto.ok(paymentFacade.getFundingPayView(fundingItemId, memberId));
     }
 
     /**
@@ -65,7 +60,7 @@ public class PayController {
             @RequestBody MyPayDto paymentDto,
             @RequestHeader(value = "Idempotency-Key", required = false) String idempotencyKey
     ) {
-        return ResponseDto.ok(myPayService.payMyItem(paymentDto, memberId, idempotencyKey));
+        return ResponseDto.ok(paymentFacade.payOrder(memberId, paymentDto, idempotencyKey));
     }
 
     /**
@@ -77,7 +72,7 @@ public class PayController {
             @RequestBody ItemPayNowDto itemPayNowDto,
             @RequestHeader(value = "Idempotency-Key", required = false) String idempotencyKey
     ) {
-        return ResponseDto.ok(myPayService.payMyItemNow(itemPayNowDto, memberId, idempotencyKey));
+        return ResponseDto.ok(paymentFacade.payOrderNow(memberId, itemPayNowDto, idempotencyKey));
     }
 
     /**
@@ -88,7 +83,7 @@ public class PayController {
                                                       @PathVariable("fundingItemId") Long fundingItemId,
                                                       @RequestBody PayRemainDto payRemainDto,
                                                       @RequestHeader(value = "Idempotency-Key", required = false) String idempotencyKey) {
-        return ResponseDto.ok(myPayService.payMyFunding(fundingItemId, payRemainDto, memberId, idempotencyKey));
+        return ResponseDto.ok(paymentFacade.payFunding(memberId, fundingItemId, payRemainDto, idempotencyKey));
     }
 
     /**
@@ -98,7 +93,7 @@ public class PayController {
     public ResponseDto<FriendFundingPayingDto> friendPayView(
             @Login Long memberId,
             @PathVariable("fundingId") Long fundingId) {
-        return ResponseDto.ok(friendPayService.getFriendFundingPay(fundingId, memberId));
+        return ResponseDto.ok(paymentFacade.getFriendFundingPay(memberId, fundingId));
     }
 
     /**
@@ -109,7 +104,7 @@ public class PayController {
             @Login Long memberId,
             @PathVariable("fundingId") Long fundingId,
             @RequestBody FriendPayProcessDto friendPayProcessDto) {
-        return ResponseDto.ok(friendPayService.fund(memberId, fundingId, friendPayProcessDto));
+        return ResponseDto.ok(paymentFacade.fundFriend(memberId, fundingId, friendPayProcessDto));
     }
 
     /**
@@ -122,33 +117,9 @@ public class PayController {
             @RequestBody FriendPayProcessDto friendPayProcessDto,
             HttpServletRequest request
     ) {
-        FriendPayBarcodeIssueDto issued = friendPayService.issueBarcodeToken(memberId, fundingId, friendPayProcessDto);
-        String verifyUrl = buildVerifyUrl(request, issued.token());
-
         return ResponseDto.ok(
-                FriendPayBarcodeIssueDto.builder()
-                        .token(issued.token())
-                        .barcodeValue(issued.token())
-                        .verifyUrl(verifyUrl)
-                        .expiresAt(issued.expiresAt())
-                        .usingPoint(issued.usingPoint())
-                        .fundingPrice(issued.fundingPrice())
-                        .build()
+                paymentFacade.issueFriendFundingBarcodeToken(memberId, fundingId, friendPayProcessDto, request)
         );
-    }
-
-    private String buildVerifyUrl(HttpServletRequest request, String token) {
-        if (barcodeVerifyBaseUrl != null && !barcodeVerifyBaseUrl.isBlank()) {
-            String normalizedBaseUrl = barcodeVerifyBaseUrl.endsWith("/")
-                    ? barcodeVerifyBaseUrl.substring(0, barcodeVerifyBaseUrl.length() - 1)
-                    : barcodeVerifyBaseUrl;
-            return normalizedBaseUrl + "/api/v1/pay/friends/barcode-token/" + token;
-        }
-        return ServletUriComponentsBuilder.fromRequestUri(request)
-                .replacePath("/api/v1/pay/friends/barcode-token/{token}")
-                .replaceQuery(null)
-                .buildAndExpand(token)
-                .toUriString();
     }
 
     /**
@@ -158,7 +129,7 @@ public class PayController {
     public ResponseDto<FriendPayBarcodeVerifyDto> verifyFriendPayBarcodeToken(
             @PathVariable("token") String token
     ) {
-        return ResponseDto.ok(friendPayService.verifyBarcodeToken(token));
+        return ResponseDto.ok(paymentFacade.verifyFriendFundingBarcodeToken(token));
     }
 
     /**
@@ -170,6 +141,6 @@ public class PayController {
             @PathVariable("fundingId") Long fundingId,
             @RequestBody FriendPayBarcodeConsumeDto consumeDto
     ) {
-        return ResponseDto.ok(friendPayService.fundWithBarcodeToken(memberId, fundingId, consumeDto));
+        return ResponseDto.ok(paymentFacade.consumeFriendFundingBarcodeToken(memberId, fundingId, consumeDto));
     }
 }
