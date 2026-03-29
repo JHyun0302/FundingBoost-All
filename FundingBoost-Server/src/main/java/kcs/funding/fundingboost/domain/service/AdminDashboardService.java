@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import kcs.funding.fundingboost.catalog.application.CatalogItemReader;
 import kcs.funding.fundingboost.domain.dto.response.admin.AdminBarcodeTokenSummaryDto;
 import kcs.funding.fundingboost.domain.dto.response.admin.AdminCategoryMetricDto;
 import kcs.funding.fundingboost.domain.dto.response.admin.AdminDashboardDto;
@@ -31,7 +32,6 @@ import kcs.funding.fundingboost.domain.repository.MemberRepository;
 import kcs.funding.fundingboost.domain.repository.OrderRepository;
 import kcs.funding.fundingboost.domain.repository.contributor.ContributorRepository;
 import kcs.funding.fundingboost.domain.repository.funding.FundingRepository;
-import kcs.funding.fundingboost.domain.repository.item.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -56,7 +56,7 @@ public class AdminDashboardService {
     private final MemberRepository memberRepository;
     private final FundingRepository fundingRepository;
     private final OrderRepository orderRepository;
-    private final ItemRepository itemRepository;
+    private final CatalogItemReader catalogItemReader;
     private final ContributorRepository contributorRepository;
     private final FriendPayBarcodeTokenRepository friendPayBarcodeTokenRepository;
 
@@ -186,7 +186,7 @@ public class AdminDashboardService {
                         (Map.Entry<Long, ItemSignal> entry) -> entry.getValue().wishlistCount).reversed())
                 .thenComparingLong(Map.Entry::getKey);
 
-        Map<Long, Item> itemById = itemRepository.findAllById(itemSignals.keySet()).stream()
+        Map<Long, Item> itemById = catalogItemReader.findAllById(itemSignals.keySet()).stream()
                 .collect(Collectors.toMap(Item::getItemId, Function.identity()));
         return itemSignals.entrySet().stream()
                 .filter(entry -> entry.getValue().score() > 0)
@@ -213,7 +213,7 @@ public class AdminDashboardService {
     }
 
     private List<AdminCategoryMetricDto> buildCategoryMetrics(Map<Long, ItemSignal> itemSignals) {
-        Map<Long, Item> allItems = itemRepository.findAllById(itemSignals.keySet()).stream()
+        Map<Long, Item> allItems = catalogItemReader.findAllById(itemSignals.keySet()).stream()
                 .collect(Collectors.toMap(Item::getItemId, Function.identity()));
 
         Map<String, CategorySignal> categorySignalMap = new LinkedHashMap<>();

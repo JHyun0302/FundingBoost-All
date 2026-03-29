@@ -1,0 +1,8 @@
+app:
+  catalog:
+    reader: ${APP_CATALOG_READER:local}
+    remote:
+      base-url: ${APP_CATALOG_REMOTE_BASE_URL:http://funding-crawler:8090}
+      connect-timeout-ms: ${APP_CATALOG_REMOTE_CONNECT_TIMEOUT_MS:1000}
+      read-timeout-ms: ${APP_CATALOG_REMOTE_READ_TIMEOUT_MS:3000}
+      fallback-to-local: ${APP_CATALOG_REMOTE_FALLBACK_TO_LOCAL:true}

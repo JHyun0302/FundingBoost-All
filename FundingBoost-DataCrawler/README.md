@@ -1,3 +1,30 @@
+## Catalog 서비스 분리 1단계 (스켈레톤)
+
+`FundingBoost-DataCrawler`에 Catalog API 골격을 추가했습니다.
+
+- 목적: 모놀리스의 `/api/v1/items`, `/api/v3/*` 이관 시작점 확보
+- 현재 범위: 조회 API 스켈레톤(아이템 목록/상세/카테고리/검색/홈랭킹)
+- 데이터 소스: `item` 스키마(Item 테이블)
+
+### 제공 API
+- `GET /api/v1/items`
+- `GET /api/v1/items/categories`
+- `GET /api/v1/items/{itemId}`
+- `GET /api/v3/search`
+- `GET /api/v3/items`
+- `GET /api/v3/items/cursor`
+- `GET /api/v3/items/categories`
+- `GET /api/v3/items/{itemId}`
+- `GET /api/v3/items/snapshot/{itemId}`
+- `GET /api/v3/items/snapshots?itemIds=1,2,3`
+- `GET /api/v3/home/rankings`
+
+### 현재 제약
+- 상세 조회의 `bookmark`는 Authorization JWT의 `sub(memberId)`를 해석해
+  `fundingboost.bookmark` 테이블을 조회합니다(조회 실패 시 `false` 폴백).
+- `audience` 기반 랭킹 필터는 스켈레톤 단계라 실제 성별 필터링을 적용하지 않습니다.
+- 정교한 랭킹 점수(펀딩/주문/위시 집계)는 후속 단계에서 이벤트/Projection으로 연결합니다.
+
 ## docker 배포
 1. ssh 접속
 ```markdown

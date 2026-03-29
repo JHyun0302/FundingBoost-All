@@ -63,4 +63,24 @@ public class Item extends BaseTimeEntity {
         item.optionName = optionName;
         return item;
     }
+
+    public static Item rehydrate(
+            Long itemId,
+            String itemName,
+            int itemPrice,
+            String itemImageUrl,
+            String brandName,
+            String category,
+            String optionName
+    ) {
+        Item item = new Item();
+        item.itemId = itemId;
+        item.itemName = itemName;
+        item.itemPrice = itemPrice;
+        item.itemImageUrl = itemImageUrl;
+        item.brandName = brandName;
+        item.category = category;
+        item.optionName = optionName;
+        return item;
+    }
 }

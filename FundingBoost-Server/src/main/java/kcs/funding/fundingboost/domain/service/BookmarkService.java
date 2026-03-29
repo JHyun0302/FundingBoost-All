@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import kcs.funding.fundingboost.catalog.application.CatalogItemReader;
 import kcs.funding.fundingboost.domain.dto.common.CommonSuccessDto;
 import kcs.funding.fundingboost.domain.dto.response.myPage.MyPageMemberDto;
 import kcs.funding.fundingboost.domain.dto.response.myPage.wishList.BookmarkItemDto;
@@ -21,7 +22,6 @@ import kcs.funding.fundingboost.domain.entity.member.Member;
 import kcs.funding.fundingboost.domain.exception.CommonException;
 import kcs.funding.fundingboost.domain.repository.MemberRepository;
 import kcs.funding.fundingboost.domain.repository.bookmark.BookmarkRepository;
-import kcs.funding.fundingboost.domain.repository.item.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,7 +34,7 @@ public class BookmarkService {
 
     private final BookmarkRepository bookmarkRepository;
     private final MemberRepository memberRepository;
-    private final ItemRepository itemRepository;
+    private final CatalogItemReader catalogItemReader;
 
     @Counted("BookmarkService.getMyBookmark")
     public MyBookmarkListDto getMyBookmark(Long memberId) {
@@ -45,7 +45,7 @@ public class BookmarkService {
                 .distinct()
                 .toList();
 
-        List<Item> items = Optional.ofNullable(itemRepository.findAllById(itemIds))
+        List<Item> items = Optional.ofNullable(catalogItemReader.findAllById(itemIds))
                 .orElse(Collections.emptyList());
 
         Map<Long, Item> itemById = items.stream()
@@ -79,7 +79,7 @@ public class BookmarkService {
             Member member = memberRepository.findById(memberId)
                     .orElseThrow(() -> new CommonException(NOT_FOUND_MEMBER));
 
-            Item item = itemRepository.findById(itemId)
+            Item item = catalogItemReader.findById(itemId)
                     .orElseThrow(() -> new CommonException(NOT_FOUND_ITEM));
 
             Bookmark bookmark = Bookmark.createBookmark(member, item);

@@ -10,6 +10,7 @@ import io.micrometer.core.annotation.Timed;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import kcs.funding.fundingboost.catalog.application.CatalogItemReader;
 import kcs.funding.fundingboost.domain.dto.common.CommonSuccessDto;
 import kcs.funding.fundingboost.domain.dto.request.giftHub.AddGiftHubDto;
 import kcs.funding.fundingboost.domain.dto.request.giftHub.ItemQuantityDto;
@@ -20,7 +21,6 @@ import kcs.funding.fundingboost.domain.entity.member.Member;
 import kcs.funding.fundingboost.domain.exception.CommonException;
 import kcs.funding.fundingboost.domain.repository.MemberRepository;
 import kcs.funding.fundingboost.domain.repository.giftHubItem.GiftHubItemRepository;
-import kcs.funding.fundingboost.domain.repository.item.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -34,7 +34,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class GiftHubItemService {
     private final GiftHubItemRepository giftHubItemRepository;
 
-    private final ItemRepository itemRepository;
+    private final CatalogItemReader catalogItemReader;
 
     private final MemberRepository memberRepository;
 
@@ -53,7 +53,7 @@ public class GiftHubItemService {
     @Counted("GiftHubItemService.addGiftHub")
     @Transactional
     public CommonSuccessDto addGiftHub(Long itemId, AddGiftHubDto addGiftHubDto, Long memberId) {
-        Item item = itemRepository.findById(itemId)
+        Item item = catalogItemReader.findById(itemId)
                 .orElseThrow(() -> new CommonException(NOT_FOUND_ITEM));
 
         Member member = memberRepository.findById(memberId)

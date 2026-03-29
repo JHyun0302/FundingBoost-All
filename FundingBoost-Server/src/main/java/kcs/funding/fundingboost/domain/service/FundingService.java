@@ -15,6 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import kcs.funding.fundingboost.catalog.application.CatalogItemReader;
 import kcs.funding.fundingboost.domain.dto.common.CommonSuccessDto;
 import kcs.funding.fundingboost.domain.dto.request.fundingRegist.RegisterFundingDto;
 import kcs.funding.fundingboost.domain.dto.response.common.CommonFriendFundingDto;
@@ -50,7 +51,6 @@ import kcs.funding.fundingboost.domain.repository.MemberRepository;
 import kcs.funding.fundingboost.domain.repository.contributor.ContributorRepository;
 import kcs.funding.fundingboost.domain.repository.funding.FundingRepository;
 import kcs.funding.fundingboost.domain.repository.fundingItem.FundingItemRepository;
-import kcs.funding.fundingboost.domain.repository.item.ItemRepository;
 import kcs.funding.fundingboost.domain.repository.relationship.RelationshipRepository;
 import kcs.funding.fundingboost.domain.service.utils.DateUtils;
 import kcs.funding.fundingboost.domain.service.utils.FundingConst;
@@ -68,7 +68,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class FundingService {
 
-    private final ItemRepository itemRepository;
+    private final CatalogItemReader catalogItemReader;
     private final MemberRepository memberRepository;
     private final FundingRepository fundingRepository;
     private final FundingItemRepository fundingItemRepository;
@@ -82,7 +82,7 @@ public class FundingService {
         List<Long> registerFundingItemList = registerFundingDto.itemIdList();
 
         List<Item> itemList = registerFundingItemList.stream()
-                .map(itemIdList -> itemRepository.findById(itemIdList)
+                .map(itemIdList -> catalogItemReader.findById(itemIdList)
                         .orElseThrow(() -> new CommonException(NOT_FOUND_ITEM))).toList();
 
         if (itemList.isEmpty()) {
@@ -226,7 +226,7 @@ public class FundingService {
     public HomeViewDto getMainView(Long memberId, Pageable pageable, Long lastItemId) {
 
         // 상품 목록: 상품Id, 이름, 가격, 이미지, 브랜드명
-        List<HomeItemDto> itemList = itemRepository.findItemsBySlice(lastItemId, pageable).stream()
+        List<HomeItemDto> itemList = catalogItemReader.findItemsBySlice(lastItemId, pageable).stream()
                 .map(HomeItemDto::fromEntity)
                 .toList();
         // 로그인하지 않은 사용자가 home 조회시 ItemList만 출력
