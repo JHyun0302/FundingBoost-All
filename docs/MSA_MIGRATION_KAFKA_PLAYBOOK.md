@@ -35,6 +35,7 @@
   - 운영 보정: Kafka 이미지를 `apache/kafka:3.7.2`로 교체, `OutboxRelayService` self-invocation 트랜잭션 버그 수정, pending outbox `PUBLISHED` 확인, `payment.completed.v1`/`commerce.order.paid.v1` dedupe guard 추가, `funding.contribution.created.v1` key를 contribution 단위(`fundingId:contributorId`)로 보정
 - 4단계 Funding/Commerce 분리: 진행 시작
   - 완료: `PaymentCompletedFollowUpDispatcher`, 주문/기여 후속 변환 서비스 분리, Payment 직접 후속 이벤트 발행으로 back payment follow-up bridge 제거
+  - 추가 시작: `inbox_event` 기반 idempotent consumer 토대 추가, `commerce.order.paid.v1` / `funding.contribution.created.v1` / `payment.failed.v1` inbox consumer scaffold 추가(기본 `disabled`)
   - 잔여: 보상 트랜잭션, 상태 테이블 분리, 직접 DB 참조 제거
 - 5~6단계: 미착수
 
@@ -86,6 +87,7 @@
 
 3. Funding/Commerce 트랜잭션 분리
 - 동기 DB 조인을 제거하고 이벤트/Saga로 상태 동기화.
+- 첫 구현은 `inbox_event`로 소비 이력과 중복 방지부터 시작한다.
 - 이유: 최종적으로 서비스 간 분산 트랜잭션을 없애야 장애 전파를 막을 수 있다.
 
 4. Admin/Home 읽기 모델 분리

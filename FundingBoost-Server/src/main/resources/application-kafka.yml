@@ -20,6 +20,15 @@ spring:
 app:
   kafka:
     enabled: ${APP_KAFKA_ENABLED:false}
+  inbox:
+    schema-bootstrap-enabled: ${APP_INBOX_SCHEMA_BOOTSTRAP_ENABLED:true}
+    consumers:
+      enabled: ${APP_INBOX_CONSUMERS_ENABLED:false}
+      group-id: ${APP_INBOX_GROUP_ID:fundingboost-domain-inbox}
+    topics:
+      order-paid: ${APP_INBOX_TOPICS_ORDER_PAID:fundingboost.commerce.order.paid.v1}
+      funding-contribution-created: ${APP_INBOX_TOPICS_FUNDING_CONTRIBUTION_CREATED:fundingboost.funding.contribution.created.v1}
+      payment-failed: ${APP_INBOX_TOPICS_PAYMENT_FAILED:fundingboost.payment.failed.v1}
   payment:
     follow-up:
       mode: ${APP_PAYMENT_FOLLOW_UP_MODE:direct}

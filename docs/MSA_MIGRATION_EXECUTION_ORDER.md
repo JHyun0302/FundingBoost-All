@@ -124,6 +124,12 @@
   - [x] `FundingContributionPaymentCompletedFollowUpService`
 - [x] Payment 직접 후속 이벤트 발행으로 back follow-up bridge 제거
 - [x] `funding.contribution.created.v1` key를 contribution 단위(`fundingId:contributorId`)로 보정
+- [x] Saga inbox/idempotent consumer 기반 추가
+  - [x] `inbox_event` 테이블 bootstrap 추가
+  - [x] `commerce.order.paid.v1` inbox consumer scaffold 추가
+  - [x] `funding.contribution.created.v1` inbox consumer scaffold 추가
+  - [x] `payment.failed.v1` inbox consumer scaffold 추가
+  - [x] 기본값은 `disabled`로 유지 (`APP_INBOX_CONSUMERS_ENABLED=false`)
 - [ ] 교차 서비스 동기 호출 최소화
 - [ ] Saga 보상 트랜잭션 설계/적용
 - [ ] 서비스 간 DB 직접 참조 제거
@@ -135,7 +141,7 @@
 
 ## 지금 바로 진행할 일 (권장 순서)
 1. Funding/Commerce Saga 본격화
-   - 서비스별 보상/재처리 규칙과 상태 테이블 분리
+   - inbox consumer 활성화 후 서비스별 상태 반영 책임 이동
 2. 교차 서비스 동기 호출 최소화
    - Payment 이후 상태 반영을 이벤트 소비 중심으로 더 축소
 3. Admin/Home Projection 분리 준비
