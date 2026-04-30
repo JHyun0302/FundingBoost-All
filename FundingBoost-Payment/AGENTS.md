@@ -16,16 +16,15 @@
 - Keep payment flow changes cohesive across controller, application, domain, and persistence layers.
 - Preserve idempotency and intent-state behavior when touching payment orchestration code.
 - Keep external request/response contracts compatible with the client and main server unless the task explicitly includes coordinated contract changes.
-- Do not add a Gradle wrapper unless the task explicitly asks for it.
 - Do not commit generated build output.
 
 ## Commands
-- Install/resolve dependencies with the local Gradle installation in this directory.
-- Test: `gradle test`
-- Run locally: `gradle bootRun`
-- Build: `gradle build`
+- Use the committed Gradle wrapper in this directory.
+- Test: `./gradlew test`
+- Run locally: `./gradlew bootRun`
+- Build: `./gradlew build`
 
 ## Validation
 - Validate the smallest relevant Gradle task for the code you changed.
-- Be aware that local validation can currently fail depending on the local Gradle/JDK combination because this module does not commit a wrapper.
+- For payment migration work, prefer `./scripts/harness/run.sh stage3-payment-cutover` before broader manual QA.
 - If the task spans payment events consumed by another service, note that cross-service validation may be needed separately.

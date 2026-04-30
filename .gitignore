@@ -32,3 +32,4 @@ yarn-error.log*
 
 # Generated OCI artifacts
 deploy/oci/artifacts/*.tar.gz
+artifacts/harness/

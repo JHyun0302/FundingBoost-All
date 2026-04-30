@@ -8,6 +8,15 @@
 - 서비스 간 상태 전달은 Kafka 이벤트 중심
 - 쓰기 정합성은 Outbox 패턴으로 보장
 
+## 자동 검증 하네스
+- 작업 종류별 통과 조건은 `docs/HARNESS_ENGINEERING_START.md`를 기준으로 고정한다.
+- 실행 명령은 `./scripts/harness/run.sh <profile>` 형식으로 통일한다.
+- 현재 MSA 단계 대응 profile
+  - `stage1-monolith-boundary`
+  - `stage2-catalog-cutover`
+  - `stage3-payment-cutover`
+  - `stage4-saga-foundation`
+
 ## 단계별 진행 현황 (요약)
 - 1단계 모놀리스 내부 경계 고정: 진행중 (핵심 경로 완료, 잔여 내부 의존 정리 남음)
 - 2단계 Catalog 서비스 분리: 완료 (edge full 전환, back remote-only 전환, QA 검증 완료)

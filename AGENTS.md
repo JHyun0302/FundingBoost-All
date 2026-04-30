@@ -37,12 +37,11 @@
   - `./gradlew build`
 
 ### Payment
-- `FundingBoost-Payment` currently has `build.gradle` but no committed Gradle wrapper.
-- Prefer the local Gradle installation for commands in that directory unless the task is specifically about adding a wrapper.
+- Use the committed Gradle wrapper in `FundingBoost-Payment`.
 - Common commands:
-  - `gradle test`
-  - `gradle bootRun`
-  - `gradle build`
+  - `./gradlew test`
+  - `./gradlew bootRun`
+  - `./gradlew build`
 
 ### DataCrawler
 - Use the Gradle wrapper in `FundingBoost-DataCrawler`.
@@ -73,6 +72,7 @@
   - single-service backend change: run that service's Gradle tests
   - compose/deploy change: run `docker compose ... config` at minimum
 - If a change spans multiple services, validate each touched service separately rather than relying on one broad command.
+- For current MSA migration work, prefer the harness profiles in `./scripts/harness/run.sh` so the same task type always runs the same checks.
 
 ## Safety
 - Treat `.env`, deployment env files, SSH-related material, and cloud deployment settings as sensitive.
